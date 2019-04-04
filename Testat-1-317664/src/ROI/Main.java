@@ -28,78 +28,87 @@ public class Main
         int years;
         double dalyRentPrice;
         double valueUsedTrailer;
-        String argument;
-        String inputScann;
+        String stringInput;
+
         
         
         // Methode
+        stringInput=args[0];
         do
         {
             try
             {
-                argument=args[0];
-                valueTrailer=Integer.parseInt(argument);
+                valueTrailer=Integer.parseInt(stringInput);
             }
             catch(NumberFormatException e)
             {
                 System.out.println("The input is incorrect!");
                 System.out.println("Enter the value of the trailer:");
-                inputScann= scanner.next();  
-                valueTrailer=Integer.parseInt(inputScann);
+                stringInput=scanner.next();
+                valueTrailer=0;
             }
         }
-        while(valueTrailer<=0);
+        while(valueTrailer==0);
         
+        stringInput=args[1];
         do
         {   
             try
             {
-                argument=args[1];
-                years=Integer.parseInt(argument);
+                years=Integer.parseInt(stringInput);
+                if(years>0 && years<=10)
+                {
+                }
+                else
+                {
+                    System.out.println("The input is incorrect!");
+                    System.out.println("Enter the values of the period time of the contract it should be between 1 and 10:");
+                    stringInput= scanner.next();   
+                }
             }
             catch(NumberFormatException e)
             {
                 System.out.println("The input is incorrect!");
                 System.out.println("Enter the values of Years the contract is going it shouldn’t be between 1 and 10:");
-                inputScann= scanner.next();
-                years=Integer.parseInt(inputScann);
+                stringInput= scanner.next();
+                years=0;
             }
         }
-        while(years<0 && years>=10);
+        while(years==0);
         
+        stringInput=args[2];
         do
         {
             try
             {
-                argument=args[2];
-                dalyRentPrice=Double.parseDouble(argument);
+                dalyRentPrice=Double.parseDouble(stringInput);
             }
             catch(NumberFormatException e)
             {
                 System.out.println("The input is incorrect!");
                 System.out.println("Enter the value of the daily rent of the trailer:");
-                inputScann= scanner.next();
-                dalyRentPrice=Double.parseDouble(inputScann);
+                stringInput= scanner.next();
+                dalyRentPrice=0;
             }
         }
-        while(dalyRentPrice<0);
+        while(dalyRentPrice==0);
         
+        stringInput=args[3];
         do
         {
             try
             {
-                argument=args[3];
-                valueUsedTrailer=Double.parseDouble(argument);
+                valueUsedTrailer=Double.parseDouble(stringInput);
             }
             catch(NumberFormatException e)
             {
                 System.out.println("The input is incorrect!");
                 System.out.println("Enter the value of the used trailer:");
-                inputScann= scanner.next();
-                valueUsedTrailer=Double.parseDouble(inputScann);
+                stringInput= scanner.next();
+                valueUsedTrailer=0;
             }
         }
-        while(valueUsedTrailer<=0);
+        while(valueUsedTrailer==0);
     }
-   
+      
 }
