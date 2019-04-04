@@ -29,9 +29,7 @@ public class Main
         double dalyRentPrice;
         double valueUsedTrailer;
         String stringInput;
-
-        
-        
+ 
         // Methode
         stringInput=args[0];
         do
@@ -109,6 +107,5 @@ public class Main
             }
         }
         while(valueUsedTrailer==0);
-    }
-      
+    }     
 }
