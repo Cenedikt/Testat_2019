@@ -35,7 +35,7 @@ public class Main
         argLength=args.length;
         if(argLength != 4)
         {
-            System.out.println("It has to be 4 arguments to run the program pleas restart and enter 4 arguments! ");
+            System.out.println("It must to be 4 arguments to run the program pleas restart and enter 4 arguments! ");
           System.exit(0); 
         }
         
