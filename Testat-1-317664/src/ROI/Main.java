@@ -29,8 +29,16 @@ public class Main
         double dalyRentPrice;
         double valueUsedTrailer;
         String stringInput;
- 
+        int argLength;
+        
         // Methode
+        argLength=args.length;
+        if(argLength != 4)
+        {
+            System.out.println("It has to be 4 arguments to run the program pleas restart and enter 4 arguments! ");
+          System.exit(0); 
+        }
+        
         stringInput=args[0];
         do
         {
@@ -54,14 +62,11 @@ public class Main
             try
             {
                 years=Integer.parseInt(stringInput);
-                if(years>0 && years<=10)
-                {
-                }
-                else
+                if(!(years>0 && years<=10))
                 {
                     System.out.println("The input is incorrect!");
                     System.out.println("Enter the values of the period time of the contract it should be between 1 and 10:");
-                    stringInput= scanner.next();   
+                    stringInput= scanner.next(); 
                 }
             }
             catch(NumberFormatException e)
