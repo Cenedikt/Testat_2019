@@ -99,7 +99,7 @@ public class Main
                 valueUsedTrailer=Double.parseDouble(inputScann);
             }
         }
-        while(valueUsedTrailer>0);
+        while(valueUsedTrailer<=0);
     }
    
 }
