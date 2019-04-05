@@ -25,15 +25,15 @@ public class Main
         //Variables
         Scanner scanner = new Scanner(System.in);
         int valueTrailer;
-        int years;
+        int contractPeriod;
         double dalyRentPrice;
         double valueUsedTrailer;
         String stringInput;
-        int argLength;
+        double finalAmount;
+        double interestRate;
         
         // Methode
-        argLength=args.length;
-        if(argLength != 4)
+        if(args.length != 4)
         {
             System.out.println("It must to be 4 arguments to run the program pleas restart and enter 4 arguments! ");
           System.exit(0); 
@@ -61,8 +61,8 @@ public class Main
         {   
             try
             {
-                years=Integer.parseInt(stringInput);
-                if(!(years>0 && years<=10))
+                contractPeriod=Integer.parseInt(stringInput);
+                if(!(contractPeriod>0 && contractPeriod<=10))
                 {
                     System.out.println("The input is incorrect!");
                     System.out.println("Enter the values of the period time of the contract it should be between 1 and 10:");
@@ -74,10 +74,10 @@ public class Main
                 System.out.println("The input is incorrect!");
                 System.out.println("Enter the values of Years the contract is going it shouldn’t be between 1 and 10:");
                 stringInput= scanner.next();
-                years=0;
+                contractPeriod=0;
             }
         }
-        while(years==0);
+        while(contractPeriod==0);
         
         stringInput=args[2];
         do
@@ -112,5 +112,29 @@ public class Main
             }
         }
         while(valueUsedTrailer==0);
-    }     
+        System.out.println("The entered values are:");
+        System.out.println("Price of the trailer: "+valueTrailer+"€");
+        System.out.println("Contracted time: "+contractPeriod);
+        System.out.println("Price of daly rent: "+dalyRentPrice+"€");
+        System.out.println("Value of udes trailer: "+ valueUsedTrailer+"€");
+        finalAmount=computeFinalAmount(valueTrailer, contractPeriod, dalyRentPrice);
+        System.out.println("_______________________________");
+        System.out.println("The final amount is: "+finalAmount+"€");
+        interestRate=computeInterestRate(finalAmount, valueTrailer, contractPeriod);
+        System.out.println("The intrestrate is: "+interestRate+"€");
+    }
+    
+    public static double computeFinalAmount (int pvalueUsedTrailer, int pcontractPeriod, double pdalyRentPrice)               
+    {
+        double finalAmount;
+        finalAmount = pvalueUsedTrailer + (pcontractPeriod * 12 * 30 * pdalyRentPrice); 
+        return finalAmount;
+    }
+    
+    public static double computeInterestRate(double pfinalAmount, int pvalueTrailer, int pcontractPeriod)
+    {
+        double interestRate;
+        interestRate = Math.pow((pfinalAmount / pvalueTrailer), (1.0 / pcontractPeriod) - 1);
+        return interestRate;       
+    }
 }
