@@ -48,10 +48,14 @@ public class Main
             }
             catch(NumberFormatException e)
             {
-                System.out.println("The input is incorrect!");
-                System.out.println("Enter the value of the trailer:");
-                stringInput=scanner.next();
-                valueTrailer=0;
+                do
+                {
+                    System.out.println("The input is incorrect!");
+                    System.out.println("Enter the value of the trailer:");
+                    stringInput=scanner.next();
+                    valueTrailer=0;
+                }
+                while(stringInput.matches("-?\\d+")==true);
             }
         }
         while(valueTrailer==0);
@@ -85,13 +89,18 @@ public class Main
             try
             {
                 dalyRentPrice=Double.parseDouble(stringInput);
+                dalyRentPrice=Math.round(dalyRentPrice*100)/100.0;
             }
             catch(NumberFormatException e)
             {
-                System.out.println("The input is incorrect!");
-                System.out.println("Enter the value of the daily rent of the trailer:");
-                stringInput= scanner.next();
-                dalyRentPrice=0;
+                do
+                {
+                    System.out.println("The input is incorrect!");
+                    System.out.println("Enter the value of the daily rent of the trailer:");
+                    stringInput= scanner.next();
+                    dalyRentPrice=0;
+                }
+                while(stringInput.matches("-?\\d+")==true);
             }
         }
         while(dalyRentPrice==0);
@@ -102,13 +111,18 @@ public class Main
             try
             {
                 valueUsedTrailer=Double.parseDouble(stringInput);
+                valueUsedTrailer=Math.round(valueUsedTrailer*100)/100.0;
             }
             catch(NumberFormatException e)
             {
-                System.out.println("The input is incorrect!");
-                System.out.println("Enter the value of the used trailer:");
-                stringInput= scanner.next();
-                valueUsedTrailer=0;
+                do
+                {
+                    System.out.println("The input is incorrect!");
+                    System.out.println("Enter the value of the used trailer:");
+                    stringInput= scanner.next();
+                    valueUsedTrailer=0;
+                }
+                while(stringInput.matches("-?\\d+")==true);
             }
         }
         while(valueUsedTrailer==0);
@@ -128,6 +142,7 @@ public class Main
     {
         double finalAmount;
         finalAmount = pvalueUsedTrailer + (pcontractPeriod * 12 * 30 * pdalyRentPrice); 
+        finalAmount=Math.round(finalAmount*100)/100.0;
         return finalAmount;
     }
     
@@ -135,6 +150,7 @@ public class Main
     {
         double interestRate;
         interestRate = Math.pow((pfinalAmount / pvalueTrailer), (1.0 / pcontractPeriod) - 1);
+        interestRate=Math.round(interestRate*100)/100.0;
         return interestRate;       
     }
 }
