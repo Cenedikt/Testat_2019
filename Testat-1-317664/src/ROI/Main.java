@@ -108,6 +108,28 @@ public class Main
                  * the stringInput is parsed in to an int and saved in valueTrailer
                  */
                 valueTrailer=Integer.parseInt(stringInput);
+                /**
+                 * cheks if the value of valueTrailer is negativ if yes new input
+                 */
+                if(valueTrailer<0)
+                {
+                    /**
+                     * error message 
+                     */
+                    System.out.println("The input is incorrect!");
+                    /**
+                     * Consal output
+                     */
+                    System.out.println("Enter the value of the trailer:");
+                    /**
+                     * next() reads the console input and saved it int StringInput
+                     */
+                    stringInput=scanner.next();
+                    /**
+                     * set value of valueTrailer to 0 to competed withe the loop
+                     */
+                    valueTrailer=0;   
+                }
             }
             /**
              * @exception input incorrect
@@ -232,6 +254,28 @@ public class Main
                  * it's rounded to the second position after the comma
                  */
                 dalyRentPrice=Math.round(dalyRentPrice*100)/100.0;
+                /**
+                 * cheks if the value of dalyRentPrice is negativ if yes ne input
+                 */
+                if(dalyRentPrice<0)
+                {
+                    /**
+                    * error message 
+                    */                    
+                    System.out.println("The input is incorrect!");
+                    /**
+                     * Consal output
+                     */                    
+                    System.out.println("Enter the value of the daily rent of the trailer:");
+                    /**
+                     * next() reads the console input and saved it int StringInput
+                     */                    
+                    stringInput= scanner.next();
+                    /**
+                     * set value of dalyRentPrice to 0 to competed withe the loop
+                     */                    
+                    dalyRentPrice=0;                    
+                }
             }
             /**
              * @exception input incorrect
@@ -292,6 +336,28 @@ public class Main
                  * it's rounded to the second position after the comma
                  */                
                 valueUsedTrailer=Math.round(valueUsedTrailer*100)/100.0;
+                /**
+                 * check if the value of valueUsedTrailer is negativ if yes than new input
+                 */
+                if(valueUsedTrailer<=0)
+                {
+                    /**
+                    * error message 
+                    */
+                    System.out.println("The input is incorrect!");
+                    /**
+                     * Consal output
+                     */                      
+                    System.out.println("Enter the value of the used trailer:");
+                    /**
+                     * next() reads the console input and saved it int StringInput
+                     */                    
+                    stringInput= scanner.next();
+                    /**
+                     * set value of valueUsedTrailer to 0 to competed withe the loop
+                     */                    
+                    valueUsedTrailer=0;                    
+                }
             }
             /**
              * @exception input incorrect
