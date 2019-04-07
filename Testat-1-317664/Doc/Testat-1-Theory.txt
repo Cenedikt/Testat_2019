@@ -1,29 +1,18 @@
 12/13/2019:
-nummbers ar not a valid variable name because it's a value
-CourseNumber:
-Capital laters are initializing classes and not variables
+numbers are not a valid variable name 
+Course Number:
+Capital later are initializing classes and not variables
 best grade ever:
-space are not compiledble 
+space is not compliable 
 programming-SS2019:
-
+no special chars are allowed by variables
 5thAttestation:
-no nummbers on the beginning of a variable
+no numbers on the beginning of a variable
 fußgröße (German word for foot size):
-no umlaute are allowed in variables
+no umlaut is allowed in variables
 greatestcommondivisor:
-every folloing word in capiatal letters
+every following word in capital letters
 netto+VAT:
-no plus siene to connect to words
+no plus sine to connect to words
 p:
-p it´s not a strong name 
-
-the balance of a current account:
-
-the ordered quantity of articles in a shopping cart:
-int numbInShoppingCart
-the complete DOT number of a vehicle tyre:
-
-the monthly instalment for a loan agreement:
-
-a student's matriculation number:
-int matricalNumber;
+p it´s not a strong name
