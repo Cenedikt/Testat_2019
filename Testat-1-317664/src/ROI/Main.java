@@ -105,7 +105,7 @@ public class Main
             try
             {
                 /**
-                 * the stringInput is pared in to an int and saved in valueTrailer
+                 * the stringInput is parsed in to an int and saved in valueTrailer
                  */
                 valueTrailer=Integer.parseInt(stringInput);
             }
@@ -152,13 +152,19 @@ public class Main
          */        
         stringInput=args[1];
         /**
-         * the loop checks if the valueTrailer isn't 0
+         * the loop checks if the contractPeriod isn't 0
          */        
         do
         {            
             try
             {
+                /**
+                 * the stringInput is parsed in to an int and saved in contractPeriod
+                 */                
                 contractPeriod=Integer.parseInt(stringInput);
+                /**
+                 * it's a inverted if funktion wich cecks if contractPeriod is hiher than 0 but lover than or equal to 10
+                 */
                 if(!(contractPeriod>0 && contractPeriod<=10))
                 {
                     /**
@@ -218,7 +224,13 @@ public class Main
         {
             try
             {
+                /**
+                 * the stringInput is parsed in to an double and saved in dalyRentPrice
+                 */                
                 dalyRentPrice=Double.parseDouble(stringInput);
+                /*
+                 * it's rounded to the second position after the comma
+                 */
                 dalyRentPrice=Math.round(dalyRentPrice*100)/100.0;
             }
             /**
@@ -272,7 +284,13 @@ public class Main
         {
             try
             {
+                /**
+                 * the stringInput is parsed in to an double and saved in parseDouble
+                 */                
                 valueUsedTrailer=Double.parseDouble(stringInput);
+                /*
+                 * it's rounded to the second position after the comma
+                 */                
                 valueUsedTrailer=Math.round(valueUsedTrailer*100)/100.0;
             }
             /**
