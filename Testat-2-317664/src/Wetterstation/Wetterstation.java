@@ -80,7 +80,7 @@ public class Wetterstation
             } 
             else if (windSpeedList.get(i) > 0 && windCounter == false) 
             {
-                windSpeedList.add(windSpeedList.get(i)+16);
+                windSpeedList.add(windSpeedList.get(i)-16);
                 if (windSpeedList.get(i)  == 0) 
                 {
                     windCounter = true;
@@ -142,11 +142,12 @@ public class Wetterstation
 //        }
 //        return ausgabe;
 
-    public void output(int lol)
+    public void output(int pLoopCounter)
     {
-        System.out.println(tempList.get(0));
-        System.out.println(windSpeedList.get(0));
-        windSpeedList.add(windSpeedList.get(0)+8);
-        System.out.println(windSpeedList.get(1));
+        messeWindgeschwindigkeit(pLoopCounter);
+        windSpeedList.get(0);
+        windSpeedList.get(1);
+        windSpeedList.get(2);
+        windSpeedList.get(3);
     }
 }
