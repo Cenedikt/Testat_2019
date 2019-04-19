@@ -44,6 +44,7 @@ public class WeatherStation
     /**
     * Konstruktor
     *
+    * set all values 
     */
     public WeatherStation() 
     {
@@ -145,6 +146,7 @@ public class WeatherStation
     /**
      * readTemperature
      * <br> creats the temperature datas
+     * <br>counts between -10 to 30 jumps up in with 5 and down wiht 1
      */
     private void readTemperature() 
     {
@@ -169,6 +171,7 @@ public class WeatherStation
     /**
      * readWindSpeed
      * <br> creats the windspeed datas
+     * <br> counts between 0 to 80 jups up with 8 and down with 16
      */
     private void readWindSpeed() 
     {
@@ -207,7 +210,10 @@ public class WeatherStation
     /**
      * getMessageWeatherWarning
      * <br> creats the message output 
-     * <br>
+     * <br> when windspeed is higher than or equals 70 and the wind chill temperature lower than or equals -18 gives an Storm and cold warning
+     * <br> when windspeed is higher than or equals 70 storm warning
+     * <br> when wind chill temperature lower than or equals -18 gives an cold warning
+     * <br> else no warning at all
      * @return message
      */
     private String getMessageWeatherWarning() 
@@ -236,7 +242,6 @@ public class WeatherStation
     /**
      * output
      * <br> is the rsult of the class Wheatherstation 
-     * <br>
      * @param pCounter 
      */
     public void output(int pCounter)
@@ -248,7 +253,7 @@ public class WeatherStation
             this.readTemperature();
             this.readWindSpeed();
             this.calculateWindChillTemperature();
-            System.out.println(this.getMessageWeatherWarning());
+            System.out.println("Weather is: "+this.getMessageWeatherWarning());
         }
         System.out.println("\n________________________________________________________________");
         System.out.println("Storm and cold warnings counter: " + this.getWarningCounter());

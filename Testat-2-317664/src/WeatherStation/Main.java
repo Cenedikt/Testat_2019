@@ -44,7 +44,7 @@ public class Main {
         String input;
 
         /**
-         * checks if there is an given argument else make an input
+         * checks if there is an given argument else make an input if the input is inncorecct ask for new input
          */
         if(args.length == 1)
         {
