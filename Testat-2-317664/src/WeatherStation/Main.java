@@ -19,12 +19,33 @@ public class Main {
     public static void main(String[] args) 
     {
         // TODO code application logic here
+        
+        /**
+         * station
+         * <br> the object WeatherStation is created and saved station
+         */
         WeatherStation station = new WeatherStation();
+
+        /**
+         * scanner
+         * <br> the object Scanner is created and saved in scanner
+         */        
         Scanner scanner = new Scanner(System.in);
         
+        /**
+         * counter
+         * <br> saves the amount of repetiton of the loop for the output
+         */
         int counter;
+        /**
+         * input
+         * <br> is a ram for the scanner input 
+         */
         String input;
-        
+
+        /**
+         * checks if there is an given argument else make an input
+         */
         if(args.length == 1)
         {
             input = args[0];
@@ -61,7 +82,6 @@ public class Main {
             }
             while(counter == 0);  
         }
-        
         station.output(counter);
     }
  }

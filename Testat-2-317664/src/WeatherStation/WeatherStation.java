@@ -11,13 +11,40 @@ package WeatherStation;
  */
 public class WeatherStation
 {
+    /**
+     * temperature
+     * <br> saves the temperature
+     */    
     private double temperature;
+    
+    /**
+     * windSpeed
+     * <br> saves windspeed
+     */
     private double windSpeed;
-    private double windChillTemp;  
+    
+    /**
+     * warningCounter
+     * <br> saves the amount of cold and storm warnings
+     */
     private int warningCounter;
+    
+    /**
+     * windChanger
+     * <br> saves the wind changer to proccead the reading methode
+     */
     private boolean windChanger;
+    
+    /**
+     * temparatureChanger
+     * <br> saves the temperature changer to proccead the reading methode
+     */
     private boolean temparatureChanger;
-
+    
+    /**
+    * Konstruktor
+    *
+    */
     public WeatherStation() 
     {
         this.setWindSpeed(-8);
@@ -25,67 +52,100 @@ public class WeatherStation
         this.setTemparatureChanger(true);
         this.setWindChanger(true);
     }
-
+    
+    /**
+     * getTemperature
+     * @return temperature
+     */
     private double getTemperature() 
     {
         return temperature;
     }
-
+    
+    /**
+     * setTemperature
+     * @param ptemperature 
+     */
     private void setTemperature(double ptemperature) 
     {
         this.temperature = ptemperature;
     }
-
+    
+    /**
+     * getWindSpeed
+     * @return windSpeed
+     */
     private double getWindSpeed() 
     {
         return windSpeed;
     }
-
+    
+    /**
+     * setWindSpeed
+     * @param pwindSpeed 
+     */
     private void setWindSpeed(double pwindSpeed) 
     {
         this.windSpeed = pwindSpeed;
     }
-
-    private double getWindChillTemp() 
-    {
-        return windChillTemp;
-    }
-
-    private void setWindChillTemp(double pwindChillTemp) 
-    {
-        this.windChillTemp = pwindChillTemp;
-    }
-
+    
+    /**
+     * getWarningCounter
+     * @return warningCounter
+     */
     private int getWarningCounter() 
     {
         return warningCounter;
     }
-
+    
+    /**
+     * setWarningCounter
+     * @param pwarningCounter 
+     */
     private void setWarningCounter(int pwarningCounter) 
     {
         this.warningCounter = pwarningCounter;
     }
-
+    /**
+     * isWindChanger
+     * @return windChanger
+     */
     private boolean isWindChanger() 
     {
         return windChanger;
     }
-
+    
+    /**
+     * setWindChanger
+     * @param pwindChanger 
+     */
     private void setWindChanger(boolean pwindChanger) 
     {
         this.windChanger = pwindChanger;
     }
-
+    
+    /**
+     * isTemparatureChanger
+     * @return temparatureChanger
+     */
     private boolean isTemparatureChanger() 
     {
         return temparatureChanger;
     }
-
+    
+    /**
+     * setTemparatureChanger
+     * @param ptemparatureChanger 
+     */
     private void setTemparatureChanger(boolean ptemparatureChanger) 
     {
         this.temparatureChanger = ptemparatureChanger;
     }
-
+    
+    /**
+     * readTemperature
+     * <br> creats the temperature datas
+     */
     private void readTemperature() 
     {
         if (this.getTemperature() < 30 && this.isTemparatureChanger() == true) 
@@ -105,7 +165,11 @@ public class WeatherStation
             }
         }
     }
-
+    
+    /**
+     * readWindSpeed
+     * <br> creats the windspeed datas
+     */
     private void readWindSpeed() 
     {
         if (this.getWindSpeed() < 80 && this.isWindChanger() == true) 
@@ -125,36 +189,56 @@ public class WeatherStation
             }
         }
     }
-
-    private void calculateWindChillTemperature() 
+    
+    /**
+     * calculateWindChillTemperature
+     * <br> calculates the wind chill temperature
+     * <br>
+     * @return windChillTemp
+     */
+    private double calculateWindChillTemperature() 
     {
-        this.setWindChillTemp(13.12 + 0.6215 * this.getTemperature() + (0.3965 * this.getTemperature() - 11.37) * (Math.pow(this.getWindSpeed(), 0.16)));
-        this.setWindChillTemp(Math.round(this.getWindChillTemp()*10)/10.0);
+        double windChillTemp;
+        windChillTemp = 13.12 + 0.6215 * this.getTemperature() + (0.3965 * this.getTemperature() - 11.37) * (Math.pow(this.getWindSpeed(), 0.16));
+        windChillTemp = (Math.round(windChillTemp * 10) / 10.0);
+        return  windChillTemp;
     }
-
+    
+    /**
+     * getMessageWeatherWarning
+     * <br> creats the message output 
+     * <br>
+     * @return message
+     */
     private String getMessageWeatherWarning() 
     {
         String message = "";
-        if (this.getWindSpeed() >= 70.0 && this.getWindChillTemp() <= -18.0) 
+        if (this.getWindSpeed() >= 70.0 && this.calculateWindChillTemperature() <= -18.0) 
         {
             this.setWarningCounter(this.getWarningCounter()+1);
-            message = this.getTemperature() + " C°;" + this.getWindSpeed() + " Km/h; " + this.getWindChillTemp() + " C°; Warning: Storm! ; Warning: Cold! ";
+            message = this.getTemperature() + " C°;" + this.getWindSpeed() + " Km/h; " + this.calculateWindChillTemperature() + " C°; Warning: Storm! ; Warning: Cold! ";
         } else if 
                 (this.getWindSpeed() >= 70.0) 
         {
-            message = this.getTemperature() + " C°; " + this.getWindSpeed() + " Km/h; " + this.getWindChillTemp() + " C°; Warning: Storm! ";
+            message = this.getTemperature() + " C°; " + this.getWindSpeed() + " Km/h; " + this.calculateWindChillTemperature() + " C°; Warning: Storm! ";
         } 
-        else if (this.getWindChillTemp() <= -18.0) 
+        else if (this.calculateWindChillTemperature() <= -18.0) 
         {
-            message = this.getTemperature() + " C°;  " + this.getWindSpeed() + " Km/h; " + this.getWindChillTemp() + " C°; Warning: Cold! ";
+            message = this.getTemperature() + " C°;  " + this.getWindSpeed() + " Km/h; " + this.calculateWindChillTemperature() + " C°; Warning: Cold! ";
         } 
         else 
         {
-            message = this.getTemperature() + " C°; " + this.getWindSpeed() + " Km/h; " + this.getWindChillTemp() + " C° ";
+            message = this.getTemperature() + " C°; " + this.getWindSpeed() + " Km/h; " + this.calculateWindChillTemperature() + " C° ";
         }
         return message;
     }
     
+    /**
+     * output
+     * <br> is the rsult of the class Wheatherstation 
+     * <br>
+     * @param pCounter 
+     */
     public void output(int pCounter)
     {
         System.out.println("\nThe Weatherstation has collected "+ pCounter+" weather datas:");
