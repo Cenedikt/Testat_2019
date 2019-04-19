@@ -1,0 +1,10 @@
+Look on class Math
+1. What does the method pow(double a, double b) do?
+2. What is the name of the method that returns you the absolute value of a number?
+3. Specify Pi as it is stored in Java. (Simply use Copy/Paste from the Java documentation)
+
+1. Returns the value of the first argument raised to the power of the second argument.
+2.
+3. PI
+
+   
