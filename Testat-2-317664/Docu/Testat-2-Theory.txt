@@ -7,4 +7,86 @@ Look on class Math
 2.
 3. PI
 
-   
+
+
+ Aufgabe 1 – JavaDoc Recherche
+
+
+a) Klasse Math 
+1. Was macht die Methode pow(double a, double b)? 
+2. Mit welcher Methode erhalten Sie den Absolutwert einer Zahl? 
+3. Geben Sie Pi wie es in Java hinterlegt an. Copy-Paste aus der Java Dokumentation. 
+
+a.)1.)
+pow(double a, double b)
+Returns the value of the first argument raised to the power of the second argument.
+
+a.)2.)
+int abs(int a)
+Returns the absolute value of an int value.
+
+a.)3.)
+public static final double PI
+The double value that is closer than any other to pi, the ratio of the circumference of a circle to its diameter.
+
+
+
+
+b) Klasse String 
+4. Was kann mit der Methode split(String regex) gemacht werden? 
+5. Mit welcher Methode können alle Buchstaben eines String kleingeschrieben „lower case“? 
+
+b.)4.)
+split(String regex)
+Splits this string around matches of the given regular expression.
+
+Example:
+String str = "a + b - c * d / e < f > g >= h <= i == j";
+to split the string on all of the operators, but include the operators in the array, so the resulting array looks like:
+[a , +,  b , -,  c , *,  d , /,  e , <,  f , >,  g , >=,  h , <=,  i , ==,  j]
+
+b.)5.)
+toLowerCase()
+Converts all of the characters in this String to lower case using the rules of the default locale.
+
+Example: 
+String Str = new String("Das ALLES wird SPÄTER klein geschrieben");
+      System.out.print("Return Value :");
+      System.out.println(Str.toLowerCase());
+
+
+
+
+
+
+
+c) Klasse BigInteger 
+6. Mit welcher Methode kann ich prüfen, ob die Zahl wahrscheinlich eine Primzahl (prime) ist? 
+
+c.)6.)
+isProbablePrime(int certainty) 
+Returns true if this BigInteger is probably prime, false if it's definitely composite.
+
+public static BigInteger probablePrime(int bitLength,Random rnd)
+Returns a positive BigInteger that is probably prime, with the specified bitLength. The probability that a BigInteger returned by this method is composite does not exceed 2^-100.
+
+
+
+d) Klasse Thread 
+7. Mit welcher Methode lassen Sie Ihr Programm für eine bestimmte Anzahl Millisekunden schlafen? 
+
+d.)7.)
+public static void sleep(long millis)
+                  throws InterruptedException
+Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds, subject to the precision and accuracy of system timers and schedulers. The thread does not lose ownership of any monitors.
+Parameters:
+millis - the length of time to sleep in milliseconds
+Throws:
+IllegalArgumentException - if the value of millis is negative
+InterruptedException - if any thread has interrupted the current thread. The interrupted status of the current thread is cleared when this exception is thrown.
+
+e) Frage 8 
+Von welcher Klasse erben alle Klasse in Java bzw. Welche Klasse ist die Mutter aller Klassen in Java?
+=>Object
+Alle Klassen haben somit direkt oder indirekt die Klasse java.lang.Object als Basisklasse und erben so eine Reihe von Methoden, wie toString().
+  
