@@ -15,6 +15,7 @@ public class Gui
 {
     private Scanner scanner = new Scanner(System.in);
     private String input;
+    
     public void mainMenu()
     {
         System.out.println("HOLIDAY PARADISE");
@@ -26,13 +27,18 @@ public class Gui
         System.out.println("Managing courses 3");
         System.out.println("Program exit 0 \n");
         System.out.println("please enter your choice:");
-        input=scanner.next();
+        input=scanner.nextLine();
         this.menuSelection();
     }
     
     public void errorMenu()
     {
-        System.out.println("This program section is currently not implemented presEnter to return to the menu");
+        System.out.println("This program section is currently not implemented pres Enter to return to the menu");
+        input=scanner.nextLine();       
+        if(input.isEmpty())
+        {
+            this.mainMenu();
+        }
     }
     
     public void menuSelection()
