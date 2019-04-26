@@ -71,6 +71,7 @@ public class Gui
                 this.errorMenu();
                 break;
             case "4":
+                this.filter();
                 this.errorMenu();
                 break;
             case "0":
@@ -95,6 +96,7 @@ public class Gui
                 this.errorMenu();
                 break;
             case "4":
+                this.filter();
                 this.errorMenu();
                 break;
             case "0":
@@ -119,6 +121,7 @@ public class Gui
                 this.errorMenu();
                 break;
             case "4":
+                this.filter();
                 this.errorMenu();
                 break;
             case "0":
@@ -126,5 +129,20 @@ public class Gui
             default:
                 this.mainMenu();
         }        
+    }
+    
+    public void filter()
+    {
+        System.out.println("Do you want to filter the list? tipp Y for yes");
+        input=scanner.next();
+        if(input=="Y"|input=="y")
+        {
+          
+        }
+        else
+        {
+            
+        }
+        
     }
 }
