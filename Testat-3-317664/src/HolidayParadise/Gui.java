@@ -26,7 +26,7 @@ public class Gui
         System.out.println("Managing customers 2");
         System.out.println("Managing courses 3");
         System.out.println("Program exit 0 \n");
-        System.out.println("please enter your choice:");
+        System.out.print("please enter your choice:");
         input=scanner.nextLine();
         switch(input)
         {
