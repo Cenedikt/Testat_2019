@@ -28,21 +28,6 @@ public class Gui
         System.out.println("Program exit 0 \n");
         System.out.println("please enter your choice:");
         input=scanner.nextLine();
-        this.menuSelection();
-    }
-    
-    public void errorMenu()
-    {
-        System.out.println("This program section is currently not implemented pres Enter to return to the menu");
-        input=scanner.nextLine();       
-        if(input.isEmpty())
-        {
-            this.mainMenu();
-        }
-    }
-    
-    public void menuSelection()
-    {      
         switch(input)
         {
             case "1":
@@ -59,5 +44,87 @@ public class Gui
             default:
                 this.mainMenu();
         }
+    }
+    
+    public void errorMenu()
+    {
+        System.out.println("This program section is currently not implemented pres Enter to return to the menu");
+        input=scanner.nextLine();       
+        if(input.isEmpty())
+        {
+            this.mainMenu();
+        }
+    }
+    
+    public void instructionMenu()
+    {
+        input=scanner.nextLine();
+        switch(input)
+        {
+            case "1":
+                this.errorMenu();
+                break;
+            case "2":
+                this.errorMenu();
+                break;
+            case "3":
+                this.errorMenu();
+                break;
+            case "4":
+                this.errorMenu();
+                break;
+            case "0":
+                System.exit(0);
+            default:
+                this.mainMenu();
+        }      
+    }
+    
+    public void customerMenu()
+    {
+        input=scanner.nextLine();
+        switch(input)
+        {
+            case "1":
+                this.errorMenu();
+                break;
+            case "2":
+                this.errorMenu();
+                break;
+            case "3":
+                this.errorMenu();
+                break;
+            case "4":
+                this.errorMenu();
+                break;
+            case "0":
+                System.exit(0);
+            default:
+                this.mainMenu();
+        }       
+    }
+    
+    public void coursesMenu()
+    {
+        input=scanner.nextLine();
+        switch(input)
+        {
+            case "1":
+                this.errorMenu();
+                break;
+            case "2":
+                this.errorMenu();
+                break;
+            case "3":
+                this.errorMenu();
+                break;
+            case "4":
+                this.errorMenu();
+                break;
+            case "0":
+                System.exit(0);
+            default:
+                this.mainMenu();
+        }        
     }
 }
