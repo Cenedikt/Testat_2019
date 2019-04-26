@@ -5,6 +5,7 @@
  */
 package HolidayParadise;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -15,6 +16,9 @@ public class Gui
 {
     private Scanner scanner = new Scanner(System.in);
     private String input;
+    private ArrayList<Instructors> instructorsList = new ArrayList<Instructors>();
+    private ArrayList<Customer> customerList = new ArrayList<Customer>();
+    private ArrayList<Course> courseList    = new ArrayList<Course>();
     
     public void mainMenu()
     {
@@ -28,16 +32,17 @@ public class Gui
         System.out.println("Program exit 0 \n");
         System.out.print("please enter your choice:");
         input=scanner.nextLine();
+        System.out.println("");
         switch(input)
         {
             case "1":
-                this.errorMenu();
+                this.instructionMenu();
                 break;
             case "2":
-                this.errorMenu();
+                this.customerMenu();
                 break;
             case "3":
-                this.errorMenu();
+                this.coursesMenu();
                 break;
             case "0":
                 System.exit(0);
@@ -58,6 +63,10 @@ public class Gui
     
     public void instructionMenu()
     {
+        System.out.println("HOLIDAY PARADISE");
+        System.out.println("Basic Data Management 1.0 Copyright 2019 Benedict Goldhorn, MNR 317664");
+        System.out.println("");
+        System.out.println("Pleas select:\n");
         input=scanner.nextLine();
         switch(input)
         {
@@ -83,6 +92,10 @@ public class Gui
     
     public void customerMenu()
     {
+        System.out.println("HOLIDAY PARADISE");
+        System.out.println("Basic Data Management 1.0 Copyright 2019 Benedict Goldhorn, MNR 317664");
+        System.out.println("");
+        System.out.println("Pleas select:\n");        
         input=scanner.nextLine();
         switch(input)
         {
@@ -108,6 +121,10 @@ public class Gui
     
     public void coursesMenu()
     {
+        System.out.println("HOLIDAY PARADISE");
+        System.out.println("Basic Data Management 1.0 Copyright 2019 Benedict Goldhorn, MNR 317664");
+        System.out.println("");
+        System.out.println("Pleas select:\n");        
         input=scanner.nextLine();
         switch(input)
         {

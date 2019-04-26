@@ -13,5 +13,30 @@ public class Course
 {
  private int cousrseID;
  private String cousrsName;
- 
+
+    public int getCousrseID() 
+    {
+        return cousrseID;
+    }
+
+    public void setCousrseID(int pCousrseID) 
+    {
+        this.cousrseID = pCousrseID;
+    }
+
+    public String getCousrsName() 
+    {
+        return cousrsName;
+    }
+
+    public void setCousrsName(String pCousrsName) 
+    {
+        this.cousrsName = pCousrsName;
+    }
+    
+    public void Course(String pCousrsName, int pCousrseID)
+    {
+        this.setCousrsName(pCousrsName);
+        this.setCousrseID(pCousrseID);
+    }
 }
