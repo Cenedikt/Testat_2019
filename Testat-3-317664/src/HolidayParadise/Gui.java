@@ -18,7 +18,7 @@ public class Gui
     private String input;
     private ArrayList<Instructors> instructorsList = new ArrayList<Instructors>();
     private ArrayList<Customer> customerList = new ArrayList<Customer>();
-    private ArrayList<Course> courseList    = new ArrayList<Course>();
+    private ArrayList<Course> courseList = new ArrayList<Course>();
     
     public void mainMenu()
     {
@@ -51,21 +51,11 @@ public class Gui
         }
     }
     
-    public void errorMenu()
-    {
-        System.out.println("This program section is currently not implemented pres Enter to return to the menu");
-        input=scanner.nextLine();       
-        if(input.isEmpty())
-        {
-            this.mainMenu();
-        }
-    }
-    
     public void instructionMenu()
     {
         System.out.println("HOLIDAY PARADISE");
         System.out.println("Basic Data Management 1.0 Copyright 2019 Benedict Goldhorn, MNR 317664");
-        System.out.println("");
+        System.out.println("INSTRUCTOINS MENU");
         System.out.println("Pleas select:\n");
         input=scanner.nextLine();
         switch(input)
@@ -94,7 +84,7 @@ public class Gui
     {
         System.out.println("HOLIDAY PARADISE");
         System.out.println("Basic Data Management 1.0 Copyright 2019 Benedict Goldhorn, MNR 317664");
-        System.out.println("");
+        System.out.println("CUSTOMER MENU");
         System.out.println("Pleas select:\n");        
         input=scanner.nextLine();
         switch(input)
@@ -123,7 +113,7 @@ public class Gui
     {
         System.out.println("HOLIDAY PARADISE");
         System.out.println("Basic Data Management 1.0 Copyright 2019 Benedict Goldhorn, MNR 317664");
-        System.out.println("");
+        System.out.println("COURSE MENU");
         System.out.println("Pleas select:\n");        
         input=scanner.nextLine();
         switch(input)
@@ -147,6 +137,17 @@ public class Gui
                 this.mainMenu();
         }        
     }
+    
+    public void errorMenu()
+    {
+        System.out.println("This program section is currently not implemented pres Enter to return to the menu");
+        input=scanner.nextLine();       
+        if(input.isEmpty())
+        {
+            this.mainMenu();
+        }
+    }
+    
     
     public void filter()
     {
