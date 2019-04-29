@@ -49,20 +49,21 @@ public class Data
     
     public void test()
     {
+
         Customer customer0= new Customer();
+        customerList.add(customer0);
         Customer customer1= new Customer();
+        customerList.add(customer1);
         Customer customer2= new Customer();
+        customerList.add(customer2);
         Customer customer3= new Customer();
+        customerList.add(customer3);
         Customer customer4= new Customer();
-            customerList.add(customer0);
-            customerList.add(customer1); 
-            customerList.add(customer2); 
-            customerList.add(customer3);
-            customerList.add(customer4); 
-            System.out.println(customerList.get(0));
-            System.out.println(customerList.get(1).getCustomerId());
-            System.out.println(customerList.get(2).getCustomerId());
-            System.out.println(customerList.get(3).getCustomerId());
-            System.out.println(customerList.get(4).getCustomerId());       
+        customerList.add(customer4);
+        System.out.println(customerList.get(0).getCustomerId());
+        System.out.println(customerList.get(1).getCustomerId());
+        System.out.println(customerList.get(2).getCustomerId());
+        System.out.println(customerList.get(3).getCustomerId());
+        System.out.println(customerList.get(4).getCustomerId());       
     }
 }

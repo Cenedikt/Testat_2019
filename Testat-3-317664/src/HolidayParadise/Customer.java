@@ -54,8 +54,16 @@ public class Customer
         this.customerName = pCustomerName;
     }
     
-    public void Customer()
+    public  Customer()
     {
-        this.setCustomerId(data.getCustomerListSize());
+        this.counter();
     }
+    
+    public int counter()
+    {
+        int idCounter;
+        idCounter = data.getCustomerListSize()+1;
+        return idCounter;
+    }
+  
 }
