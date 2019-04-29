@@ -17,9 +17,6 @@ public class Gui
     private Scanner scanner = new Scanner(System.in);
     private String input;
     private String nasenbaer;
-    private ArrayList<Instructors> instructorsList = new ArrayList<Instructors>();
-    private ArrayList<Customer> customerList = new ArrayList<Customer>();
-    private ArrayList<Course> courseList = new ArrayList<Course>();
     
     public void mainMenu()
     {

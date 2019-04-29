@@ -16,6 +16,7 @@ public class Customer
     private int customerId;
     private String customerName;
     private ArrayList<Integer>courseIDList = new ArrayList<Integer>();
+    private Data data = new Data();
     
     /**
      * 
@@ -51,5 +52,10 @@ public class Customer
     public void setCustomerName(String pCustomerName) 
     {
         this.customerName = pCustomerName;
+    }
+    
+    public void Customer()
+    {
+        this.setCustomerId(data.getCustomerListSize());
     }
 }

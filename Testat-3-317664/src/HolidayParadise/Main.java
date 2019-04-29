@@ -9,7 +9,8 @@ package HolidayParadise;
  *
  * @author Benedict
  */
-public class Main {
+public class Main 
+{
 
     /**
      * @param args the command line arguments
@@ -17,9 +18,9 @@ public class Main {
     public static void main(String[] args) 
     {
         // TODO code application logic here
-        Gui gui=new Gui();
-        
-        gui.mainMenu();
-    }
-    
+        Gui gui=new Gui();   
+        Data data = new Data();
+//        gui.mainMenu();
+        data.test();
+    }    
 }
