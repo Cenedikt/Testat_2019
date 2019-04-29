@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Cenedikt
  */
-public class Customer 
+public final class Customer 
 {
     private int customerId;
     private String customerName;
@@ -56,7 +56,7 @@ public class Customer
     
     public  Customer()
     {
-        this.counter();
+        this.setCustomerId(this.counter());
     }
     
     public int counter()
