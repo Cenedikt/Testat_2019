@@ -5,6 +5,8 @@
  */
 package HolidayParadise;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Cenedikt
@@ -13,6 +15,7 @@ public class Customer
 {
     private int customerId;
     private String customerName;
+    private ArrayList<Integer>courseIDList = new ArrayList<Integer>();
     
     /**
      * 

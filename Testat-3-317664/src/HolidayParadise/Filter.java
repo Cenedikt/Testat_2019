@@ -5,15 +5,23 @@
  */
 package HolidayParadise;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Cenedikt
  */
-public class Instructors 
+public class Filter 
 {
-    private int instructorsID;
-    private String instructorName;   
-    private ArrayList<Integer> courseIDList = new ArrayList<Integer>();
+    public void filterCustemor()
+    {
+        
+    }
+    
+    public void filterCourse()
+    {
+        
+    }
+    
+    public void filterInstructor()
+    {
+    }
 }

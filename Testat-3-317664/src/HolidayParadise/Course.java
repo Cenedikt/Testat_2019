@@ -5,6 +5,8 @@
  */
 package HolidayParadise;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Cenedikt
@@ -13,6 +15,12 @@ public class Course
 {
  private int cousrseID;
  private String cousrsName;
+ private String beginingOfCourse;
+ private String endOfCourse;
+ private String dateOfCourse;
+ private ArrayList<Integer> customerIDList = new ArrayList<Integer>();
+ private ArrayList<Integer> instructorIDList = new ArrayList<Integer>();
+ 
 
     public int getCousrseID() 
     {
