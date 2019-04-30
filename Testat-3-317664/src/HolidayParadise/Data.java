@@ -50,10 +50,24 @@ public class Data
         this.instructorList.add(instructor);
     }
  
-        public void getCustomerList (int pIndex)
+    public void getCustomerList (int pIndex)
     {
+        this.customerList.get(pIndex).getCustomerId();
+        this.customerList.get(pIndex).getCustomerName();
+        this.customerList.get(pIndex).getCustomerPrename();
+        this.customerList.get(pIndex).getBirthData();
+        this.customerList.get(pIndex).getSex();
+        this.customerList.get(pIndex).getCourseID();
     }
-        
+    
+    public void getCustomerList()
+    {
+        for(int i=0; i<this.customerList.size();i++)
+        {
+            this.getCustomerList(i);
+        }
+    }
+    
     public void setCustomerList (String pCustomerName, String pBirthData, int pCourseID, String pCustomerPrename, String pSex)
     {
         Customer customer = new Customer();
@@ -67,8 +81,23 @@ public class Data
     
     public void getCourseList(int pIndex)
     {
+        this.courseList.get(pIndex).getCousrseID();
+        this.courseList.get(pIndex).getCousrsName();
+        this.courseList.get(pIndex).getBeginingOfCourse();
+        this.courseList.get(pIndex).getEndOfCourse();
+        this.courseList.get(pIndex).getEndOfCourse();
+        this.courseList.get(pIndex).getWeekday();
+        this.courseList.get(pIndex).getCustomerID();
+        this.courseList.get(pIndex).getInstructorID();
     }
     
+    public void getCourseList()
+    {
+        for(int i=0; i<this.customerList.size();i++)
+        {
+            this.getCourseList(i);
+        }
+    }
     public void setCourseList(String pBeginingOfCourse, String pCousrsName, int pCustomerID, String pdateOfCourse, String pEndOfCourse, int pInstructorID, String pWeekday)
     {
         Course course = new Course();

@@ -186,9 +186,4 @@ public class Instructor
     {
         this.setInstructorID(Instructor.lastID++);
     }
-    
-    public Instructor(boolean overload)
-    {
-       
-    }
 }
