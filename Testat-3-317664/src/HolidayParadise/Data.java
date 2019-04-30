@@ -19,9 +19,24 @@ public class Data
 
     public void getInstructorList (int pIndex)
     {
-       instructorList.get(pIndex).getBirthDate();
+        this.instructorList.get(pIndex).getInstructorID();
+        this.instructorList.get(pIndex).getInstructorName();
+        this.instructorList.get(pIndex).getInstructorPrname();
+        this.instructorList.get(pIndex).getBirthDate();
+        this.instructorList.get(pIndex).getSex();
+        this.instructorList.get(pIndex).getSpesification();
+        this.instructorList.get(pIndex).getWorkRelation();
+        this.instructorList.get(pIndex).getCourseID();               
     }
-        
+    
+    public void getInstructorList()
+    {
+        for(int i=0; i<this.instructorList.size();i++)
+        {
+            this.getInstructorList(i);
+        }
+    }
+    
     public void setInstructorList (String pBirthDate, int pCourseID, String pInstructorName, String pInstructorPrname, String pSex, String pSpesification, String pWorkRelation)
     {
         Instructor instructor = new Instructor();
@@ -53,6 +68,7 @@ public class Data
     public void getCourseList(int pIndex)
     {
     }
+    
     public void setCourseList(String pBeginingOfCourse, String pCousrsName, int pCustomerID, String pdateOfCourse, String pEndOfCourse, int pInstructorID, String pWeekday)
     {
         Course course = new Course();
@@ -64,5 +80,11 @@ public class Data
         course.setInstructorID(pInstructorID);
         course.setWeekday(pWeekday);
         this.courseList.add(course);
+    }
+    
+    public  void test()
+    {
+        this.setInstructorList("19.99.99", 0, "BErns", "gsdsad", "m", "dsad", "dsadasd");
+        this.getInstructorList(0);
     }
 }
