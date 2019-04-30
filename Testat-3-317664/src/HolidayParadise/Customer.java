@@ -105,7 +105,7 @@ public final class Customer
      * @param pIndex
      * @return courseID
      */
-    public int getCOurseID(int pIndex)
+    public int getCourseID(int pIndex)
     {
         return this.courseIDList.get(pIndex);
     }

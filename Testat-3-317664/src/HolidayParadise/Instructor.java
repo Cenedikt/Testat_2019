@@ -174,7 +174,7 @@ public class Instructor
      * 
      * @param pCourseID 
      */
-    public void setCourseIDList(int pCourseID) 
+    public void setCourseID(int pCourseID) 
     {
         this.courseIDList.add(pCourseID);
     }
