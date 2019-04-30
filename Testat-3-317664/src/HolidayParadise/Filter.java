@@ -5,23 +5,54 @@
  */
 package HolidayParadise;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Cenedikt
  */
 public class Filter 
 {
+    private String input;
+    private Scanner scanner = new Scanner(System.in);
+    
     public void filterCustemor()
     {
-        
+        System.out.println("Do you want to filter the list? tipp Y for yes if you press somthin else their will be no filter");
+        input=scanner.next();
+        if(input=="Y"|input=="y")
+        {
+            
+        }
+        else
+        {
+        }
     }
     
     public void filterCourse()
     {
-        
+        System.out.println("Do you want to filter the list? tipp Y for yes if you press somthin else their will be no filter");
+        input=scanner.next();
+        if(input=="Y"|input=="y")
+        {
+            
+        }
+        else
+        {
+        }
     }
     
     public void filterInstructor()
     {
+        System.out.println("Do you want to filter the list? tipp Y for yes if you press somthin else their will be no filter");
+        input=scanner.next();
+        if(input=="Y"|input=="y")
+        {
+            
+        }
+        else
+        {
+            
+        }
     }
 }

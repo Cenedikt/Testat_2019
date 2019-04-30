@@ -13,10 +13,12 @@ import java.util.ArrayList;
  */
 public final class Customer 
 {
+    private static int lastID;
     private int customerId;
     private String customerName;
-    private ArrayList<Integer>courseIDList = new ArrayList<Integer>();
-    private Data data = new Data();
+    private String customerPrename;
+    private String birthData;
+    private ArrayList<Integer> courseIDList = new ArrayList<Integer>();
     
     /**
      * 
@@ -53,17 +55,87 @@ public final class Customer
     {
         this.customerName = pCustomerName;
     }
+
+    /**
+     * 
+     * @return customerPrename
+     */
+    public String getCustomerPrename() 
+    {
+        return this.customerPrename;
+    }
     
+    /**
+     * 
+     * @param pCustomerPrename 
+     */
+    public void setCustomerPrename(String pCustomerPrename) 
+    {
+        this.customerPrename = pCustomerPrename;
+    }
+    
+    /**
+     * 
+     * @return birthData
+     */
+    public String getBirthData() 
+    {
+        return this.birthData;
+    }
+
+    /**
+     * 
+     * @param birthData 
+     */
+    public void setBirthData(String birthData) {
+        this.birthData = birthData;
+    }
+     
+    /**
+     * 
+     * @param pIndex 
+     */
+    public void getCourseIDList(int pIndex)
+    {
+        this.courseIDList.get(pIndex);
+    }
+    
+    /**
+     * 
+     * @param pIndex
+     * @return courseID
+     */
+    public int getCOurseID(int pIndex)
+    {
+        return this.courseIDList.get(pIndex);
+    }
+    
+    /**
+     * 
+     */
+    public void getCourseID()
+    {
+        for(int i=0;i<this.courseIDList.size();i++)
+        {
+            System.out.println(this.courseIDList.get(i));
+        }
+    }
+    
+    /**
+     * 
+     * @param pCourseID 
+     */
+    public void setCourseID(int pCourseID)
+    {
+        this.courseIDList.add(pCourseID);
+    }
+    
+    /**
+     * constructor
+     * <br> sets automaticly the value of CustomerId and alsow counts up
+     */
     public  Customer()
     {
-        this.setCustomerId(this.counter());
-    }
-    
-    public int counter()
-    {
-        int idCounter;
-        idCounter = data.getCustomerListSize()+1;
-        return idCounter;
-    }
-  
+        this.setCustomerId(Customer.lastID++);
+    }   
 }
