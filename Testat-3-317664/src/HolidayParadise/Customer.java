@@ -18,6 +18,7 @@ public final class Customer
     private String customerName;
     private String customerPrename;
     private String birthData;
+    private String sex;
     private ArrayList<Integer> courseIDList = new ArrayList<Integer>();
     
     /**
@@ -87,10 +88,28 @@ public final class Customer
      * 
      * @param birthData 
      */
-    public void setBirthData(String birthData) {
-        this.birthData = birthData;
+    public void setBirthData(String pBirthData) {
+        this.birthData = pBirthData;
     }
-     
+    
+    /**
+     * 
+     * @return sex
+     */
+    public String getSex() 
+    {
+        return this.sex;
+    }
+
+    /**
+     * 
+     * @param pSex 
+     */
+    public void setSex(String pSex) 
+    {
+        this.sex = pSex;
+    }
+    
     /**
      * 
      * @param pIndex 
