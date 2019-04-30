@@ -6,6 +6,7 @@
 package HolidayParadise;
 
 import java.util.ArrayList;
+import java.sql.Time;
 
 /**
  *
@@ -49,7 +50,16 @@ public class Data
         instructor.setWorkRelation(pWorkRelation);
         this.instructorList.add(instructor);
     }
- 
+    
+    public void deleteInstructor(int pIndex)
+    {
+        this.instructorList.remove(pIndex);
+    }
+    
+    public void updataInstructor(int pIndex)
+    {
+    }
+    
     public void getCustomerList (int pIndex)
     {
         this.customerList.get(pIndex).getCustomerId();
@@ -68,7 +78,7 @@ public class Data
         }
     }
     
-    public void setCustomerList (String pCustomerName, String pBirthData, int pCourseID, String pCustomerPrename, String pSex)
+    public void setCustomerList (String pCustomerName, Time pBirthData, int pCourseID, String pCustomerPrename, String pSex)
     {
         Customer customer = new Customer();
         customer.setCustomerName(pCustomerName);
@@ -113,6 +123,7 @@ public class Data
     
     public  void test()
     {
+        this.getCourseList();
         this.setInstructorList("19.99.99", 0, "BErns", "gsdsad", "m", "dsad", "dsadasd");
         this.getInstructorList(0);
     }

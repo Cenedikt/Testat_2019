@@ -56,8 +56,8 @@ public class Gui
         System.out.println("Create new instructor       1");
         System.out.println("Update an instructor        2");
         System.out.println("Delete an instructor        3");
-        System.out.println("Show instructor list        4 /n");
-        System.out.println("Back to main menu           0 /n");
+        System.out.println("Show instructor list        4 \n");
+        System.out.println("Back to main menu           0 \n");
         System.out.print("please enter your choice:");
         input=scanner.nextLine();
         switch(input)
@@ -92,8 +92,8 @@ public class Gui
         System.out.println("Create new customer       1");
         System.out.println("Update an customer        2");
         System.out.println("Delete an customer        3");
-        System.out.println("Show customer list        4 /n");
-        System.out.println("Back to main menu         0 /n");
+        System.out.println("Show customer list        4 \n");
+        System.out.println("Back to main menu         0 \n");
         System.out.print("please enter your choice:");
         input=scanner.nextLine();
         switch(input)
@@ -128,8 +128,8 @@ public class Gui
         System.out.println("Create new course       1");
         System.out.println("Update an course        2");
         System.out.println("Delete an course        3");
-        System.out.println("Show course list        4 /n");
-        System.out.println("Back to main menu       0 /n");
+        System.out.println("Show course list        4 \n");
+        System.out.println("Back to main menu       0 \n");
         System.out.print("please enter your choice:");        
         input=scanner.nextLine();
         switch(input)
@@ -157,11 +157,17 @@ public class Gui
     
     public void errorMenu()
     {
+        
         System.out.println("\n This program section is currently not implemented press Enter to return to the menu \n");
-        input=scanner.nextLine();       
-        if(input.isEmpty())
+        do
         {
-            this.mainMenu();
-        }
+            input=scanner.nextLine();
+            if(input.isEmpty())
+            {
+                this.mainMenu();
+                break;
+            }
+        }    
+        while(!(input.isEmpty()));
     }
 }
