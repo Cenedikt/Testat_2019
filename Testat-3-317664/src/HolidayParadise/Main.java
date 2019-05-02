@@ -20,6 +20,8 @@ public class Main
         // TODO code application logic here
         Gui gui=new Gui();   
         Data data= new Data();
-        gui.mainMenu();
+        Filter f = new Filter();
+        f.filterInstructor();;
+//        gui.mainMenu();
     }    
 }

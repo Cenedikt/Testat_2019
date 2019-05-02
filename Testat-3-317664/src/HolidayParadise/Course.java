@@ -20,8 +20,6 @@ public class Course
     private String endOfCourse;
     private String dateOfCourse;
     private String weekday;
-    private ArrayList<Integer> customerIDList = new ArrayList<Integer>();
-    private ArrayList<Integer> instructorIDList = new ArrayList<Integer>();
     
     /**
      * 
@@ -129,66 +127,6 @@ public class Course
     public void setWeekday(String pWeekday)
     {
         this.weekday = pWeekday;
-    }
-    
-    /**
-     * 
-     * @param pIndex
-     * @return customerID
-     */
-    public int getCustomerID(int pIndex)
-    {
-        return this.customerIDList.get(pIndex);
-    }
-    
-    /**
-     * 
-     */
-    public void getCustomerID()
-    {
-        for(int i=0;i<this.customerIDList.size();i++)
-        {
-            System.out.println(this.getCustomerID(i));
-        }
-    }
-    
-    /**
-     * 
-     * @param pcustomerID 
-     */
-    public void setCustomerID(int pcustomerID)
-    {
-        this.customerIDList.add(pcustomerID);
-    }
-    
-    /**
-     * 
-     * @param pIndex
-     * @return instructorID
-     */
-    public int getInstructorID(int pIndex)
-    {
-        return this.instructorIDList.get(pIndex);
-    }
-    
-    /**
-     * 
-     */
-    public void getInstructorID()
-    {
-        for(int i=0; i<this.instructorIDList.size();i++)
-        {
-            System.out.println(this.getInstructorID(i));
-        }    
-    }
-    
-    /**
-     * 
-     * @param pInstructorID 
-     */
-    public void setInstructorID(int pInstructorID) 
-    {
-        this.instructorIDList.add(pInstructorID);
     }
     
     /**

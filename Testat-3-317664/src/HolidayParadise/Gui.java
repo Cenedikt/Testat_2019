@@ -15,6 +15,7 @@ public class Gui
 {
     private Scanner scanner = new Scanner(System.in);
     private String input;
+    private Data data=new Data();
     
     public void mainMenu()
     {
@@ -26,7 +27,7 @@ public class Gui
         System.out.println("Managing customers      2");
         System.out.println("Managing courses        3");
         System.out.println("Program exit            0 \n");
-        System.out.print("please enter your choice:");
+        System.out.print("please enter your choice: ");
         input=scanner.nextLine();               
         switch(input)
         {
@@ -58,18 +59,18 @@ public class Gui
         System.out.println("Delete an instructor        3");
         System.out.println("Show instructor list        4 \n");
         System.out.println("Back to main menu           0 \n");
-        System.out.print("please enter your choice:");
+        System.out.print("please enter your choice: ");
         input=scanner.nextLine();
         switch(input)
         {
             case "1":
-                this.errorMenu();
+                this.createInstructorMenu();
                 break;
             case "2":
                 this.errorMenu();
                 break;
             case "3":
-                this.errorMenu();
+                this.deleteInstructorMenu();
                 break;
             case "4":
                 this.errorMenu();
@@ -82,6 +83,119 @@ public class Gui
                 break;
         }      
     }
+    
+    public void createInstructorMenu()
+    {
+        String name;
+        String preName;
+        String birthday;
+        String sex;
+        String spesification;
+        String workRelation;
+        int courseID=-1;
+        System.out.print("Please enter the Name of the new instructor: ");
+        name=this.scanner.next();
+        System.out.print("Please enter the prename of the new instructor: ");
+        preName= this.scanner.next();
+        System.out.print("Please enter the birthday of the new instructor: ");
+        birthday=this.scanner.next();
+        System.out.print("Please enter the sex of the new instructor: ");
+        do
+        {
+            sex=this.scanner.next();
+            switch(sex)
+            {
+                case("male"):
+                    sex="m";
+                    break;
+                case("m"):
+                    break;
+                case("female"):
+                    sex="f";
+                    break;
+                case("f"):
+                    break;
+                case("divers"):
+                    sex="d";
+                    break;
+                case("d"):
+                    break;
+                default:
+                    System.out.println("Pleas enter a vailid sex ");
+                    sex="";
+                break;
+            }
+        }
+        while(sex=="");
+        System.out.print("Please enter the spesification of the new instructor: ");
+        spesification=this.scanner.next();
+        System.out.print("Please enter the workrelation of the new instructor like extern or intern: ");
+        workRelation=this.scanner.next();
+        System.out.print("Please enter the courseID where the new instructor participaed if ther is no course yet do you want to create a new course press y or Y");
+        this.input=this.scanner.next();
+        if("y".equals(this.input)||"Y".equals(this.input))
+        {
+            this.errorMenu();
+        }
+        else
+        {
+            try
+            {
+                courseID=Integer.parseInt(this.input);
+            }
+            catch(NumberFormatException e)
+            {
+                System.out.println("nana");
+            }
+        }
+        this.data.setInstructorList(birthday, courseID, name, preName, sex, spesification, workRelation);
+    }
+    
+    public void updateInstructorMenu()
+    {}
+    
+    public void deleteInstructorMenu()
+    {
+        int index=-1;
+        System.out.print("Please enter the ID of the Instructor which you want to delet: ");
+        do
+        {
+            try
+            {
+                this.input=this.scanner.next();
+                if(index>=0)
+                {
+                    index=Integer.parseInt(input);
+                }
+                else
+                {
+                    System.out.print("Please enter an positiv number: ");
+                    input="";
+                }
+            }
+            catch(NumberFormatException e)
+            {
+            System.out.print("Please enter an natural nummber!");
+            this.input="";
+            }
+        }
+        while(input.isEmpty());
+        System.out.println("are you sure to delete enter y or Y for delet");
+        this.input=this.scanner.next();
+        if(this.input=="Y"|this.input=="y")
+        {
+            this.data.deleteInstructor(index);
+            System.out.println("The instructor is deleted");
+        }
+        else
+        {
+            this.instructionMenu();
+        }
+    }
+    
+    public void showInstrucorListMenu()
+    {}
+    
     
     public void customerMenu()
     {
@@ -119,6 +233,18 @@ public class Gui
         }       
     }
     
+    public void creatCustomerMenu()
+    {}
+    
+    public void updateCustomerMenu()
+    {}
+    
+    public void deleteCustomerMenu()
+    {}
+    
+    public void showCustomerListMenu()
+    {}
+    
     public void coursesMenu()
     {
         System.out.println("/n HOLIDAY PARADISE");
@@ -130,7 +256,7 @@ public class Gui
         System.out.println("Delete an course        3");
         System.out.println("Show course list        4 \n");
         System.out.println("Back to main menu       0 \n");
-        System.out.print("please enter your choice:");        
+        System.out.print("please enter your choice: ");        
         input=scanner.nextLine();
         switch(input)
         {
@@ -154,6 +280,18 @@ public class Gui
                 break;
         }        
     }
+    
+    public void createCourseMenu()
+    {}
+    
+    public void updateCourseMenu()
+    {}
+    
+    public void deleteCourseMenu()
+    {}
+    
+    public void showCourseListMenu()
+    {}
     
     public void errorMenu()
     {

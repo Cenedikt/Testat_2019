@@ -46,13 +46,13 @@ public class Filter
     {
         System.out.println("Do you want to filter the list? tipp Y for yes if you press somthin else their will be no filter");
         input=scanner.next();
-        if(input=="Y"|input=="y")
+        if("Y".equals(input)||"y".equals(input))
         {
-            
+            System.out.println("1");
         }
         else
         {
-            
+            System.out.println("2");
         }
     }
 }

@@ -6,7 +6,6 @@
 package HolidayParadise;
 
 import java.util.ArrayList;
-import java.sql.Time;
 
 /**
  *
@@ -18,9 +17,8 @@ public final class Customer
     private int customerId;
     private String customerName;
     private String customerPrename;
-    private Time birthData;
+    private String birthData;
     private String sex;
-    private ArrayList<Integer> courseIDList = new ArrayList<Integer>();
     
     /**
      * 
@@ -80,7 +78,7 @@ public final class Customer
      * 
      * @return birthData
      */
-    public Time getBirthData() 
+    public String getBirthData() 
     {
         return this.birthData;
     }
@@ -89,7 +87,7 @@ public final class Customer
      * 
      * @param birthData 
      */
-    public void setBirthData(Time pBirthData) {
+    public void setBirthData(String pBirthData) {
         this.birthData = pBirthData;
     }
     
@@ -109,45 +107,6 @@ public final class Customer
     public void setSex(String pSex) 
     {
         this.sex = pSex;
-    }
-    
-    /**
-     * 
-     * @param pIndex 
-     */
-    public void getCourseIDList(int pIndex)
-    {
-        this.courseIDList.get(pIndex);
-    }
-    
-    /**
-     * 
-     * @param pIndex
-     * @return courseID
-     */
-    public int getCourseID(int pIndex)
-    {
-        return this.courseIDList.get(pIndex);
-    }
-    
-    /**
-     * 
-     */
-    public void getCourseID()
-    {
-        for(int i=0;i<this.courseIDList.size();i++)
-        {
-            System.out.println(this.courseIDList.get(i));
-        }
-    }
-    
-    /**
-     * 
-     * @param pCourseID 
-     */
-    public void setCourseID(int pCourseID)
-    {
-        this.courseIDList.add(pCourseID);
     }
     
     /**

@@ -58,6 +58,7 @@ public class Data
     
     public void updataInstructor(int pIndex)
     {
+       
     }
     
     public void getCustomerList (int pIndex)
@@ -67,7 +68,6 @@ public class Data
         this.customerList.get(pIndex).getCustomerPrename();
         this.customerList.get(pIndex).getBirthData();
         this.customerList.get(pIndex).getSex();
-        this.customerList.get(pIndex).getCourseID();
     }
     
     public void getCustomerList()
@@ -78,12 +78,11 @@ public class Data
         }
     }
     
-    public void setCustomerList (String pCustomerName, Time pBirthData, int pCourseID, String pCustomerPrename, String pSex)
+    public void setCustomerList (String pCustomerName, String pBirthData, String pCustomerPrename, String pSex)
     {
         Customer customer = new Customer();
         customer.setCustomerName(pCustomerName);
         customer.setBirthData(pBirthData);
-        customer.setCourseID(pCourseID);
         customer.setCustomerPrename(pCustomerPrename);
         customer.setSex(pSex);
         this.customerList.add(customer);
@@ -97,8 +96,6 @@ public class Data
         this.courseList.get(pIndex).getEndOfCourse();
         this.courseList.get(pIndex).getEndOfCourse();
         this.courseList.get(pIndex).getWeekday();
-        this.courseList.get(pIndex).getCustomerID();
-        this.courseList.get(pIndex).getInstructorID();
     }
     
     public void getCourseList()
@@ -108,15 +105,13 @@ public class Data
             this.getCourseList(i);
         }
     }
-    public void setCourseList(String pBeginingOfCourse, String pCousrsName, int pCustomerID, String pdateOfCourse, String pEndOfCourse, int pInstructorID, String pWeekday)
+    public void setCourseList(String pBeginingOfCourse, String pCousrsName, String pdateOfCourse, String pEndOfCourse, String pWeekday)
     {
         Course course = new Course();
         course.setBeginingOfCourse(pBeginingOfCourse);
         course.setCousrsName(pCousrsName);
-        course.setCustomerID(pCustomerID);
         course.setDateOfCourse(pdateOfCourse);
         course.setEndOfCourse(pEndOfCourse);
-        course.setInstructorID(pInstructorID);
         course.setWeekday(pWeekday);
         this.courseList.add(course);
     }
