@@ -133,7 +133,7 @@ public class Gui
         workRelation=this.scanner.next();
         System.out.print("Please enter the courseID where the new instructor participaed if ther is no course yet do you want to create a new course press y or Y");
         this.input=this.scanner.next();
-        if("y".equals(this.input)||"Y".equals(this.input))
+        if(this.input=="y"||this.input=="Y")
         {
             this.errorMenu();
         }
