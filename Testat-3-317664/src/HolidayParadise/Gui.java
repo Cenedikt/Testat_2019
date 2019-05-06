@@ -17,6 +17,16 @@ public class Gui
     private String input;
     private Data data=new Data();
     
+    public void setInput(String pInput)
+    {
+      this.input=pInput;  
+    }
+    
+    public String getInput()
+    {
+        return this.input;
+    }
+      
     public void mainMenu()
     {
         System.out.println("/n HOLIDAY PARADISE");
@@ -28,8 +38,8 @@ public class Gui
         System.out.println("Managing courses        3");
         System.out.println("Program exit            0 \n");
         System.out.print("please enter your choice: ");
-        input=scanner.nextLine();               
-        switch(input)
+        this.setInput(this.scanner.nextLine());               
+        switch(this.getInput())
         {
             case "1":
                 this.instructionMenu();
@@ -60,8 +70,8 @@ public class Gui
         System.out.println("Show instructor list        4 \n");
         System.out.println("Back to main menu           0 \n");
         System.out.print("please enter your choice: ");
-        input=scanner.nextLine();
-        switch(input)
+        this.setInput(this.scanner.nextLine());
+        switch(this.getInput())
         {
             case "1":
                 this.createInstructorMenu();
@@ -126,14 +136,14 @@ public class Gui
                 break;
             }
         }
-        while(sex=="");
+        while(sex.equals(""));
         System.out.print("Please enter the spesification of the new instructor: ");
         spesification=this.scanner.next();
         System.out.print("Please enter the workrelation of the new instructor like extern or intern: ");
         workRelation=this.scanner.next();
         System.out.print("Please enter the courseID where the new instructor participaed if ther is no course yet do you want to create a new course press y or Y");
-        this.input=this.scanner.next();
-        if(this.input=="y"||this.input=="Y")
+        this.setInput(this.scanner.next());
+        if(this.getInput().equals("Y")||this.getInput().equals("y"))
         {
             this.errorMenu();
         }
@@ -141,7 +151,7 @@ public class Gui
         {
             try
             {
-                courseID=Integer.parseInt(this.input);
+                courseID=Integer.parseInt(this.getInput());
             }
             catch(NumberFormatException e)
             {
@@ -149,10 +159,17 @@ public class Gui
             }
         }
         this.data.setInstructorList(birthday, courseID, name, preName, sex, spesification, workRelation);
+        System.out.println("Instructor has been added");
+        this.pausing();
+        this.instructionMenu();
     }
     
     public void updateInstructorMenu()
-    {}
+    {
+        System.out.println("Instructor has been updatet!");
+        this.pausing();
+        this.instructionMenu();
+    }
     
     public void deleteInstructorMenu()
     {
@@ -162,39 +179,46 @@ public class Gui
         {
             try
             {
-                this.input=this.scanner.next();
+                this.setInput(this.scanner.next());
                 if(index>=0)
                 {
-                    index=Integer.parseInt(input);
+                    index=Integer.parseInt(this.getInput());
                 }
                 else
                 {
                     System.out.print("Please enter an positiv number: ");
-                    input="";
+                    this.setInput("");
                 }
             }
             catch(NumberFormatException e)
             {
             System.out.print("Please enter an natural nummber!");
-            this.input="";
+            this.setInput("");
             }
         }
         while(input.isEmpty());
         System.out.println("are you sure to delete enter y or Y for delet");
-        this.input=this.scanner.next();
-        if(this.input=="Y"|this.input=="y")
+        this.setInput(this.scanner.next());
+        if(this.getInput().equals("Y")||this.getInput().equals("y"))
         {
             this.data.deleteInstructor(index);
-            System.out.println("The instructor is deleted");
+            System.out.println("The instructor has been deleted");
+            this.pausing();
+            this.instructionMenu();
         }
         else
         {
+            System.out.println("Deletion abbort");
+            this.pausing();
             this.instructionMenu();
         }
     }
     
     public void showInstrucorListMenu()
-    {}
+    {
+        this.pausing();
+        this.instructionMenu();
+    }
     
     
     public void customerMenu()
@@ -208,9 +232,9 @@ public class Gui
         System.out.println("Delete an customer        3");
         System.out.println("Show customer list        4 \n");
         System.out.println("Back to main menu         0 \n");
-        System.out.print("please enter your choice:");
-        input=scanner.nextLine();
-        switch(input)
+        System.out.print("please enter your choice: ");
+        this.setInput(this.scanner.next());
+        switch(this.getInput())
         {
             case "1":
                 this.errorMenu();
@@ -234,13 +258,55 @@ public class Gui
     }
     
     public void creatCustomerMenu()
-    {}
+    {
+    }
     
     public void updateCustomerMenu()
-    {}
+    {
+    }
     
     public void deleteCustomerMenu()
-    {}
+    {
+        int index=-1;
+        System.out.print("Please enter the ID of the customer which you want to delet: ");
+        do
+        {
+            try
+            {
+                this.setInput(this.scanner.next());
+                if(index>=0)
+                {
+                    index=Integer.parseInt(this.getInput());
+                }
+                else
+                {
+                    System.out.print("Please enter an positiv number: ");
+                    this.setInput("");
+                }
+            }
+            catch(NumberFormatException e)
+            {
+            System.out.print("Please enter an natural nummber!");
+            this.setInput("");
+            }
+        }
+        while(this.input.isEmpty());
+        System.out.println("are you sure to delete enter y or Y for delet");
+        this.setInput(this.scanner.next());
+        if(this.getInput().equals("Y")||this.getInput().equals("y"))
+        {
+            this.data.deleteInstructor(index);
+            System.out.println("The customer has been deleted");
+            this.pausing();
+            this.customerMenu();
+        }
+        else
+        {
+            System.out.println("Deletion abbort");
+            this.pausing();
+            this.customerMenu();
+        }        
+    }
     
     public void showCustomerListMenu()
     {}
@@ -257,8 +323,8 @@ public class Gui
         System.out.println("Show course list        4 \n");
         System.out.println("Back to main menu       0 \n");
         System.out.print("please enter your choice: ");        
-        input=scanner.nextLine();
-        switch(input)
+        this.setInput(this.scanner.next());
+        switch(this.getInput())
         {
             case "1":
                 this.errorMenu();
@@ -282,13 +348,161 @@ public class Gui
     }
     
     public void createCourseMenu()
-    {}
+    {
+        String name;
+        String beginTime;
+        String endTime;
+        String date;
+        String weekday;
+        System.out.print("Please enter the Name of the new course: ");
+        name=this.scanner.next();
+        System.out.print("Please enter the starting time of the new course: ");
+        beginTime= this.scanner.next();
+        System.out.print("Please enter the ending time of the new course: ");
+        endTime=this.scanner.next();
+        System.out.print("Please enter the date of the new course: ");
+        date=this.scanner.next();
+        System.out.print("Please enter the weekday of the new course: ");
+        weekday=this.scanner.next();
+        switch(weekday)
+        {
+            case "Monday":
+                weekday="M";
+                break;
+            
+            case "monday":
+                weekday="M";
+                break;
+            
+            case "m":
+                weekday="M";
+                break;
+                
+            case "Tuesday":
+                weekday="Tu";
+                break;
+            
+            case "tuesday":
+                weekday="Tu";
+                break;
+            
+            case "t":
+                weekday="Tu";
+                break; 
+                
+            case "Wensday":
+                weekday="W";
+                break;
+            
+            case "=wensday":
+                weekday="W";
+                break;
+            
+            case "w":
+                weekday="W";
+                break; 
+                
+            case "Thursday":
+                weekday="Thu";
+                break;
+            
+            case "thursday":
+                weekday="Thu";
+                break;
+            
+            case "thu":
+                weekday="Thu";
+                break;
+                
+            case "Friday":
+                weekday="F";
+                break;
+            
+            case "friday":
+                weekday="F";
+                break;
+            
+            case "f":
+                weekday="F";
+                break; 
+                
+            case "Saturday":
+                weekday="Sat";
+                break;
+            
+            case "saturday":
+                weekday="Sat";
+                break;
+            
+            case "sat":
+                weekday="Sat";
+                break;
+                
+            case "Sunday":
+                weekday="Sun";
+                break;
+            
+            case "sunday":
+                weekday="Sun";
+                break;
+            
+            case "sun":
+                weekday="Sun";
+                break; 
+            default:                
+                break;
+        }
+        this.data.setCourseList(name, beginTime, endTime, date, weekday);
+        System.out.println("Couse has been added!");
+        this.pausing();
+        this.coursesMenu();
+    }
     
     public void updateCourseMenu()
     {}
     
     public void deleteCourseMenu()
-    {}
+    {
+        int index=-1;
+        System.out.print("Please enter the ID of the course which you want to delet: ");
+        do
+        {
+            try
+            {
+                this.setInput(this.scanner.next());
+                if(index>=0)
+                {
+                    index=Integer.parseInt(this.getInput());
+                }
+                else
+                {
+                    System.out.print("Please enter an positiv number: ");
+                    this.setInput("");
+                }
+            }
+            catch(NumberFormatException e)
+            {
+            System.out.print("Please enter an natural nummber!");
+            this.setInput("");
+            }
+        }
+        while(this.input.isEmpty());
+        System.out.println("are you sure to delete enter y or Y for delet");
+        this.setInput(this.scanner.next());
+        if(this.getInput().equals("Y")||this.getInput().equals("y"))
+        {
+            this.data.deleteInstructor(index);
+            System.out.println("The course is deleted");
+            this.pausing();
+            this.coursesMenu();
+        }
+        else
+        {
+            System.out.println("Deletion abbort");
+            this.pausing();
+            this.coursesMenu();
+        }
+    }
     
     public void showCourseListMenu()
     {}
@@ -299,13 +513,29 @@ public class Gui
         System.out.println("\n This program section is currently not implemented press Enter to return to the menu \n");
         do
         {
-            input=scanner.nextLine();
-            if(input.isEmpty())
+            System.out.println("\n This program section is currently not implemented press Enter to return to the menu \n");
+            System.out.println(getInput());
+            this.setInput(this.scanner.nextLine());
+            if(this.getInput().isEmpty())
             {
                 this.mainMenu();
                 break;
             }
         }    
-        while(!(input.isEmpty()));
+        while(!(this.getInput().isEmpty()));
+    }
+    public void pausing()
+    {
+        do
+        {
+            System.out.println("\n This program section is currently not implemented press Enter to continue \n");
+            System.out.println(getInput());
+            this.setInput(this.scanner.nextLine());
+            if(this.getInput().isEmpty())
+            {
+                break;
+            }
+        }    
+        while(!(this.getInput().isEmpty())); 
     }
 }

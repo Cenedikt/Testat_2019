@@ -21,7 +21,6 @@ public class Main
         Gui gui=new Gui();   
         Data data= new Data();
         Filter f = new Filter();
-        f.filterInstructor();;
-//        gui.mainMenu();
+        gui.mainMenu();
     }    
 }
