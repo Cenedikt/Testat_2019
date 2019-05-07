@@ -77,7 +77,7 @@ public class Gui
                 this.createInstructorMenu();
                 break;
             case "2":
-                this.errorMenu();
+                this.updateInstructorMenu();
                 break;
             case "3":
                 this.deleteInstructorMenu();
@@ -89,7 +89,7 @@ public class Gui
                 this.mainMenu();
                 break;
             default:
-                this.mainMenu();
+                this.instructionMenu();
                 break;
         }      
     }
@@ -105,8 +105,26 @@ public class Gui
         int courseID=-1;
         System.out.print("Please enter the Name of the new instructor: ");
         name=this.scanner.next();
+        if(name.equals(""))
+        {
+            do
+            {
+                System.out.print("Error please enter a name without numbers!");
+                name= this.scanner.next();
+            }
+            while(name=="1");
+        }
         System.out.print("Please enter the prename of the new instructor: ");
         preName= this.scanner.next();
+        if(preName.equals(""))
+        {
+            do
+            {
+                System.out.print("Error please enter a prename without numbers!");
+                preName= this.scanner.next();
+            }
+            while(preName=="1");
+        }
         System.out.print("Please enter the birthday of the new instructor: ");
         birthday=this.scanner.next();
         System.out.print("Please enter the sex of the new instructor: ");
@@ -116,24 +134,33 @@ public class Gui
             switch(sex)
             {
                 case("male"):
-                    sex="m";
+                    sex="Male";
                     break;
-                case("m"):
+                
+                case("Male"):
+                    sex="Male";
                     break;
+                
                 case("female"):
-                    sex="f";
+                    sex="Female"; 
                     break;
-                case("f"):
+                
+                case("Female"):
+                    sex="Female";
                     break;
+                
                 case("divers"):
-                    sex="d";
+                    sex="Divers";
                     break;
-                case("d"):
+                
+                case("diverse"):
+                    sex="Divers";
                     break;
+                
                 default:
-                    System.out.println("Pleas enter a vailid sex ");
+                    System.out.println("Please enter a vailid sex (Male / Female /  Divers) ");
                     sex="";
-                break;
+                    break;
             }
         }
         while(sex.equals(""));
@@ -141,6 +168,12 @@ public class Gui
         spesification=this.scanner.next();
         System.out.print("Please enter the workrelation of the new instructor like extern or intern: ");
         workRelation=this.scanner.next();
+        while(!(workRelation.equals("extern")||workRelation.equals("intern")))
+        {
+            System.out.println("Pleas enter extern or intern for the workrelation!");
+            workRelation=scanner.next();
+            
+        }
         System.out.print("Please enter the courseID where the new instructor participaed if ther is no course yet do you want to create a new course press y or Y");
         this.setInput(this.scanner.next());
         if(this.getInput().equals("Y")||this.getInput().equals("y"))
@@ -259,10 +292,16 @@ public class Gui
     
     public void creatCustomerMenu()
     {
+        System.out.println("Customer has been added");
+        this.pausing();
+        this.customerMenu();
     }
     
     public void updateCustomerMenu()
     {
+        System.out.println("Customer has been updated");
+        this.pausing();
+        this.customerMenu();
     }
     
     public void deleteCustomerMenu()
@@ -448,7 +487,8 @@ public class Gui
             
             case "sun":
                 weekday="Sun";
-                break; 
+                break;
+                
             default:                
                 break;
         }
@@ -459,7 +499,11 @@ public class Gui
     }
     
     public void updateCourseMenu()
-    {}
+    {
+        System.out.println("Course has been updated");
+        this.pausing();
+        this.coursesMenu();
+    }
     
     public void deleteCourseMenu()
     {
@@ -524,6 +568,7 @@ public class Gui
         }    
         while(!(this.getInput().isEmpty()));
     }
+    
     public void pausing()
     {
         do

@@ -19,8 +19,6 @@ public class Main
     {
         // TODO code application logic here
         Gui gui=new Gui();   
-        Data data= new Data();
-        Filter f = new Filter();
         gui.mainMenu();
     }    
 }
