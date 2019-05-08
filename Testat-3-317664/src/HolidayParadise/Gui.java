@@ -83,7 +83,7 @@ public class Gui
                 this.deleteInstructorMenu();
                 break;
             case "4":
-                this.errorMenu();
+                this.showInstrucorListMenu();
                 break;
             case "0":
                 this.mainMenu();
@@ -177,7 +177,7 @@ public class Gui
         this.setInput(this.scanner.next());
         if(this.getInput().equals("Y")||this.getInput().equals("y"))
         {
-            this.errorMenu();
+            this.createCourseMenuInstructor();
         }
         else
         {
@@ -318,6 +318,8 @@ public class Gui
     
     public void showInstrucorListMenu()
     {
+        System.out.println("| ID | Name | Prename | Birthday | Sex | Spesification | Workrelation |");
+        this.data.getInstructorList();
         this.pausing();
         this.instructionMenu();
     }
@@ -348,7 +350,7 @@ public class Gui
                 this.deleteCustomerMenu();
                 break;
             case "4":
-                this.errorMenu();
+                this.showCustomerListMenu();
                 break;
             case "0":
                 this.mainMenu();
@@ -568,7 +570,12 @@ public class Gui
     }
     
     public void showCustomerListMenu()
-    {}
+    {
+        System.out.println("| ID | Title | Name | Prename | Birtdate | Sex |");
+        this.data.getCustomerList();
+        this.pausing();
+        this.customerMenu();
+    }
     
     public void coursesMenu()
     {
@@ -595,7 +602,7 @@ public class Gui
                 this.deleteCourseMenu();
                 break;
             case "4":
-                this.errorMenu();
+                this.showCourseListMenu();
                 break;
             case "0":
                 this.mainMenu();
@@ -718,6 +725,117 @@ public class Gui
         this.coursesMenu();
     }
     
+    public void createCourseMenuInstructor()
+    {
+        String name;
+        String beginTime;
+        String endTime;
+        String date;
+        String weekday;
+        System.out.print("Please enter the Name of the new course: ");
+        name=this.scanner.next();
+        System.out.print("Please enter the starting time of the new course: ");
+        beginTime= this.scanner.next();
+        System.out.print("Please enter the ending time of the new course: ");
+        endTime=this.scanner.next();
+        System.out.print("Please enter the date of the new course: ");
+        date=this.scanner.next();
+        System.out.print("Please enter the weekday of the new course: ");
+        weekday=this.scanner.next();
+        switch(weekday)
+        {
+            case "Monday":
+                weekday="M";
+                break;
+            
+            case "monday":
+                weekday="M";
+                break;
+            
+            case "m":
+                weekday="M";
+                break;
+                
+            case "Tuesday":
+                weekday="Tu";
+                break;
+            
+            case "tuesday":
+                weekday="Tu";
+                break;
+            
+            case "t":
+                weekday="Tu";
+                break; 
+                
+            case "Wensday":
+                weekday="W";
+                break;
+            
+            case "=wensday":
+                weekday="W";
+                break;
+            
+            case "w":
+                weekday="W";
+                break; 
+                
+            case "Thursday":
+                weekday="Thu";
+                break;
+            
+            case "thursday":
+                weekday="Thu";
+                break;
+            
+            case "thu":
+                weekday="Thu";
+                break;
+                
+            case "Friday":
+                weekday="F";
+                break;
+            
+            case "friday":
+                weekday="F";
+                break;
+            
+            case "f":
+                weekday="F";
+                break; 
+                
+            case "Saturday":
+                weekday="Sat";
+                break;
+            
+            case "saturday":
+                weekday="Sat";
+                break;
+            
+            case "sat":
+                weekday="Sat";
+                break;
+                
+            case "Sunday":
+                weekday="Sun";
+                break;
+            
+            case "sunday":
+                weekday="Sun";
+                break;
+            
+            case "sun":
+                weekday="Sun";
+                break;
+                
+            default:                
+                break;
+        }
+        this.data.setCourseList(name, beginTime, endTime, date, weekday);
+        System.out.println("Couse has been added!");
+        this.pausing();
+    }
+    
     public void updateCourseMenu()
     {
         int index;
@@ -815,7 +933,12 @@ public class Gui
     }
     
     public void showCourseListMenu()
-    {}
+    {
+        System.out.println("| ID | Name | Start | Ending | Date | Day |");
+        this.data.getCourseList();
+        this.pausing();
+        this.coursesMenu();
+    }
     
     public void errorMenu()
     {
@@ -824,7 +947,6 @@ public class Gui
         do
         {
             System.out.println("\n This program section is currently not implemented press Enter to return to the menu \n");
-            System.out.println(getInput());
             this.setInput(this.scanner.nextLine());
             if(this.getInput().isEmpty())
             {
@@ -839,8 +961,7 @@ public class Gui
     {
         do
         {
-            System.out.println("\n This program section is currently not implemented press Enter to continue \n");
-            System.out.println(getInput());
+            System.out.println("To continue press enter");
             this.setInput(this.scanner.nextLine());
             if(this.getInput().isEmpty())
             {

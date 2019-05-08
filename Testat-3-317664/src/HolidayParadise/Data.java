@@ -6,7 +6,6 @@
 package HolidayParadise;
 
 import java.util.ArrayList;
-import java.sql.Time;
 
 /**
  *
@@ -18,23 +17,34 @@ public class Data
     private ArrayList<Customer> customerList = new ArrayList<Customer>();
     private ArrayList<Course> courseList = new ArrayList<Course>(); 
 
-    public void getInstructorList (int pIndex)
+    public String getInstructorList (int pIndex)
     {
-        this.instructorList.get(pIndex).getInstructorID();
-        this.instructorList.get(pIndex).getInstructorName();
-        this.instructorList.get(pIndex).getInstructorPrname();
-        this.instructorList.get(pIndex).getBirthDate();
-        this.instructorList.get(pIndex).getSex();
-        this.instructorList.get(pIndex).getSpesification();
-        this.instructorList.get(pIndex).getWorkRelation();
-        this.instructorList.get(pIndex).getCourseID();               
+        String output;
+        int id;
+        String name;
+        String prename;
+        String birtday;
+        String sex;
+        String spesification;
+        String workRelation;
+        int courseID;
+        id=this.instructorList.get(pIndex).getInstructorID();
+        name=this.instructorList.get(pIndex).getInstructorName();
+        prename=this.instructorList.get(pIndex).getInstructorPrname();
+        birtday=this.instructorList.get(pIndex).getBirthDate();
+        sex=this.instructorList.get(pIndex).getSex();
+        spesification=this.instructorList.get(pIndex).getSpesification();
+        workRelation=this.instructorList.get(pIndex).getWorkRelation();
+        this.instructorList.get(pIndex).getCourseID();
+        output="| "+id+" | "+name+" | "+prename+" | "+birtday+" | "+sex+" | "+spesification+" | "+workRelation+" |";
+        return output;
     }
     
     public void getInstructorList()
     {
         for(int i=0; i<this.instructorList.size();i++)
         {
-            this.getInstructorList(i);
+            System.out.println(this.getInstructorList(i));
         }
     }
     
@@ -69,21 +79,30 @@ public class Data
         return size;
     }
     
-    public void getCustomer (int pIndex)
+    public String getCustomer (int pIndex)
     {
-        this.customerList.get(pIndex).getCustomerId();
-        this.customerList.get(pIndex).getTitle();
-        this.customerList.get(pIndex).getCustomerName();
-        this.customerList.get(pIndex).getCustomerPrename();
-        this.customerList.get(pIndex).getBirthData();
-        this.customerList.get(pIndex).getSex();
+        String output;
+        int id;
+        String title;
+        String name;
+        String prename;
+        String birtday;
+        String sex;
+        id=this.customerList.get(pIndex).getCustomerId();
+        title=this.customerList.get(pIndex).getTitle();
+        name=this.customerList.get(pIndex).getCustomerName();
+        prename=this.customerList.get(pIndex).getCustomerPrename();
+        birtday=this.customerList.get(pIndex).getBirthData();
+        sex=this.customerList.get(pIndex).getSex();
+        output=("| "+id+" | "+title+" | "+name+" | "+prename+" | "+birtday+" | "+sex+" |");
+        return output;
     }
     
     public void getCustomerList()
     {
         for(int i=0; i<this.customerList.size();i++)
         {
-            this.getCustomer(i);
+            System.out.println(this.getCustomer(i));
         }
     }
     
@@ -114,21 +133,30 @@ public class Data
     public void updataCustomer()
     {}
     
-    public void getCourseList(int pIndex)
+    public String getCourseList(int pIndex)
     {
-        this.courseList.get(pIndex).getCousrseID();
-        this.courseList.get(pIndex).getCousrsName();
-        this.courseList.get(pIndex).getBeginingOfCourse();
-        this.courseList.get(pIndex).getEndOfCourse();
-        this.courseList.get(pIndex).getEndOfCourse();
-        this.courseList.get(pIndex).getWeekday();
+        String output;
+        int id;
+        String name;
+        String begin;
+        String end;
+        String date;
+        String day;               
+        id=this.courseList.get(pIndex).getCousrseID();
+        name=this.courseList.get(pIndex).getCousrsName();
+        begin=this.courseList.get(pIndex).getBeginingOfCourse();
+        end=this.courseList.get(pIndex).getEndOfCourse();
+        date=this.courseList.get(pIndex).getDateOfCourse();
+        day=this.courseList.get(pIndex).getWeekday();
+        output=("| "+id+" | "+name+" | "+begin+" | "+end+" | "+date+" | "+day+"| ");
+        return output;
     }
     
     public void getCourseList()
     {
         for(int i=0; i<this.customerList.size();i++)
         {
-            this.getCourseList(i);
+            System.out.println(this.getCourseList(i));
         }
     }
     
