@@ -60,10 +60,19 @@ public class Data
     {
        
     }
+   
+    public int getInstructorListSize()
+    {
+        int size;
+        size=instructorList.size();
+        size--;
+        return size;
+    }
     
-    public void getCustomerList (int pIndex)
+    public void getCustomer (int pIndex)
     {
         this.customerList.get(pIndex).getCustomerId();
+        this.customerList.get(pIndex).getTitle();
         this.customerList.get(pIndex).getCustomerName();
         this.customerList.get(pIndex).getCustomerPrename();
         this.customerList.get(pIndex).getBirthData();
@@ -74,19 +83,36 @@ public class Data
     {
         for(int i=0; i<this.customerList.size();i++)
         {
-            this.getCustomerList(i);
+            this.getCustomer(i);
         }
     }
     
-    public void setCustomerList (String pCustomerName, String pBirthData, String pCustomerPrename, String pSex)
+    public void setCustomerList (String pTitle, String pCustomerName, String pBirthData, String pCustomerPrename, String pSex)
     {
         Customer customer = new Customer();
+        customer.setTitle(pTitle);
         customer.setCustomerName(pCustomerName);
         customer.setBirthData(pBirthData);
         customer.setCustomerPrename(pCustomerPrename);
         customer.setSex(pSex);
         this.customerList.add(customer);
     }
+    
+    public int getCustomerListSize()
+    {
+        int size;
+        size=customerList.size();
+        size--;
+        return size;
+    }
+    
+    public void deleteCustomer(int pIndex)
+    {
+        this.customerList.remove(pIndex);
+    }
+    
+    public void updataCustomer()
+    {}
     
     public void getCourseList(int pIndex)
     {
@@ -105,6 +131,7 @@ public class Data
             this.getCourseList(i);
         }
     }
+    
     public void setCourseList(String pBeginingOfCourse, String pCousrsName, String pdateOfCourse, String pEndOfCourse, String pWeekday)
     {
         Course course = new Course();
@@ -115,6 +142,22 @@ public class Data
         course.setWeekday(pWeekday);
         this.courseList.add(course);
     }
+    
+    public int getCourseListSize()
+    {
+        int size;
+        size=courseList.size();
+        size--;
+        return size;
+    }
+    
+    public void deleteCourse(int pindex)
+    {
+        this.courseList.remove(pindex);
+    }
+    
+    public void updataCourse()
+    {}
     
     public  void test()
     {

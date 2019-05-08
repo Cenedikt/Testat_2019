@@ -15,6 +15,7 @@ public final class Customer
 {
     private static int lastID;
     private int customerId;
+    private String title;
     private String customerName;
     private String customerPrename;
     private String birthData;
@@ -38,6 +39,24 @@ public final class Customer
         this.customerId = pCustomerId;
     }
     
+    /**
+     * 
+     * @return title
+     */
+    public String getTitle() 
+    {
+        return this.title;
+    }
+
+    /**
+     * 
+     * @param pTitle 
+     */
+    public void setTitle(String pTitle) 
+    {
+        this.title = pTitle;
+    }
+           
     /**
      * 
      * @return customerName
