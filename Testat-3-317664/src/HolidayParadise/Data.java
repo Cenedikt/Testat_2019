@@ -85,6 +85,7 @@ public class Data
         String workRelation;
         int courseID;
         Instructor instructor;
+        String input;
         id=this.instructorList.get(pIndex).getInstructorID();
         name=this.instructorList.get(pIndex).getInstructorName();
         prename=this.instructorList.get(pIndex).getInstructorPrname();
@@ -148,18 +149,56 @@ public class Data
                 this.instructorList.add(pIndex, instructor);
                 break;
             case "birtday":
-                instructor = new Instructor(id);
-                
+                instructor = new Instructor(id);               
 //                instructor.setCourseID(courseID);
                 instructor.setInstructorName(name);
                 instructor.setInstructorPrname(prename);
                 instructor.setSex(sex);
                 instructor.setSpesification(spesification);
                 instructor.setWorkRelation(workRelation);
+                System.out.print("Please enter the new birthdate of the  instructor (YYYY-MM-DD): ");
+                do
+                {
+                    input=this.scanner.next();
+                    try 
+                    {
+                      birtday=LocalDate.parse(input);  
+                    } 
+                    catch (Exception e) 
+                    {
+                        System.err.println("input incorrect please reenter: ");
+                        input="";
+                    }
+                }
+                while(input.equals(""));
                 instructor.setBirthDate(birtday);
                 this.instructorList.add(pIndex, instructor);
                 break;
             case "Birtday":
+                instructor = new Instructor(id);               
+//                instructor.setCourseID(courseID);
+                instructor.setInstructorName(name);
+                instructor.setInstructorPrname(prename);
+                instructor.setSex(sex);
+                instructor.setSpesification(spesification);
+                instructor.setWorkRelation(workRelation);
+                System.out.print("Please enter the new birthdate of the  instructor (YYYY-MM-DD): ");
+                do
+                {
+                    input=this.scanner.next();
+                    try 
+                    {
+                      birtday=LocalDate.parse(input);  
+                    } 
+                    catch (Exception e) 
+                    {
+                        System.err.println("input incorrect please reenter: ");
+                        input="";
+                    }
+                }
+                while(input.equals(""));
+                instructor.setBirthDate(birtday);
+                this.instructorList.add(pIndex, instructor);
                 break;
             case "sex":
                 instructor = new Instructor(id);
@@ -406,12 +445,15 @@ public class Data
         LocalDate birtday;
         String sex;
         Customer customer;
+        String input;
+        
         id=this.customerList.get(pIndex).getCustomerId();
         title=this.customerList.get(pIndex).getTitle();
         name=this.customerList.get(pIndex).getCustomerName();
         prename=this.customerList.get(pIndex).getCustomerPrename();
         birtday=this.customerList.get(pIndex).getBirthData();
         sex=this.customerList.get(pIndex).getSex();
+        
         this.deleteCustomer(pIndex);
         switch(pInput)
         {
@@ -556,7 +598,21 @@ public class Data
                 customer.setCustomerPrename(prename);
                 customer.setCustomerName(name);
                 customer.setSex(sex);
-                
+                 System.out.print("Please enter the new birthdate of the  customer (YYYY-MM-DD): ");
+                do
+                {
+                    input=this.scanner.next();
+                    try 
+                    {
+                      birtday=LocalDate.parse(input);  
+                    } 
+                    catch (Exception e) 
+                    {
+                        System.err.println("input incorrect please reenter: ");
+                        input="";
+                    }
+                }
+                while(input.equals(""));               
                 customer.setBirthData(birtday);
                 this.customerList.add(pIndex, customer);
                 break;
@@ -565,7 +621,21 @@ public class Data
                 customer.setCustomerPrename(prename);
                 customer.setCustomerName(name);
                 customer.setSex(sex);
-                
+                 System.out.print("Please enter the new birthdate of the  customer (YYYY-MM-DD): ");
+                do
+                {
+                    input=this.scanner.next();
+                    try 
+                    {
+                      birtday=LocalDate.parse(input);  
+                    } 
+                    catch (Exception e) 
+                    {
+                        System.err.println("input incorrect please reenter: ");
+                        input="";
+                    }
+                }
+                while(input.equals(""));                   
                 customer.setBirthData(birtday);
                 this.customerList.add(pIndex, customer);
                 break;
@@ -727,6 +797,7 @@ public class Data
         LocalDate date;
         String day;
         Course course;
+        String input;
         pattern = Pattern.compile(regex);
         id=this.courseList.get(pIndex).getCousrseID();
         name=this.courseList.get(pIndex).getCousrsName();
@@ -850,11 +921,47 @@ public class Data
                 course.setCousrsName(name);
                 course.setEndOfCourse(end);
                 course.setWeekday(day);
-                
+                System.out.print("Please enter the new date of the cours (YYYY-MM-DD): ");
+                do
+                {
+                    input=this.scanner.next();
+                    try 
+                    {
+                      date=LocalDate.parse(input);  
+                    } 
+                    catch (Exception e) 
+                    {
+                        System.err.println("input incorrect please reenter: ");
+                        input="";
+                    }
+                }
+                while(input.equals(""));          
                 course.setDateOfCourse(date);
                 this.courseList.add(pIndex, course);
                 break;
             case "Date":
+                course = new Course(id);
+                course.setBeginingOfCourse(start);
+                course.setCousrsName(name);
+                course.setEndOfCourse(end);
+                course.setWeekday(day);
+                System.out.print("Please enter the new date of the cours (YYYY-MM-DD): ");
+                do
+                {
+                    input=this.scanner.next();
+                    try 
+                    {
+                      date=LocalDate.parse(input);  
+                    } 
+                    catch (Exception e) 
+                    {
+                        System.err.println("input incorrect please reenter: ");
+                        input="";
+                    }
+                }
+                while(input.equals(""));          
+                course.setDateOfCourse(date);
+                this.courseList.add(pIndex, course);                
                 break;
             case "day":
                 course = new Course(id);
