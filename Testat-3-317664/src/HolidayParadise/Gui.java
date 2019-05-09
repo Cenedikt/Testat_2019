@@ -5,6 +5,7 @@
  */
 package HolidayParadise;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -104,17 +105,34 @@ public class Gui
     {
         String name;
         String preName;
-        String birthday;
+        LocalDate birthday;
         String sex;
         String spesification;
         String workRelation;
-        int courseID=-1;
+        int courseID;
+        
+        birthday=null;
+        courseID=-1;
+        
         System.out.print("Please enter the Name of the new instructor: ");
         name=this.scanner.next();        
         System.out.print("Please enter the prename of the new instructor: ");
         preName= this.scanner.next();
-        System.out.print("Please enter the birthday of the new instructor: ");
-        birthday=this.scanner.next();
+        System.out.print("Please enter the birthdate of the new instructor (YYYY-MM-DD): ");
+        do
+        {
+            this.setInput(this.scanner.next());
+            try 
+            {
+              birthday=LocalDate.parse(this.getInput());  
+            } 
+            catch (Exception e) 
+            {
+                System.err.println("input incorrect please reenter: ");
+                this.setInput("");
+            }
+        }
+        while(this.getInput().equals(""));
         System.out.print("Please enter the sex of the new instructor: ");
         do
         {
@@ -373,8 +391,11 @@ public class Gui
         String title;
         String name;
         String prename;
-        String birtday;
+        LocalDate birthday;
         String sex;
+        
+        birthday=null;
+        
         System.out.print("Please enter the title of the new customer: ");
         do
         {
@@ -416,17 +437,23 @@ public class Gui
         name=this.scanner.next();
         System.out.print("Please enter the prename of the new customer: ");
         prename= this.scanner.next();
-        if(prename.equals(""))
+        System.out.print("Error please enter a prename without numbers: ");
+        System.out.print("Please enter the birthdate of the new customer (YYYY-MM-DD): ");
+        do
         {
-            do
+            this.setInput(this.scanner.next());
+            try 
             {
-                System.out.print("Error please enter a prename without numbers: ");
-                prename= this.scanner.next();
+                birthday=LocalDate.parse(this.getInput());  
+            } 
+            catch (Exception e) 
+            {
+                System.err.println("input incorrect please reenter: ");
+                this.setInput("");
             }
-            while(prename=="1");
         }
-        System.out.print("Please enter the birthday of the new customer: ");
-        birtday=this.scanner.next();
+        while(this.getInput().equals(""));
+
         System.out.print("Please enter the sex of the new customer: ");
         do
         {
@@ -464,7 +491,7 @@ public class Gui
             }
         }
         while(sex.equals(""));
-        data.setCustomerList(title, name, prename, birtday, sex);
+        data.setCustomerList(title, name, birthday, prename, sex);
         System.out.println("Customer has been added");
         this.pausing();
         this.customerMenu();
@@ -642,8 +669,11 @@ public class Gui
         String name;
         String beginTime;
         String endTime;
-        String date;
+        LocalDate date;
         String weekday;
+        
+        date=null;
+        
         pattern = Pattern.compile(regex);
         System.out.print("Please enter the Name of the new course: ");
         name=this.scanner.next();
@@ -671,8 +701,21 @@ public class Gui
             }
         }
         while(endTime.equals(""));
-        System.out.print("Please enter the date of the new course: ");
-        date=this.scanner.next();
+        System.out.print("Please enter the date of the new cours (YYYY-MM-DD): ");
+        do
+        {
+            this.setInput(this.scanner.next());
+            try 
+            {
+                date=LocalDate.parse(this.getInput());  
+            } 
+            catch (Exception e) 
+            {
+                System.err.println("input incorrect please reenter: ");
+                this.setInput("");
+            }
+        }
+        while(this.getInput().equals(""));
         System.out.print("Please enter the weekday of the new course: ");
         weekday=this.scanner.next();
         switch(weekday)
@@ -764,7 +807,7 @@ public class Gui
             default:                
                 break;
         }
-        this.data.setCourseList(name, beginTime, endTime, date, weekday);
+        this.data.setCourseList(name, beginTime, date, endTime, weekday);
         System.out.println("Couse has been added!");
         this.pausing();
         this.coursesMenu();
@@ -775,8 +818,11 @@ public class Gui
         String name;
         String beginTime;
         String endTime;
-        String date;
+        LocalDate date;
         String weekday; 
+        
+        date=null;
+        
         pattern = Pattern.compile(regex);
         System.out.print("Please enter the Name of the new course: ");
         name=this.scanner.next();
@@ -804,8 +850,21 @@ public class Gui
             }
         }
         while(endTime.equals(""));
-        System.out.print("Please enter the date of the new course: ");
-        date=this.scanner.next();
+        System.out.print("Please enter the date of the new cours (YYYY-MM-DD): ");
+        do
+        {
+            this.setInput(this.scanner.next());
+            try 
+            {
+                date=LocalDate.parse(this.getInput());  
+            } 
+            catch (Exception e) 
+            {
+                System.err.println("input incorrect please reenter: ");
+                this.setInput("");
+            }
+        }
+        while(this.getInput().equals(""));
         System.out.print("Please enter the weekday of the new course: ");
         weekday=this.scanner.next();
         switch(weekday)
@@ -897,7 +956,7 @@ public class Gui
             default:                
                 break;
         }
-        this.data.setCourseList(name, beginTime, endTime, date, weekday);
+        this.data.setCourseList(name, beginTime, date, endTime, weekday);
         System.out.println("Couse has been added!");
         this.pausing();
     }

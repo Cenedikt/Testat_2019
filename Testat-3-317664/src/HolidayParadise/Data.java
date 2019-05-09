@@ -5,6 +5,7 @@
  */
 package HolidayParadise;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -30,7 +31,7 @@ public class Data
         int id;
         String name;
         String prename;
-        String birtday;
+        LocalDate birtday;
         String sex;
         String spesification;
         String workRelation;
@@ -55,7 +56,7 @@ public class Data
         }
     }
     
-    public void setInstructorList (String pBirthDate, int pCourseID, String pInstructorName, String pInstructorPrname, String pSex, String pSpesification, String pWorkRelation)
+    public void setInstructorList (LocalDate pBirthDate, int pCourseID, String pInstructorName, String pInstructorPrname, String pSex, String pSpesification, String pWorkRelation)
     {
         Instructor instructor = new Instructor();
         instructor.setBirthDate(pBirthDate);
@@ -78,7 +79,7 @@ public class Data
         int id;
         String name;
         String prename;
-        String birtday;
+        LocalDate birtday;
         String sex;
         String spesification;
         String workRelation;
@@ -352,7 +353,7 @@ public class Data
         String title;
         String name;
         String prename;
-        String birtday;
+        LocalDate birtday;
         String sex;
         id=this.customerList.get(pIndex).getCustomerId();
         title=this.customerList.get(pIndex).getTitle();
@@ -372,7 +373,7 @@ public class Data
         }
     }
     
-    public void setCustomerList (String pTitle, String pCustomerName, String pBirthData, String pCustomerPrename, String pSex)
+    public void setCustomerList (String pTitle, String pCustomerName, LocalDate pBirthData, String pCustomerPrename, String pSex)
     {
         Customer customer = new Customer();
         customer.setTitle(pTitle);
@@ -402,7 +403,7 @@ public class Data
         String title;
         String name;
         String prename;
-        String birtday;
+        LocalDate birtday;
         String sex;
         Customer customer;
         id=this.customerList.get(pIndex).getCustomerId();
@@ -673,7 +674,7 @@ public class Data
         String name;
         String begin;
         String end;
-        String date;
+        LocalDate date;
         String day;               
         id=this.courseList.get(pIndex).getCousrseID();
         name=this.courseList.get(pIndex).getCousrsName();
@@ -693,7 +694,7 @@ public class Data
         }
     }
     
-    public void setCourseList(String pBeginingOfCourse, String pCousrsName, String pdateOfCourse, String pEndOfCourse, String pWeekday)
+    public void setCourseList(String pBeginingOfCourse, String pCousrsName, LocalDate pdateOfCourse, String pEndOfCourse, String pWeekday)
     {
         Course course = new Course();
         course.setBeginingOfCourse(pBeginingOfCourse);
@@ -723,7 +724,7 @@ public class Data
         String name;
         String start;
         String end;
-        String date;
+        LocalDate date;
         String day;
         Course course;
         pattern = Pattern.compile(regex);
@@ -1019,10 +1020,10 @@ public class Data
         }
     }
     
-    public  void test()
-    {
-        this.getCourseList();
-        this.setInstructorList("19.99.99", 0, "BErns", "gsdsad", "m", "dsad", "dsadasd");
-        this.getInstructorList(0);
-    }
+//    public  void test()
+//    {
+//        this.getCourseList();
+//        this.setInstructorList("19.99.99", 0, "BErns", "gsdsad", "m", "dsad", "dsadasd");
+//        this.getInstructorList(0);
+//    }
 }

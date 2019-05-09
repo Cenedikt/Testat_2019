@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package HolidayParadise;
-
+import java.time.LocalDate;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Course
     private String cousrsName;
     private String beginingOfCourse;
     private String endOfCourse;
-    private String dateOfCourse;
+    private LocalDate dateOfCourse;
     private String weekday;
     
     /**
@@ -96,7 +96,7 @@ public class Course
      * 
      * @return dateOfCourse
      */
-    public String getDateOfCourse() 
+    public LocalDate getDateOfCourse() 
     {
         return this.dateOfCourse;
     }
@@ -105,7 +105,7 @@ public class Course
      * 
      * @param dateOfCourse 
      */
-    public void setDateOfCourse(String dateOfCourse) 
+    public void setDateOfCourse(LocalDate dateOfCourse) 
     {
         this.dateOfCourse = dateOfCourse;
     }

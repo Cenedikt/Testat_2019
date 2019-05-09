@@ -6,6 +6,7 @@
 package HolidayParadise;
 
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 /**
  *
@@ -17,7 +18,7 @@ public class Instructor
     private int instructorID;
     private String instructorName;
     private String instructorPrname;
-    private String birthDate;
+    private LocalDate birthDate;
     private String sex;
     private String spesification;
     private String workRelation;
@@ -81,7 +82,7 @@ public class Instructor
      * 
      * @return birthDate
      */
-    public String getBirthDate() 
+    public LocalDate getBirthDate() 
     {
         return this.birthDate;
     }
@@ -90,7 +91,7 @@ public class Instructor
      * 
      * @param pBirthDate 
      */
-    public void setBirthDate(String pBirthDate) 
+    public void setBirthDate(LocalDate pBirthDate) 
     {
         this.birthDate = birthDate;
     }
