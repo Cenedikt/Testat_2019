@@ -187,13 +187,16 @@ public class Gui
             if(this.getInput().equals("Y")||this.getInput().equals("y"))
             {
                 this.createCourseMenuInstructor();
+                courseID=data.getlastCourseId();
+                index=this.data.lastInstructorId();           
+                this.data.setInstructorCoursId(index, courseID);
             }
             else
             {
                 do
                 {
                     if(this.getInput().equals("n"))
-                    {
+                    {                       
                         this.createCourseMenuInstructor();
                         break;
                     }
@@ -217,6 +220,8 @@ public class Gui
                             setInput(this.scanner.next());
                             courseID=-1;                        
                         }
+                        index=this.data.lastInstructorId();           
+                        this.data.setInstructorCoursId(index, courseID);
                     }
                     catch(NumberFormatException e)
                     {
@@ -228,9 +233,7 @@ public class Gui
                 }
                 while(courseID==-1);
             }
-            index=this.data.lastInstructorId();
-            this.data.setInstructorCoursId(index, courseID);
-            System.out.print("are their more courses for the new instructor enter y or Y: ");
+            System.out.print("are their more courses for the new instructor enter the CoursID or enter y or Y to creat a new cours: ");
             this.setInput(this.scanner.next());
         }
         while(this.getInput().equals("y")||this.getInput().equals("Y"));        

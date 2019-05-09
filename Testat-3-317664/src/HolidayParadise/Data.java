@@ -1227,6 +1227,18 @@ public class Data
         }
     }
     
+    public int getlastCourseId()
+    {
+        int id;
+        
+        id=-1;        
+        for(int i=0;i< this.courseList.size();i++)
+        {
+            id=this.courseList.get(i).getCousrseID();
+        }
+        return id;        
+    }
+    
 //    public  void test()
 //    {
 //        this.getCourseList();
