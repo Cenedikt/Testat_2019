@@ -115,17 +115,12 @@ public class Data
         instructor.setWorkRelation(workRelation);
         
         this.instructorList.remove(pIndex);
-        if(instructor.getCoursIdListSize()==0)
-        {
-            instructor.setCourseID(pCoursID);
-        }
-        else
-        {
-            for(int i=0;i<instructor.getCoursIdListSize();i++)
+        if(instructor.getCoursIdListSize()>=1)
+
+            for(int i=0;i<helpList.size();i++)
             {
-                helpList.add(instructor.getCourseIDList(i));
+                instructor.setCourseID(helpList.get(i));
             }
-        }
         this.instructorList.add(pIndex, instructor);
     }
     
