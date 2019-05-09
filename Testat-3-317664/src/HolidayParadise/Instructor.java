@@ -159,16 +159,10 @@ public class Instructor
     {
         return courseIDList.get(pIndex);
     }
-    
-    /**
-     * 
-     */
-    public void getCourseID()
+        
+    public int getCoursIdListSize()
     {
-        for(int i=0; i<this.courseIDList.size();i++)
-        {
-            System.out.println(this.courseIDList.get(i));
-        }
+        return this.courseIDList.size();
     }
     
     /**

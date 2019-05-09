@@ -28,6 +28,7 @@ public class Data
     public String getInstructorList (int pIndex)
     {
         String output;
+        String courseOutput;
         int id;
         String name;
         String prename;
@@ -36,6 +37,8 @@ public class Data
         String spesification;
         String workRelation;
         int courseID;
+        
+        courseOutput="";
         id=this.instructorList.get(pIndex).getInstructorID();
         name=this.instructorList.get(pIndex).getInstructorName();
         prename=this.instructorList.get(pIndex).getInstructorPrname();
@@ -43,19 +46,22 @@ public class Data
         sex=this.instructorList.get(pIndex).getSex();
         spesification=this.instructorList.get(pIndex).getSpesification();
         workRelation=this.instructorList.get(pIndex).getWorkRelation();
-        this.instructorList.get(pIndex).getCourseID();
-        output="| "+id+" | "+name+" | "+prename+" | "+birtday+" | "+sex+" | "+spesification+" | "+workRelation+" |";
+        for(int i=0;i<this.instructorList.get(pIndex).getCoursIdListSize();i++)
+        {
+            courseID=this.instructorList.get(pIndex).getCourseIDList(i);
+            if(courseOutput.equals(""))
+            {
+                courseOutput=""+courseID;   
+            }
+            else
+            {
+                courseOutput=courseOutput+", "+courseID;
+            }
+        }
+        output="| "+id+" | "+name+" | "+prename+" | "+birtday+" | "+sex+" | "+spesification+" | "+workRelation+" | "+courseOutput+" |";
         return output;
     }
-    
-    public void getInstructorList()
-    {
-        for(int i=0; i<this.instructorList.size();i++)
-        {
-            System.out.println(this.getInstructorList(i));
-        }
-    }
-    
+        
     public void setInstructorList (LocalDate pBirthDate, String pInstructorName, String pInstructorPrname, String pSex, String pSpesification, String pWorkRelation)
     {
         Instructor instructor = new Instructor();
@@ -403,19 +409,71 @@ public class Data
             case "courseID":
                 instructor = new Instructor(id);
                 instructor.setBirthDate(birtday);
-
                 instructor.setInstructorName(name);
                 instructor.setInstructorPrname(prename);
                 instructor.setSex(sex);
                 instructor.setSpesification(spesification);
                 instructor.setWorkRelation(workRelation);
-                //                instructor.setCourseID(courseID);
+                System.out.print("Please enter the courseID where the new instructor participaed if ther is no course yet do you want to create a new course press y or Y ");
+                input=this.scanner.next();
+                do
+                {
+                    if(input.equals("Y")||input.equals("y"))
+                    {
+                    
+                    }
+                    else
+                    {
+                        do
+                        {
+                            if(input.equals("n"))
+                            {
+                                
+                                break;
+                            }
+                            try
+                            {                   
+                                courseID=Integer.parseInt(input);
+                                if(courseID>=0)
+                                {
+                                    if(courseID>this.getCourseListSize())
+                                    {
+                                        System.out.println("Their is no course with that ID! with n you creat a new course");
+                                        System.out.print("Please enter a new courseID: ");
+                                        input=this.scanner.next();
+                                        courseID=-1;
+                                    }
+                                }
+                                else
+                                {
+                                    System.out.println("No negetiv nummbers are allowed!");
+                                    System.out.print("Please enter a course id: ");
+                                    input=this.scanner.next();
+                                    courseID=-1;                        
+                                }
+                            }
+                            catch(NumberFormatException e)
+                            {
+                                System.out.println("Please enter a nurtal number! ");
+                                System.out.print("Please enter a new courseID: ");
+                                input=this.scanner.next();
+                                courseID=-1;
+                            }
+                        }
+                        while(courseID==-1);
+                    }
+//                    this.setInstructorCoursId(id, courseID);
+                    System.out.print("are their more courses for the new instructor enter y or Y: ");
+                    input=this.scanner.next();
+                }
+                 while(input.equals("y")||input.equals("Y"));
                 this.instructorList.add(pIndex, instructor);
                 break;
             case "CourseID":
                 break;
             default:
                 break;
+           
         }
     }
    

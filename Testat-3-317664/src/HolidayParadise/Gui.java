@@ -351,8 +351,11 @@ public class Gui
     
     public void showInstrucorListMenu()
     {
-        System.out.println("| ID | Name | Prename | Birthday | Sex | Spesification | Workrelation |");
-        this.data.getInstructorList();
+        System.out.println("| ID | Name | Prename | Birthday | Sex | Spesification | Workrelation | CoursID |");
+        for(int i=0; i<(this.data.getInstructorListSize()+1);i++)
+        {
+            System.out.println(this.data.getInstructorList(i));
+        }
         this.pausing();
         this.instructionMenu();
     }
