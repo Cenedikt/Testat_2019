@@ -20,10 +20,10 @@ public class Gui
     private String input;
     private Pattern pattern;
     private Matcher matcher;
-    private Data data=new Data();
+    private Data data = new Data();
+    private Filter filter = new Filter();
     
     private String regex="^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$";
-    
     public void setInput(String pInput)
     {
       this.input=pInput;  
@@ -556,7 +556,7 @@ public class Gui
                 this.customerMenu();
             }
         }
-        while(!(this.getInput().equals("name")||this.getInput().equals("Name")||this.getInput().equals("prename")||this.getInput().equals("Prename")||this.getInput().equals("title")||this.getInput().equals("Title")||this.getInput().equals("sex")||this.getInput().equals("Sex")||this.getInput().equals("title")||this.getInput().equals("birthday")||this.getInput().equals("Birthday")));
+        while(this.filter.compareCustomer(this.getInput())==false);
         this.data.updataCustomer(index,this.getInput());
         System.out.println("Customer has been updated");
         this.pausing();
@@ -968,6 +968,9 @@ public class Gui
     public void updateCourseMenu()
     {
         int index;
+        
+        index=-1;
+        
         System.out.print("Pleas enter the Id of the cours which you want to update with n cancel: ");
         this.setInput(this.scanner.next());
         do
@@ -1009,7 +1012,15 @@ public class Gui
             }
         }
         while(index==-1);
-//        this.data.updataCourse();
+        System.out.print("");
+        
+        do
+        {
+            System.out.print("plea enter the touble which you want to chanche(Name, start, end, date or weekday): ");
+            this.setInput(this.scanner.next());
+        }
+        while(this.filter.compareCourse(this.getInput())==false);
+        this.data.updataCourse(index, this.getInput());
         System.out.println("Course has been updated");
         this.pausing();
         this.coursesMenu();
