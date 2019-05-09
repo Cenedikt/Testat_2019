@@ -7,6 +7,8 @@ package HolidayParadise;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -18,6 +20,9 @@ public class Data
     private ArrayList<Customer> customerList = new ArrayList<Customer>();
     private ArrayList<Course> courseList = new ArrayList<Course>();
     private Scanner scanner = new Scanner(System.in);
+    private Pattern pattern;
+    private Matcher matcher;
+    private String regex="^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$";
 
     public String getInstructorList (int pIndex)
     {
@@ -721,6 +726,7 @@ public class Data
         String date;
         String day;
         Course course;
+        Matcher matcher;
         id=this.courseList.get(pIndex).getCousrseID();
         name=this.courseList.get(pIndex).getCousrsName();
         start=this.courseList.get(pIndex).getBeginingOfCourse();
@@ -757,9 +763,41 @@ public class Data
                 course.setDateOfCourse(date);
                 course.setEndOfCourse(end);
                 course.setWeekday(day);
+                System.out.print("Please enter the starting new time of the course (hh:mm): ");
+                do
+                {
+                    start= this.scanner.next();
+                    matcher = pattern.matcher(start);
+                    if(!(matcher.find()&& matcher.group().equals(start)))
+                    {
+                    System.out.println("time is not valid please enter in this pattern (hh:mm)");
+                    start="";
+                    }
+                }
+                while(start.equals(""));
+                course.setBeginingOfCourse(start);
                 this.courseList.add(pIndex, course);
                 break;
             case "Start":
+                course = new Course(id);
+                course.setCousrsName(name);
+                course.setDateOfCourse(date);
+                course.setEndOfCourse(end);
+                course.setWeekday(day);
+                System.out.print("Please enter the new starting time of the course (hh:mm): ");
+                do
+                {
+                    start= this.scanner.next();
+                    matcher = pattern.matcher(start);
+                    if(!(matcher.find()&& matcher.group().equals(start)))
+                    {
+                    System.out.println("time is not valid please enter in this pattern (hh:mm)");
+                    start="";
+                    }
+                }
+                while(start.equals(""));
+                course.setBeginingOfCourse(start);
+                this.courseList.add(pIndex, course);                
                 break;
             case "end":
                 course = new Course(id);
@@ -768,9 +806,42 @@ public class Data
                 course.setCousrsName(name);
                 course.setDateOfCourse(date);
                 course.setWeekday(day);
+                System.out.print("Please enter the new ending time of the course (hh:mm): ");
+                do
+                {
+                    end= this.scanner.next();
+                    matcher = pattern.matcher(end);
+                    if(!(matcher.find()&& matcher.group().equals(end)))
+                    {
+                        System.out.println("time is not valid please enter in this pattern (hh:mm)");
+                        end="";
+                    }
+                }
+                while(end.equals(""));
+                course.setEndOfCourse(end);
                 this.courseList.add(pIndex, course);
                 break;
             case "End":
+                course = new Course(id);
+                course = new Course(id);
+                course.setBeginingOfCourse(start);
+                course.setCousrsName(name);
+                course.setDateOfCourse(date);
+                course.setWeekday(day);
+                System.out.print("Please enter the new ending time of the course (hh:mm): ");
+                do
+                {
+                    end= this.scanner.next();
+                    matcher = pattern.matcher(end);
+                    if(!(matcher.find()&& matcher.group().equals(end)))
+                    {
+                        System.out.println("time is not valid please enter in this pattern (hh:mm)");
+                        end="";
+                    }
+                }
+                while(end.equals(""));
+                course.setEndOfCourse(end);
+                this.courseList.add(pIndex, course);                
                 break;
             case "date":
                 course = new Course(id);
@@ -790,7 +861,7 @@ public class Data
                 course.setCousrsName(name);
                 course.setDateOfCourse(date);
                 course.setEndOfCourse(end);
-                System.out.print("Please enter the weekday of the new course: ");
+                System.out.print("Please enter the new weekday of the course: ");
                 day=this.scanner.next();
                 switch(day)
                 {
@@ -869,7 +940,7 @@ public class Data
                 course.setCousrsName(name);
                 course.setDateOfCourse(date);
                 course.setEndOfCourse(end);
-                System.out.print("Please enter the weekday of the new course: ");
+                System.out.print("Please enter the new weekday of the course: ");
                 day=this.scanner.next();
                 switch(day)
                 {

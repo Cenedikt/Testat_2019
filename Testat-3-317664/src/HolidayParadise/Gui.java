@@ -648,7 +648,6 @@ public class Gui
         System.out.print("Please enter the Name of the new course: ");
         name=this.scanner.next();
         System.out.print("Please enter the starting time of the new course (hh:mm): ");
-        Matcher matcher;
         do
         {
             beginTime= this.scanner.next();
