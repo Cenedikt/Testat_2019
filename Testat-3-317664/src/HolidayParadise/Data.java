@@ -726,7 +726,7 @@ public class Data
         String date;
         String day;
         Course course;
-        Matcher matcher;
+        pattern = Pattern.compile(regex);
         id=this.courseList.get(pIndex).getCousrseID();
         name=this.courseList.get(pIndex).getCousrsName();
         start=this.courseList.get(pIndex).getBeginingOfCourse();

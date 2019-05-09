@@ -777,13 +777,33 @@ public class Gui
         String endTime;
         String date;
         String weekday; 
-        this.pattern = Pattern.compile(this.regex, Pattern.MULTILINE);
+        pattern = Pattern.compile(regex);
         System.out.print("Please enter the Name of the new course: ");
         name=this.scanner.next();
-        System.out.print("Please enter the starting time of the new course: ");
-        beginTime= this.scanner.next();
-        System.out.print("Please enter the ending time of the new course: ");
-        endTime=this.scanner.next();
+        System.out.print("Please enter the starting time of the new course (hh:mm): ");
+        do
+        {
+            beginTime= this.scanner.next();
+            matcher = pattern.matcher(beginTime);
+            if(!(matcher.find()&& matcher.group().equals(beginTime)))
+            {
+                System.out.println("time is not valid please enter in this pattern (hh:mm)");
+                beginTime="";
+            }
+        }
+        while(beginTime.equals(""));
+        System.out.print("Please enter the ending time of the new course (hh:mm): ");
+        do
+        {
+            endTime= this.scanner.next();
+            matcher = pattern.matcher(beginTime);
+            if(!(matcher.find()&& matcher.group().equals(beginTime)))
+            {
+                System.out.println("time is not valid please enter in this pattern (hh:mm)");
+                endTime="";
+            }
+        }
+        while(endTime.equals(""));
         System.out.print("Please enter the date of the new course: ");
         date=this.scanner.next();
         System.out.print("Please enter the weekday of the new course: ");
