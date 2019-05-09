@@ -29,6 +29,7 @@ public class Data
     {
         String output;
         String courseOutput;
+        String coursoutputhelp;
         int id;
         String name;
         String prename;
@@ -39,6 +40,7 @@ public class Data
         int courseID;
         
         courseOutput="";
+        coursoutputhelp="";
         id=this.instructorList.get(pIndex).getInstructorID();
         name=this.instructorList.get(pIndex).getInstructorName();
         prename=this.instructorList.get(pIndex).getInstructorPrname();
@@ -51,11 +53,12 @@ public class Data
             courseID=this.instructorList.get(pIndex).getCourseIDList(i);
             if(courseOutput.equals(""))
             {
-                courseOutput=""+courseID;   
+                coursoutputhelp=""+courseID;
+                courseOutput=coursoutputhelp;
             }
             else
             {
-                courseOutput=courseOutput+", "+courseID;
+                courseOutput=coursoutputhelp+", "+courseID;
             }
         }
         output="| "+id+" | "+name+" | "+prename+" | "+birtday+" | "+sex+" | "+spesification+" | "+workRelation+" | "+courseOutput+" |";
@@ -77,7 +80,18 @@ public class Data
     public void setInstructorCoursId(int pIndex, int pCoursID)
     {
         Instructor instructor = new Instructor(pIndex);
-        instructor.setCourseID(pCoursID);
+        ArrayList<Integer> helpList = new ArrayList<Integer>();
+        if(instructor.getCoursIdListSize()==0)
+        {
+            instructor.setCourseID(pCoursID);
+        }
+        else
+        {
+            for(int i=0;i<instructor.getCoursIdListSize();i++)
+            {
+                helpList.add(instructor.getCourseIDList(i));
+            }
+        }
         
         String name;
         String prename;
@@ -101,6 +115,17 @@ public class Data
         instructor.setWorkRelation(workRelation);
         
         this.instructorList.remove(pIndex);
+        if(instructor.getCoursIdListSize()==0)
+        {
+            instructor.setCourseID(pCoursID);
+        }
+        else
+        {
+            for(int i=0;i<instructor.getCoursIdListSize();i++)
+            {
+                helpList.add(instructor.getCourseIDList(i));
+            }
+        }
         this.instructorList.add(pIndex, instructor);
     }
     
@@ -1239,10 +1264,7 @@ public class Data
         return id;        
     }
     
-//    public  void test()
-//    {
-//        this.getCourseList();
-//        this.setInstructorList("19.99.99", 0, "BErns", "gsdsad", "m", "dsad", "dsadasd");
-//        this.getInstructorList(0);
-//    }
+    public void test()
+    {
+    }
 }

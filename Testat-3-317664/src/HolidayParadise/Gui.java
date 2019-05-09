@@ -181,9 +181,10 @@ public class Gui
             workRelation=scanner.next();            
         }
         this.data.setInstructorList(birthday, name, preName, sex, spesification, workRelation);
-        System.out.print("Please enter the courseID where the new instructor participaed if ther is no course yet do you want to create a new course press y or Y ");
-        this.setInput(this.scanner.next());
+
         do{
+            System.out.print("Please enter the courseID where the new instructor participaed if ther is no course yet do you want to create a new course press y or Y ");
+            this.setInput(this.scanner.next());
             if(this.getInput().equals("Y")||this.getInput().equals("y"))
             {
                 this.createCourseMenuInstructor();
