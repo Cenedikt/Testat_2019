@@ -136,4 +136,9 @@ public class Course
     {
         this.setCousrseID(Course.lastID++);
     }
+    
+    public Course(int pId)
+    {
+        this.setCousrseID(pId);
+    }
 }

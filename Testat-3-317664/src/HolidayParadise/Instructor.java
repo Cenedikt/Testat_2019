@@ -186,4 +186,9 @@ public class Instructor
     {
         this.setInstructorID(Instructor.lastID++);
     }
+    
+    public Instructor(int pId)           
+    {
+        this.setInstructorID(pId);
+    }
 }

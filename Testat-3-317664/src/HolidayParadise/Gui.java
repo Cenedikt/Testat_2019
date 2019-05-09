@@ -6,6 +6,8 @@
 package HolidayParadise;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -15,7 +17,12 @@ public class Gui
 {
     private Scanner scanner = new Scanner(System.in);
     private String input;
+    private Pattern pattern;
+    private Matcher matcher;
     private Data data=new Data();
+    
+    private String regex="[0-2][0-3]\\:[0-6][0-9]";
+    private String regex2;
     
     public void setInput(String pInput)
     {
@@ -104,27 +111,9 @@ public class Gui
         String workRelation;
         int courseID=-1;
         System.out.print("Please enter the Name of the new instructor: ");
-        name=this.scanner.next();
-        if(name.equals(""))
-        {
-            do
-            {
-                System.out.print("Error please enter a name without numbers: ");
-                name= this.scanner.next();
-            }
-            while(name=="1");
-        }
+        name=this.scanner.next();        
         System.out.print("Please enter the prename of the new instructor: ");
         preName= this.scanner.next();
-        if(preName.equals(""))
-        {
-            do
-            {
-                System.out.print("Error please enter a prename without numbers: ");
-                preName= this.scanner.next();
-            }
-            while(preName=="1");
-        }
         System.out.print("Please enter the birthday of the new instructor: ");
         birthday=this.scanner.next();
         System.out.print("Please enter the sex of the new instructor: ");
@@ -183,6 +172,11 @@ public class Gui
         {
             do
             {
+                if(this.getInput().equals("n"))
+            {
+                this.createCourseMenuInstructor();
+                break;
+            }
                 try
                 {                   
                     courseID=Integer.parseInt(this.getInput());
@@ -190,7 +184,7 @@ public class Gui
                     {
                         if(courseID>this.data.getCourseListSize())
                         {
-                            System.out.println("Their is no course with that ID!");
+                            System.out.println("Their is no course with that ID! with n you creat a new course");
                             System.out.print("Please enter a new courseID: ");
                             setInput(this.scanner.next());
                             courseID=-1;
@@ -257,7 +251,7 @@ public class Gui
             }
         }
         while(index==-1);
-        this.data.updataInstructor(index);            
+//        this.data.updataInstructor(index);            
         System.out.println("Instructor has been updatet!");
         this.pausing();
         this.instructionMenu();
@@ -407,15 +401,6 @@ public class Gui
         while(title.equals(""));
         System.out.print("Please enter the Name of the new customer: ");
         name=this.scanner.next();
-        if(name.equals(""))
-        {
-            do
-            {
-                System.out.print("Error please enter a name without numbers: ");
-                name= this.scanner.next();
-            }
-            while(name=="1");
-        }
         System.out.print("Please enter the prename of the new customer: ");
         prename= this.scanner.next();
         if(prename.equals(""))
@@ -474,11 +459,18 @@ public class Gui
     
     public void updateCustomerMenu()
     {
-        int index;
-        System.out.print("Pleas enter the Id of the customer which you want to update: ");
+        int index=-1;
+        System.out.print("Pleas enter the Id of the customer which you want to update with n cancel: ");
         this.setInput(this.scanner.next());
         do
         {
+            if(this.getInput().equals("n"))
+            {
+                System.out.println("uppdate canceled");
+                this.pausing();
+                this.customerMenu();
+                break;
+            }
             try
             {                   
                 index=Integer.parseInt(this.getInput());
@@ -509,7 +501,19 @@ public class Gui
             }
         }
         while(index==-1);
-        this.data.updataCustomer();
+        do
+        {
+            System.out.print("Which touble showed be cahnged Name, Prename, Title, Sex, Birthday to quit update tipe n :");
+            this.setInput(scanner.next());
+            if(this.getInput().equals("n"))
+            {
+                System.out.println("Update canceled");
+                this.pausing();
+                this.customerMenu();
+            }
+        }
+        while(!(this.getInput().equals("name")||this.getInput().equals("Name")||this.getInput().equals("prename")||this.getInput().equals("Prename")||this.getInput().equals("title")||this.getInput().equals("Title")||this.getInput().equals("sex")||this.getInput().equals("Sex")||this.getInput().equals("title")||this.getInput().equals("birthday")||this.getInput().equals("Birthday")));
+        this.data.updataCustomer(index,this.getInput());
         System.out.println("Customer has been updated");
         this.pausing();
         this.customerMenu();
@@ -518,10 +522,17 @@ public class Gui
     public void deleteCustomerMenu()
     {
         int index=-1;
-        System.out.print("Please enter the ID of the Customer which you want to delet: ");
+        System.out.print("Please enter the ID of the Customer which you want to delet or n to cancel: ");
         this.setInput(this.scanner.next());
         do
         {
+            if(this.getInput().equals("n"))
+            {
+                System.out.println("deletion canceled");
+                this.pausing();
+                this.customerMenu();
+                break;
+            }
             try
             {            
                 index=Integer.parseInt(this.getInput());
@@ -731,11 +742,17 @@ public class Gui
         String beginTime;
         String endTime;
         String date;
-        String weekday;
+        String weekday; 
+        this.pattern = Pattern.compile(this.regex, Pattern.MULTILINE);
+//        matcher = pattern.matcher(beginTime);
         System.out.print("Please enter the Name of the new course: ");
         name=this.scanner.next();
         System.out.print("Please enter the starting time of the new course: ");
         beginTime= this.scanner.next();
+//        if(ma)
+        {
+            
+        }
         System.out.print("Please enter the ending time of the new course: ");
         endTime=this.scanner.next();
         System.out.print("Please enter the date of the new course: ");
@@ -873,7 +890,7 @@ public class Gui
             }
         }
         while(index==-1);
-        this.data.updataCourse();
+//        this.data.updataCourse();
         System.out.println("Course has been updated");
         this.pausing();
         this.coursesMenu();

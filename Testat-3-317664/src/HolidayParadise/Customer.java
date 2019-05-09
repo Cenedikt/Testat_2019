@@ -135,5 +135,9 @@ public final class Customer
     public  Customer()
     {
         this.setCustomerId(Customer.lastID++);
-    }   
+    }
+    public Customer(int pId)
+    {
+        this.setCustomerId(pId);
+    }
 }
