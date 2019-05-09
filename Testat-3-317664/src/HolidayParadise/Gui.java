@@ -21,8 +21,7 @@ public class Gui
     private Matcher matcher;
     private Data data=new Data();
     
-    private String regex="[0-2][0-3]\\:[0-6][0-9]";
-    private String regex2;
+    private String regex="^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$";
     
     public void setInput(String pInput)
     {
@@ -173,10 +172,10 @@ public class Gui
             do
             {
                 if(this.getInput().equals("n"))
-            {
-                this.createCourseMenuInstructor();
-                break;
-            }
+                {
+                    this.createCourseMenuInstructor();
+                    break;
+                }
                 try
                 {                   
                     courseID=Integer.parseInt(this.getInput());
@@ -221,6 +220,13 @@ public class Gui
         this.setInput(this.scanner.next());
         do
         {
+            if(this.getInput().equals("n"))
+            {
+                System.out.println("update canceled");
+                this.pausing();
+                this.instructionMenu();
+                break;
+            }
             try
             {                   
                 index=Integer.parseInt(this.getInput());
@@ -264,6 +270,13 @@ public class Gui
         this.setInput(this.scanner.next());
         do
         {
+            if(this.getInput().equals("n"))
+            {
+                System.out.println("Deletion canceled");
+                this.pausing();
+                this.instructionMenu();
+                break;
+            }
             try
             {            
                 index=Integer.parseInt(this.getInput());
@@ -631,12 +644,34 @@ public class Gui
         String endTime;
         String date;
         String weekday;
+        pattern = Pattern.compile(regex);
         System.out.print("Please enter the Name of the new course: ");
         name=this.scanner.next();
-        System.out.print("Please enter the starting time of the new course: ");
-        beginTime= this.scanner.next();
-        System.out.print("Please enter the ending time of the new course: ");
-        endTime=this.scanner.next();
+        System.out.print("Please enter the starting time of the new course (hh:mm): ");
+        Matcher matcher;
+        do
+        {
+            beginTime= this.scanner.next();
+            matcher = pattern.matcher(beginTime);
+            if(!(matcher.find()&& matcher.group().equals(beginTime)))
+            {
+                System.out.println("time is not valid please enter in this pattern (hh:mm)");
+                beginTime="";
+            }
+        }
+        while(beginTime.equals(""));
+        System.out.print("Please enter the ending time of the new course (hh:mm): ");
+        do
+        {
+            endTime= this.scanner.next();
+            matcher = pattern.matcher(beginTime);
+            if(!(matcher.find()&& matcher.group().equals(beginTime)))
+            {
+                System.out.println("time is not valid please enter in this pattern (hh:mm)");
+                endTime="";
+            }
+        }
+        while(endTime.equals(""));
         System.out.print("Please enter the date of the new course: ");
         date=this.scanner.next();
         System.out.print("Please enter the weekday of the new course: ");
@@ -744,15 +779,10 @@ public class Gui
         String date;
         String weekday; 
         this.pattern = Pattern.compile(this.regex, Pattern.MULTILINE);
-//        matcher = pattern.matcher(beginTime);
         System.out.print("Please enter the Name of the new course: ");
         name=this.scanner.next();
         System.out.print("Please enter the starting time of the new course: ");
         beginTime= this.scanner.next();
-//        if(ma)
-        {
-            
-        }
         System.out.print("Please enter the ending time of the new course: ");
         endTime=this.scanner.next();
         System.out.print("Please enter the date of the new course: ");
@@ -860,6 +890,13 @@ public class Gui
         this.setInput(this.scanner.next());
         do
         {
+            if(this.getInput().equals("n"))
+            {
+                System.out.println("update canceled");
+                this.pausing();
+                this.coursesMenu();
+                break;
+            }
             try
             {                   
                 index=Integer.parseInt(this.getInput());
@@ -903,6 +940,13 @@ public class Gui
         this.setInput(this.scanner.next());
         do
         {
+            if(this.getInput().equals("n"))
+            {
+                System.out.println("deletion canceled   ");
+                this.pausing();
+                this.coursesMenu();
+                break;
+            }
             try
             {            
                 index=Integer.parseInt(this.getInput());

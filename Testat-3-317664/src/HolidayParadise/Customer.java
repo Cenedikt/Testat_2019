@@ -5,7 +5,6 @@
  */
 package HolidayParadise;
 
-import java.util.ArrayList;
 
 /**
  *
@@ -136,6 +135,7 @@ public final class Customer
     {
         this.setCustomerId(Customer.lastID++);
     }
+    
     public Customer(int pId)
     {
         this.setCustomerId(pId);
