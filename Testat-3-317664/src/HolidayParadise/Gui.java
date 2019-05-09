@@ -181,50 +181,54 @@ public class Gui
         }
         System.out.print("Please enter the courseID where the new instructor participaed if ther is no course yet do you want to create a new course press y or Y ");
         this.setInput(this.scanner.next());
-        if(this.getInput().equals("Y")||this.getInput().equals("y"))
-        {
-            this.createCourseMenuInstructor();
-        }
-        else
-        {
-            do
+        do{
+            if(this.getInput().equals("Y")||this.getInput().equals("y"))
             {
-                if(this.getInput().equals("n"))
+                this.createCourseMenuInstructor();
+            }
+            else
+            {
+                do
                 {
-                    this.createCourseMenuInstructor();
-                    break;
-                }
-                try
-                {                   
-                    courseID=Integer.parseInt(this.getInput());
-                    if(courseID>=0)
+                    if(this.getInput().equals("n"))
                     {
-                        if(courseID>this.data.getCourseListSize())
+                        this.createCourseMenuInstructor();
+                        break;
+                    }
+                    try
+                    {                   
+                        courseID=Integer.parseInt(this.getInput());
+                        if(courseID>=0)
                         {
-                            System.out.println("Their is no course with that ID! with n you creat a new course");
-                            System.out.print("Please enter a new courseID: ");
+                            if(courseID>this.data.getCourseListSize())
+                            {
+                                System.out.println("Their is no course with that ID! with n you creat a new course");
+                                System.out.print("Please enter a new courseID: ");
+                                setInput(this.scanner.next());
+                                courseID=-1;
+                            }
+                        }
+                        else
+                        {
+                            System.out.println("No negetiv nummbers are allowed!");
+                            System.out.print("Please enter a course id: ");
                             setInput(this.scanner.next());
-                            courseID=-1;
+                            courseID=-1;                        
                         }
                     }
-                    else
+                    catch(NumberFormatException e)
                     {
-                        System.out.println("No negetiv nummbers are allowed!");
-                        System.out.print("Please enter a course id: ");
+                        System.out.println("Please enter a nurtal number! ");
+                        System.out.print("Please enter a new courseID: ");
                         setInput(this.scanner.next());
-                        courseID=-1;                        
+                        courseID=-1;
                     }
                 }
-                catch(NumberFormatException e)
-                {
-                    System.out.println("Please enter a nurtal number! ");
-                    System.out.print("Please enter a new courseID: ");
-                    setInput(this.scanner.next());
-                    courseID=-1;
-                }
+                while(courseID==-1);
             }
-            while(courseID==-1);
+            System.out.print("are their more courses for the new instructor enter y or Y: ");
         }
+        while(this.getInput().equals("y")||this.getInput().equals("Y"));        
         this.data.setInstructorList(birthday, courseID, name, preName, sex, spesification, workRelation);
         System.out.println("Instructor has been added!");
         this.pausing();
@@ -234,7 +238,7 @@ public class Gui
     public void updateInstructorMenu()
     {
         int index;
-        System.out.print("Pleas enter the Id of the instructor which you want to update: ");
+        System.out.print("Pleas enter the Id of the instructor which you want to update with n cancel update: ");
         this.setInput(this.scanner.next());
         do
         {
@@ -284,7 +288,7 @@ public class Gui
     public void deleteInstructorMenu()
     {
         int index=-1;
-        System.out.print("Please enter the ID of the Instructor which you want to delet: ");
+        System.out.print("Please enter the ID of the Instructor which you want to delet with n cancel deletion: ");
         this.setInput(this.scanner.next());
         do
         {
@@ -964,7 +968,7 @@ public class Gui
     public void updateCourseMenu()
     {
         int index;
-        System.out.print("Pleas enter the Id of the cours which you want to update: ");
+        System.out.print("Pleas enter the Id of the cours which you want to update with n cancel: ");
         this.setInput(this.scanner.next());
         do
         {
@@ -1014,7 +1018,7 @@ public class Gui
     public void deleteCourseMenu()
     {
         int index=-1;
-        System.out.print("Please enter the ID of the course which you want to delet: ");
+        System.out.print("Please enter the ID of the course which you want to delet with n cancel: ");
         this.setInput(this.scanner.next());
         do
         {
@@ -1100,7 +1104,8 @@ public class Gui
     {
         do
         {
-            System.out.println("To continue press enter");
+            setInput("abc");
+            System.out.println("\n To continue press enter");
             this.setInput(this.scanner.nextLine());
             if(this.getInput().isEmpty())
             {
