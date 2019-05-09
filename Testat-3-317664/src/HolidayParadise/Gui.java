@@ -110,6 +110,7 @@ public class Gui
         String spesification;
         String workRelation;
         int courseID;
+        int index;
         
         birthday=null;
         courseID=-1;
@@ -179,6 +180,7 @@ public class Gui
             System.out.print("Pleas enter extern or intern for the workrelation: ");
             workRelation=scanner.next();            
         }
+        this.data.setInstructorList(birthday, name, preName, sex, spesification, workRelation);
         System.out.print("Please enter the courseID where the new instructor participaed if ther is no course yet do you want to create a new course press y or Y ");
         this.setInput(this.scanner.next());
         do{
@@ -226,10 +228,12 @@ public class Gui
                 }
                 while(courseID==-1);
             }
+            index=this.data.lastInstructorId();
+            this.data.setInstructorCoursId(index, courseID);
             System.out.print("are their more courses for the new instructor enter y or Y: ");
+            this.setInput(this.scanner.next());
         }
         while(this.getInput().equals("y")||this.getInput().equals("Y"));        
-        this.data.setInstructorList(birthday, courseID, name, preName, sex, spesification, workRelation);
         System.out.println("Instructor has been added!");
         this.pausing();
         this.instructionMenu();
@@ -1016,8 +1020,15 @@ public class Gui
         
         do
         {
-            System.out.print("plea enter the touble which you want to chanche(Name, start, end, date or weekday): ");
+            System.out.print("plea enter the touble which you want to chanche(Name, start, end, date or weekday) with n cancel: ");
             this.setInput(this.scanner.next());
+            if(this.getInput().equals("n"))
+            {
+                System.out.println("uppdate canceled");
+                this.pausing();
+                this.coursesMenu();
+                break;
+            }
         }
         while(this.filter.compareCourse(this.getInput())==false);
         this.data.updataCourse(index, this.getInput());

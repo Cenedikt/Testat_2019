@@ -56,17 +56,59 @@ public class Data
         }
     }
     
-    public void setInstructorList (LocalDate pBirthDate, int pCourseID, String pInstructorName, String pInstructorPrname, String pSex, String pSpesification, String pWorkRelation)
+    public void setInstructorList (LocalDate pBirthDate, String pInstructorName, String pInstructorPrname, String pSex, String pSpesification, String pWorkRelation)
     {
         Instructor instructor = new Instructor();
         instructor.setBirthDate(pBirthDate);
-        instructor.setCourseID(pCourseID);
         instructor.setInstructorName(pInstructorName);
         instructor.setInstructorPrname(pInstructorPrname);
         instructor.setSex(pSex);
         instructor.setSpesification(pSpesification);
         instructor.setWorkRelation(pWorkRelation);
         this.instructorList.add(instructor);
+    }
+    
+    public void setInstructorCoursId(int pIndex, int pCoursID)
+    {
+        Instructor instructor = new Instructor(pIndex);
+        instructor.setCourseID(pCoursID);
+        
+        String name;
+        String prename;
+        LocalDate birtday;
+        String sex;
+        String spesification;
+        String workRelation;
+        
+        name=this.instructorList.get(pIndex).getInstructorName();
+        prename=this.instructorList.get(pIndex).getInstructorPrname();
+        birtday=this.instructorList.get(pIndex).getBirthDate();
+        sex=this.instructorList.get(pIndex).getSex();
+        spesification=this.instructorList.get(pIndex).getSpesification();
+        workRelation=this.instructorList.get(pIndex).getWorkRelation();
+        
+        instructor.setBirthDate(birtday);
+        instructor.setInstructorName(name);
+        instructor.setInstructorPrname(prename);
+        instructor.setSex(sex);
+        instructor.setSpesification(spesification);
+        instructor.setWorkRelation(workRelation);
+        
+        this.instructorList.remove(pIndex);
+        this.instructorList.add(pIndex, instructor);
+    }
+    
+    public int lastInstructorId()
+    {
+        int id;
+        
+        id=-1;
+        
+        for(int i=0; i<this.instructorList.size();i++)
+        {
+            id=this.instructorList.get(i).getInstructorID();
+        }
+        return id;
     }
     
     public void deleteInstructor(int pIndex)
