@@ -20,16 +20,33 @@ public class Data
     private ArrayList<Instructor> instructorList = new ArrayList<Instructor>();
     private ArrayList<Customer> customerList = new ArrayList<Customer>();
     private ArrayList<Course> courseList = new ArrayList<Course>();
+    private ArrayList<Integer> coursIdList = new ArrayList<Integer>(); 
     private Scanner scanner = new Scanner(System.in);
     private Pattern pattern;
     private Matcher matcher;
     private String regex="^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$";
-
+    
+    public void setCoursIDList(int pCoursID)
+    {
+        this.coursIdList.add(pCoursID);
+    }
+    
+    public int getCoursIDList(int index)
+    {
+        int id;
+        id=this.coursIdList.get(index);
+        return id;
+    }
+    
+    public void clearCoursIdlist()
+    {
+        this.coursIdList.clear();
+    }
+    
     public String getInstructorList (int pIndex)
     {
         String output;
         String courseOutput;
-        String coursoutputhelp;
         int id;
         String name;
         String prename;
@@ -40,7 +57,6 @@ public class Data
         int courseID;
         
         courseOutput="";
-        coursoutputhelp="";
         id=this.instructorList.get(pIndex).getInstructorID();
         name=this.instructorList.get(pIndex).getInstructorName();
         prename=this.instructorList.get(pIndex).getInstructorPrname();
@@ -53,12 +69,11 @@ public class Data
             courseID=this.instructorList.get(pIndex).getCourseIDList(i);
             if(courseOutput.equals(""))
             {
-                coursoutputhelp=""+courseID;
-                courseOutput=coursoutputhelp;
+                courseOutput=""+courseID;
             }
             else
             {
-                courseOutput=coursoutputhelp+", "+courseID;
+                courseOutput=courseOutput+", "+courseID;
             }
         }
         output="| "+id+" | "+name+" | "+prename+" | "+birtday+" | "+sex+" | "+spesification+" | "+workRelation+" | "+courseOutput+" |";
@@ -74,68 +89,13 @@ public class Data
         instructor.setSex(pSex);
         instructor.setSpesification(pSpesification);
         instructor.setWorkRelation(pWorkRelation);
+        for(int i=0;i<this.coursIdList.size();i++)
+        {
+            instructor.setCourseID(i);
+        }
         this.instructorList.add(instructor);
     }
     
-    public void setInstructorCoursId(int pIndex, int pCoursID)
-    {
-        Instructor instructor = new Instructor(pIndex);
-        ArrayList<Integer> helpList = new ArrayList<Integer>();
-        if(instructor.getCoursIdListSize()==0)
-        {
-            instructor.setCourseID(pCoursID);
-        }
-        else
-        {
-            for(int i=0;i<instructor.getCoursIdListSize();i++)
-            {
-                helpList.add(instructor.getCourseIDList(i));
-            }
-        }
-        
-        String name;
-        String prename;
-        LocalDate birtday;
-        String sex;
-        String spesification;
-        String workRelation;
-        
-        name=this.instructorList.get(pIndex).getInstructorName();
-        prename=this.instructorList.get(pIndex).getInstructorPrname();
-        birtday=this.instructorList.get(pIndex).getBirthDate();
-        sex=this.instructorList.get(pIndex).getSex();
-        spesification=this.instructorList.get(pIndex).getSpesification();
-        workRelation=this.instructorList.get(pIndex).getWorkRelation();
-        
-        instructor.setBirthDate(birtday);
-        instructor.setInstructorName(name);
-        instructor.setInstructorPrname(prename);
-        instructor.setSex(sex);
-        instructor.setSpesification(spesification);
-        instructor.setWorkRelation(workRelation);
-        
-        this.instructorList.remove(pIndex);
-        if(instructor.getCoursIdListSize()>=1)
-
-            for(int i=0;i<helpList.size();i++)
-            {
-                instructor.setCourseID(helpList.get(i));
-            }
-        this.instructorList.add(pIndex, instructor);
-    }
-    
-    public int lastInstructorId()
-    {
-        int id;
-        
-        id=-1;
-        
-        for(int i=0; i<this.instructorList.size();i++)
-        {
-            id=this.instructorList.get(i).getInstructorID();
-        }
-        return id;
-    }
     
     public void deleteInstructor(int pIndex)
     {
@@ -154,20 +114,31 @@ public class Data
         int courseID;
         Instructor instructor;
         String input;
+        
+        courseID=-1;
+        
+        this.coursIdList.clear();
         id=this.instructorList.get(pIndex).getInstructorID();
+        instructor = new Instructor(id);
         name=this.instructorList.get(pIndex).getInstructorName();
         prename=this.instructorList.get(pIndex).getInstructorPrname();
         birtday=this.instructorList.get(pIndex).getBirthDate();
         sex=this.instructorList.get(pIndex).getSex();
         spesification=this.instructorList.get(pIndex).getSpesification();
         workRelation=this.instructorList.get(pIndex).getWorkRelation();
-//        courseID=this.instructorList.get(pIndex).getCourseID(); 
+        this.instructorList.remove(pIndex);
+        for (int i=0;i<instructor.getCoursIdListSize();i++)
+        {
+            this.setCoursIDList(instructorList.get(pIndex).getCourseIDList(i));
+        }
         switch(pInput)
         {
             case "name":
-                instructor = new Instructor(id);
                 instructor.setBirthDate(birtday);
-//                instructor.setCourseID(courseID);
+                for(int i=0;i<this.coursIdList.size();i++)
+                {
+                    instructor.setCourseID(i);
+                }
                 instructor.setInstructorPrname(prename);
                 instructor.setSex(sex);
                 instructor.setSpesification(spesification);
@@ -178,9 +149,11 @@ public class Data
                 this.instructorList.add(pIndex, instructor);
                 break;
             case "Name":
-                instructor = new Instructor(id);
                 instructor.setBirthDate(birtday);
-//                instructor.setCourseID(courseID);
+                for(int i=0;i<this.coursIdList.size();i++)
+                {
+                    instructor.setCourseID(i);
+                }
                 instructor.setInstructorPrname(prename);
                 instructor.setSex(sex);
                 instructor.setSpesification(spesification);
@@ -191,9 +164,11 @@ public class Data
                 this.instructorList.add(pIndex, instructor);                
                 break; 
             case "prename":
-                instructor = new Instructor(id);
                 instructor.setBirthDate(birtday);
-//                instructor.setCourseID(courseID);               
+                for(int i=0;i<this.coursIdList.size();i++)
+                {
+                    instructor.setCourseID(i);
+                }
                 instructor.setInstructorName(name);
                 instructor.setSex(sex);
                 instructor.setSpesification(spesification);
@@ -204,9 +179,11 @@ public class Data
                 this.instructorList.add(pIndex, instructor);
                 break;
             case "Prename":
-                                instructor = new Instructor(id);
                 instructor.setBirthDate(birtday);
-//                instructor.setCourseID(courseID);               
+                for(int i=0;i<this.coursIdList.size();i++)
+                {
+                    instructor.setCourseID(i);
+                }
                 instructor.setInstructorName(name);
                 instructor.setSex(sex);
                 instructor.setSpesification(spesification);
@@ -216,9 +193,11 @@ public class Data
                 instructor.setInstructorPrname(prename);
                 this.instructorList.add(pIndex, instructor);
                 break;
-            case "birtday":
-                instructor = new Instructor(id);               
-//                instructor.setCourseID(courseID);
+            case "birthday":               
+                for(int i=0;i<this.coursIdList.size();i++)
+                {
+                    instructor.setCourseID(i);
+                }
                 instructor.setInstructorName(name);
                 instructor.setInstructorPrname(prename);
                 instructor.setSex(sex);
@@ -242,9 +221,11 @@ public class Data
                 instructor.setBirthDate(birtday);
                 this.instructorList.add(pIndex, instructor);
                 break;
-            case "Birtday":
-                instructor = new Instructor(id);               
-//                instructor.setCourseID(courseID);
+            case "Birthday":              
+                for(int i=0;i<this.coursIdList.size();i++)
+                {
+                    instructor.setCourseID(i);
+                }
                 instructor.setInstructorName(name);
                 instructor.setInstructorPrname(prename);
                 instructor.setSex(sex);
@@ -269,9 +250,11 @@ public class Data
                 this.instructorList.add(pIndex, instructor);
                 break;
             case "sex":
-                instructor = new Instructor(id);
                 instructor.setBirthDate(birtday);
-//                instructor.setCourseID(courseID);
+                for(int i=0;i<this.coursIdList.size();i++)
+                {
+                    instructor.setCourseID(i);
+                }
                 instructor.setInstructorName(name);
                 instructor.setInstructorPrname(prename);               
                 instructor.setSpesification(spesification);
@@ -317,9 +300,11 @@ public class Data
                 this.instructorList.add(pIndex, instructor);
                 break;
             case "Sex":
-                instructor = new Instructor(id);
                 instructor.setBirthDate(birtday);
-//                instructor.setCourseID(courseID);
+                for(int i=0;i<this.coursIdList.size();i++)
+                {
+                    instructor.setCourseID(i);
+                }
                 instructor.setInstructorName(name);
                 instructor.setInstructorPrname(prename);               
                 instructor.setSpesification(spesification);
@@ -367,7 +352,10 @@ public class Data
             case "spesification":
                 instructor = new Instructor(id);
                 instructor.setBirthDate(birtday);
-//                instructor.setCourseID(courseID);
+                for(int i=0;i<this.coursIdList.size();i++)
+                {
+                    instructor.setCourseID(i);
+                }
                 instructor.setInstructorName(name);
                 instructor.setInstructorPrname(prename);
                 instructor.setSex(sex);               
@@ -380,7 +368,10 @@ public class Data
             case "Spesification":
                 instructor = new Instructor(id);
                 instructor.setBirthDate(birtday);
-//                instructor.setCourseID(courseID);
+                for(int i=0;i<this.coursIdList.size();i++)
+                {
+                    instructor.setCourseID(i);
+                }
                 instructor.setInstructorName(name);
                 instructor.setInstructorPrname(prename);
                 instructor.setSex(sex);               
@@ -393,7 +384,10 @@ public class Data
             case "workRelation":
                 instructor = new Instructor(id);
                 instructor.setBirthDate(birtday);
-//                instructor.setCourseID(courseID);
+                for(int i=0;i<this.coursIdList.size();i++)
+                {
+                    instructor.setCourseID(i);
+                }
                 instructor.setInstructorName(name);
                 instructor.setInstructorPrname(prename);
                 instructor.setSex(sex);
@@ -409,9 +403,11 @@ public class Data
                 this.instructorList.add(pIndex, instructor);
                 break;
             case "WorkRelation":
-                                instructor = new Instructor(id);
                 instructor.setBirthDate(birtday);
-//                instructor.setCourseID(courseID);
+                for(int i=0;i<this.coursIdList.size();i++)
+                {
+                    instructor.setCourseID(i);
+                }
                 instructor.setInstructorName(name);
                 instructor.setInstructorPrname(prename);
                 instructor.setSex(sex);
@@ -426,29 +422,72 @@ public class Data
                 instructor.setWorkRelation(workRelation);
                 this.instructorList.add(pIndex, instructor);
                 break;
-            case "courseID":
-                instructor = new Instructor(id);
+            case "CoursID":
                 instructor.setBirthDate(birtday);
                 instructor.setInstructorName(name);
                 instructor.setInstructorPrname(prename);
                 instructor.setSex(sex);
                 instructor.setSpesification(spesification);
                 instructor.setWorkRelation(workRelation);
-                System.out.print("Please enter the courseID where the new instructor participaed if ther is no course yet do you want to create a new course press y or Y ");
+                System.out.print("To add an cours press Y for delet a cours enter D: " );
                 input=this.scanner.next();
-                do
+                if(!(input.equals("y")||input.equals("Y")))
                 {
-                    if(input.equals("Y")||input.equals("y"))
+                    if(input.equals("d")||input.equals("D"))
                     {
-                    
-                    }
-                    else
-                    {
+                        int index=-1;
+                        System.out.print("Please enter the ID of the course which you want to delet with n cancel: ");
+                        input=this.scanner.next();
                         do
                         {
                             if(input.equals("n"))
                             {
-                                
+                                System.out.println("update canceled");
+                                break;
+                            }
+                            try
+                            {            
+                                index=Integer.parseInt(input);
+                                if(index>=0)
+                                {
+                                    if(index>this.getCourseListSize())
+                                    {
+                                        System.out.println("Their is no course with that ID! ");
+                                        System.out.print("Please enter a course id: ");
+                                        input=this.scanner.next();
+                                        index=-1;
+                                    }
+                                }
+                                else
+                                {
+                                    System.out.println("No negetiv nummbers are allowed!");
+                                    System.out.print("Please enter a course id: ");
+                                    input=this.scanner.next();
+                                    index=-1;
+                                }
+                            }
+                            catch(NumberFormatException e)
+                            {
+                                System.out.print("Please enter an natural nummber! ");
+                                input=this.scanner.next();
+                                index=-1;
+                            }
+                            this.deleteCourse(index);
+                            this.coursIdList.remove(index);
+                        }
+                        while(index==-1);
+                    }    
+                }
+                else
+                {
+                    do
+                    {
+                        System.out.print("Please enter the new courseID with n you can cancel ");
+                        input=this.scanner.next();                        
+                        do
+                        {
+                            if(input.equals("n"))
+                            {                       
                                 break;
                             }
                             try
@@ -458,7 +497,7 @@ public class Data
                                 {
                                     if(courseID>this.getCourseListSize())
                                     {
-                                        System.out.println("Their is no course with that ID! with n you creat a new course");
+                                        System.out.println("Their is no course with that ID!");
                                         System.out.print("Please enter a new courseID: ");
                                         input=this.scanner.next();
                                         courseID=-1;
@@ -480,20 +519,24 @@ public class Data
                                 courseID=-1;
                             }
                         }
-                        while(courseID==-1);
+                        while(courseID==-1);                        
+                        this.setCoursIDList(courseID);
+                        System.out.print("are their more courses for the instructor enter the CoursID Y: ");
+                        input=this.scanner.next();
+                        this.setCoursIDList(courseID);
                     }
-//                    this.setInstructorCoursId(id, courseID);
-                    System.out.print("are their more courses for the new instructor enter y or Y: ");
-                    input=this.scanner.next();
+                    while(input.equals("y")||input.equals("Y"));                                   
                 }
-                 while(input.equals("y")||input.equals("Y"));
-                this.instructorList.add(pIndex, instructor);
+                for(int i=0;i<this.coursIdList.size();i++)
+                {
+                    instructor.setCourseID(i);
+                }
+                this.instructorList.set(pIndex, instructor);
                 break;
-            case "CourseID":
+            case "coursID":
                 break;
             default:
-                break;
-           
+                break;           
         }
     }
    
@@ -523,15 +566,7 @@ public class Data
         output=("| "+id+" | "+title+" | "+name+" | "+prename+" | "+birtday+" | "+sex+" |");
         return output;
     }
-    
-    public void getCustomerList()
-    {
-        for(int i=0; i<this.customerList.size();i++)
-        {
-            System.out.println(this.getCustomer(i));
-        }
-    }
-    
+        
     public void setCustomerList (String pTitle, String pCustomerName, LocalDate pBirthData, String pCustomerPrename, String pSex)
     {
         Customer customer = new Customer();
@@ -572,8 +607,7 @@ public class Data
         name=this.customerList.get(pIndex).getCustomerName();
         prename=this.customerList.get(pIndex).getCustomerPrename();
         birtday=this.customerList.get(pIndex).getBirthData();
-        sex=this.customerList.get(pIndex).getSex();
-        
+        sex=this.customerList.get(pIndex).getSex();       
         this.deleteCustomer(pIndex);
         switch(pInput)
         {
@@ -875,15 +909,7 @@ public class Data
         output=("| "+id+" | "+name+" | "+begin+" | "+end+" | "+date+" | "+day+"| ");
         return output;
     }
-    
-    public void getCourseList()
-    {
-        for(int i=0; i<this.customerList.size();i++)
-        {
-            System.out.println(this.getCourseList(i));
-        }
-    }
-    
+   
     public void setCourseList(String pBeginingOfCourse, String pCousrsName, LocalDate pdateOfCourse, String pEndOfCourse, String pWeekday)
     {
         Course course = new Course();
@@ -925,6 +951,7 @@ public class Data
         end=this.courseList.get(pIndex).getEndOfCourse();
         date=this.courseList.get(pIndex).getDateOfCourse();
         day=this.courseList.get(pIndex).getWeekday();
+        this.courseList.remove(pIndex);
         switch(pInput)
         {
             case "name":
@@ -1089,76 +1116,81 @@ public class Data
                 course.setCousrsName(name);
                 course.setDateOfCourse(date);
                 course.setEndOfCourse(end);
-                System.out.print("Please enter the new weekday of the course: ");
-                day=this.scanner.next();
-                switch(day)
+                do
                 {
-                    case "Monday":
-                        day="M";
-                        break;
-                    case "monday":
-                        day="M";
-                        break;
-                    case "m":
-                        day="M";
-                        break;
-                    case "Tuesday":
-                        day="Tu";
-                        break;
-                    case "tuesday":
-                        day="Tu";
-                        break;
-                    case "t":
-                        day="Tu";
-                        break; 
-                    case "Wensday":
-                        day="W";
-                        break;
-                    case "=wensday":
-                        day="W";
-                        break;
-                    case "w":
-                        day="W";
-                        break; 
-                    case "Thursday":
-                        day="Thu";
-                        break;
-                    case "thursday":
-                        day="Thu";
-                        break;
-                    case "thu":
-                        day="Thu";
-                        break;
-                    case "Friday":
-                        day="F";
-                        break;
-                    case "friday":
-                        day="F";
-                        break;
-                    case "f":
-                        day="F";
-                        break; 
-                   case "Saturday":
-                        day="Sat";
-                        break;
-                    case "saturday":
-                        day="Sat";
-                        break;
-                    case "sat":
-                        day="Sat";
-                        break;
-                    case "Sunday":
-                        day="Sun";
-                        break;
-                    case "sunday":
-                        day="Sun";
-                        break;
-                    case "sun":
-                        day="Sun";
-                        break;
-                    default:                
-                        break;
+                    System.out.print("Please enter the new weekday of the course: ");
+                    day=this.scanner.next();
+                    switch(day)
+                    {
+                        case "Monday":
+                            day="M";
+                            break;
+                        case "monday":
+                            day="M";
+                            break;
+                        case "m":
+                            day="M";
+                            break;
+                        case "Tuesday":
+                            day="Tu";
+                            break;
+                        case "tuesday":
+                            day="Tu";
+                            break;
+                        case "t":
+                            day="Tu";
+                            break; 
+                        case "Wensday":
+                            day="W";
+                            break;
+                        case "=wensday":
+                            day="W";
+                            break;
+                        case "w":
+                            day="W";
+                            break; 
+                        case "Thursday":
+                            day="Thu";
+                            break;
+                        case "thursday":
+                            day="Thu";
+                            break;
+                        case "thu":
+                            day="Thu";
+                            break;
+                        case "Friday":
+                            day="F";
+                            break;
+                        case "friday":
+                            day="F";
+                            break;
+                        case "f":
+                            day="F";
+                            break; 
+                       case "Saturday":
+                            day="Sat";
+                            break;
+                        case "saturday":
+                            day="Sat";
+                            break;
+                        case "sat":
+                            day="Sat";
+                            break;
+                        case "Sunday":
+                            day="Sun";
+                            break;
+                        case "sunday":
+                            day="Sun";
+                            break;
+                        case "sun":
+                            day="Sun";
+                            break;
+                        default:
+                            day="";
+                            break;
+                    }
                 }
+                while(day.equals(""));
                 course.setWeekday(day);
                 this.courseList.add(pIndex, course);
                 break;
@@ -1168,76 +1200,81 @@ public class Data
                 course.setCousrsName(name);
                 course.setDateOfCourse(date);
                 course.setEndOfCourse(end);
-                System.out.print("Please enter the new weekday of the course: ");
-                day=this.scanner.next();
-                switch(day)
+                do
                 {
-                    case "Monday":
-                        day="M";
-                        break;
-                    case "monday":
-                        day="M";
-                        break;
-                    case "m":
-                        day="M";
-                        break;
-                    case "Tuesday":
-                        day="Tu";
-                        break;
-                    case "tuesday":
-                        day="Tu";
-                        break;
-                    case "t":
-                        day="Tu";
-                        break; 
-                    case "Wensday":
-                        day="W";
-                        break;
-                    case "=wensday":
-                        day="W";
-                        break;
-                    case "w":
-                        day="W";
-                        break; 
-                    case "Thursday":
-                        day="Thu";
-                        break;
-                    case "thursday":
-                        day="Thu";
-                        break;
-                    case "thu":
-                        day="Thu";
-                        break;
-                    case "Friday":
-                        day="F";
-                        break;
-                    case "friday":
-                        day="F";
-                        break;
-                    case "f":
-                        day="F";
-                        break; 
-                   case "Saturday":
-                        day="Sat";
-                        break;
-                    case "saturday":
-                        day="Sat";
-                        break;
-                    case "sat":
-                        day="Sat";
-                        break;
-                    case "Sunday":
-                        day="Sun";
-                        break;
-                    case "sunday":
-                        day="Sun";
-                        break;
-                    case "sun":
-                        day="Sun";
-                        break;
-                    default:                
-                        break;
+                    System.out.print("Please enter the new weekday of the course: ");
+                    day=this.scanner.next();
+                    switch(day)
+                    {
+                        case "Monday":
+                            day="M";
+                            break;
+                        case "monday":
+                            day="M";
+                            break;
+                        case "m":
+                            day="M";
+                            break;
+                        case "Tuesday":
+                            day="Tu";
+                            break;
+                        case "tuesday":
+                            day="Tu";
+                            break;
+                        case "t":
+                            day="Tu";
+                            break; 
+                        case "Wensday":
+                            day="W";
+                            break;
+                        case "=wensday":
+                            day="W";
+                            break;
+                        case "w":
+                            day="W";
+                            break; 
+                        case "Thursday":
+                            day="Thu";
+                            break;
+                        case "thursday":
+                            day="Thu";
+                            break;
+                        case "thu":
+                            day="Thu";
+                            break;
+                        case "Friday":
+                            day="F";
+                            break;
+                        case "friday":
+                            day="F";
+                            break;
+                        case "f":
+                            day="F";
+                            break; 
+                       case "Saturday":
+                            day="Sat";
+                            break;
+                        case "saturday":
+                            day="Sat";
+                            break;
+                        case "sat":
+                            day="Sat";
+                            break;
+                        case "Sunday":
+                            day="Sun";
+                            break;
+                        case "sunday":
+                            day="Sun";
+                            break;
+                        case "sun":
+                            day="Sun";
+                            break;
+                        default:
+                            day="";
+                            break;
+                    }
                 }
+                while(day.equals(""));
                 course.setWeekday(day);
                 this.courseList.add(pIndex, course);
                 break;                
@@ -1257,9 +1294,5 @@ public class Data
             id=this.courseList.get(i).getCousrseID();
         }
         return id;        
-    }
-    
-    public void test()
-    {
     }
 }

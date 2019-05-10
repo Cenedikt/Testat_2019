@@ -15,7 +15,7 @@ public class Filter
     {
         boolean compare;
         
-        compare=false;
+        compare=true;
         
         if(!(pInput.equals("name")||pInput.equals("Name")))
         {
@@ -29,20 +29,16 @@ public class Filter
                         {
                             if(!(pInput.equals("workRelation")||pInput.equals("WorkRelation")))
                             {
-                                if(!(pInput.equals("CourseID")||pInput.equals("coursID")))
+                                if(!(pInput.equals("CoursID")||pInput.equals("coursID")))
                                 {
                                     compare=false;
                                 }
                             }
-                        }                       
+                        }
                     }
                 }
             }
-        }
-        else
-        {
-            compare=true;
-        }
+        }    
         return compare;
     }
     
@@ -50,7 +46,7 @@ public class Filter
     {
         boolean compare;
         
-        compare=false;
+        compare=true;
 
         if(!(pInput.equals("name")||pInput.equals("Name")))
         {
@@ -67,12 +63,7 @@ public class Filter
                     }
                 }            
            }
-        }
-        else
-        {
-            compare=true;
-        }
-      
+        }     
         return compare;
     }
     
@@ -80,7 +71,7 @@ public class Filter
     {
         boolean compare;
         
-        compare=false;
+        compare=true;
         
         if(!(pInput.equals("name")||pInput.equals("Name")))
         {
@@ -90,17 +81,13 @@ public class Filter
                 {
                     if(!(pInput.equals("date")||pInput.equals("date")))
                     {
-                        if(!(pInput.equals("weekday")||pInput.equals("Weekday")))
+                        if(!(pInput.equals("day")||pInput.equals("Day")))
                         {
                             compare=false;
                         }
                     }
                 }
             }
-        }
-        else
-        {
-            compare=true;
         }
         return compare;
     }

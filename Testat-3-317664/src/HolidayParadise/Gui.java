@@ -24,6 +24,7 @@ public class Gui
     private Filter filter = new Filter();
     
     private String regex="^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$";
+    
     public void setInput(String pInput)
     {
       this.input=pInput;  
@@ -33,7 +34,7 @@ public class Gui
     {
         return this.input;
     }
-      
+       
     public void mainMenu()
     {
         System.out.println("/n HOLIDAY PARADISE");
@@ -110,11 +111,10 @@ public class Gui
         String spesification;
         String workRelation;
         int courseID;
-        int index;
         
         birthday=null;
         courseID=-1;
-        
+        this.data.clearCoursIdlist();
         System.out.print("Please enter the Name of the new instructor: ");
         name=this.scanner.next();        
         System.out.print("Please enter the prename of the new instructor: ");
@@ -180,17 +180,13 @@ public class Gui
             System.out.print("Pleas enter extern or intern for the workrelation: ");
             workRelation=scanner.next();            
         }
-        this.data.setInstructorList(birthday, name, preName, sex, spesification, workRelation);
-
         do{
             System.out.print("Please enter the courseID where the new instructor participaed if ther is no course yet do you want to create a new course press y or Y ");
             this.setInput(this.scanner.next());
             if(this.getInput().equals("Y")||this.getInput().equals("y"))
             {
                 this.createCourseMenuInstructor();
-                courseID=data.getlastCourseId();
-                index=this.data.lastInstructorId();           
-                this.data.setInstructorCoursId(index, courseID);
+                courseID=data.getlastCourseId();          
             }
             else
             {
@@ -221,8 +217,6 @@ public class Gui
                             setInput(this.scanner.next());
                             courseID=-1;                        
                         }
-                        index=this.data.lastInstructorId();           
-                        this.data.setInstructorCoursId(index, courseID);
                     }
                     catch(NumberFormatException e)
                     {
@@ -234,10 +228,12 @@ public class Gui
                 }
                 while(courseID==-1);
             }
+            this.data.setCoursIDList(courseID);
             System.out.print("are their more courses for the new instructor enter the CoursID or enter y or Y to creat a new cours: ");
             this.setInput(this.scanner.next());
         }
-        while(this.getInput().equals("y")||this.getInput().equals("Y"));        
+        while(this.getInput().equals("y")||this.getInput().equals("Y"));
+        this.data.setInstructorList(birthday, name, preName, sex, spesification, workRelation);        
         System.out.println("Instructor has been added!");
         this.pausing();
         this.instructionMenu();
@@ -246,6 +242,7 @@ public class Gui
     public void updateInstructorMenu()
     {
         int index;
+        index=-1;
         System.out.print("Pleas enter the Id of the instructor which you want to update with n cancel update: ");
         this.setInput(this.scanner.next());
         do
@@ -287,7 +284,20 @@ public class Gui
             }
         }
         while(index==-1);
-//        this.data.updataInstructor(index);            
+        do
+        {
+            System.out.print("please enter the touble which you want to chanche(Name, Prename, Birthday, Sex, Spesification, WorkRelation, CourseID) with n cancel: ");
+            this.setInput(this.scanner.next());
+            if(this.getInput().equals("n"))
+            {
+                System.out.println("uppdate canceled");
+                this.pausing();
+                this.instructionMenu();
+                break;
+            }
+        }
+        while(this.filter.compareInstructor(this.getInput())==false);
+        this.data.updataInstructor(index, this.getInput());
         System.out.println("Instructor has been updatet!");
         this.pausing();
         this.instructionMenu();
@@ -363,8 +373,7 @@ public class Gui
         this.pausing();
         this.instructionMenu();
     }
-    
-    
+       
     public void customerMenu()
     {
         System.out.println("/n HOLIDAY PARADISE");
@@ -638,7 +647,10 @@ public class Gui
     public void showCustomerListMenu()
     {
         System.out.println("| ID | Title | Name | Prename | Birtdate | Sex |");
-        this.data.getCustomerList();
+        for(int i=0;i<=this.data.getCustomerListSize();i++)
+        {
+            System.out.println(this.data.getCustomer(i));
+        }
         this.pausing();
         this.customerMenu();
     }
@@ -708,7 +720,7 @@ public class Gui
         do
         {
             endTime= this.scanner.next();
-            matcher = pattern.matcher(beginTime);
+            matcher = pattern.matcher(endTime);
             if(!(matcher.find()&& matcher.group().equals(beginTime)))
             {
                 System.out.println("time is not valid please enter in this pattern (hh:mm)");
@@ -731,98 +743,103 @@ public class Gui
             }
         }
         while(this.getInput().equals(""));
-        System.out.print("Please enter the weekday of the new course: ");
-        weekday=this.scanner.next();
-        switch(weekday)
+        do
         {
-            case "Monday":
-                weekday="M";
-                break;
-            
-            case "monday":
-                weekday="M";
-                break;
-            
-            case "m":
-                weekday="M";
-                break;
-                
-            case "Tuesday":
-                weekday="Tu";
-                break;
-            
-            case "tuesday":
-                weekday="Tu";
-                break;
-            
-            case "t":
-                weekday="Tu";
-                break; 
-                
-            case "Wensday":
-                weekday="W";
-                break;
-            
-            case "=wensday":
-                weekday="W";
-                break;
-            
-            case "w":
-                weekday="W";
-                break; 
-                
-            case "Thursday":
-                weekday="Thu";
-                break;
-            
-            case "thursday":
-                weekday="Thu";
-                break;
-            
-            case "thu":
-                weekday="Thu";
-                break;
-                
-            case "Friday":
-                weekday="F";
-                break;
-            
-            case "friday":
-                weekday="F";
-                break;
-            
-            case "f":
-                weekday="F";
-                break; 
-                
-            case "Saturday":
-                weekday="Sat";
-                break;
-            
-            case "saturday":
-                weekday="Sat";
-                break;
-            
-            case "sat":
-                weekday="Sat";
-                break;
-                
-            case "Sunday":
-                weekday="Sun";
-                break;
-            
-            case "sunday":
-                weekday="Sun";
-                break;
-            
-            case "sun":
-                weekday="Sun";
-                break;
-                
-            default:                
-                break;
+            System.out.print("Please enter the weekday of the new course: ");
+            weekday=this.scanner.next();
+            switch(weekday)
+            {
+                case "Monday":
+                    weekday="M";
+                    break;
+
+                case "monday":
+                    weekday="M";
+                    break;
+
+                case "m":
+                    weekday="M";
+                    break;
+
+                case "Tuesday":
+                    weekday="Tu";
+                    break;
+
+                case "tuesday":
+                    weekday="Tu";
+                    break;
+
+                case "t":
+                    weekday="Tu";
+                    break; 
+
+                case "Wensday":
+                    weekday="W";
+                    break;
+
+                case "=wensday":
+                    weekday="W";
+                    break;
+
+                case "w":
+                    weekday="W";
+                    break; 
+
+                case "Thursday":
+                    weekday="Thu";
+                    break;
+
+                case "thursday":
+                    weekday="Thu";
+                    break;
+
+                case "thu":
+                    weekday="Thu";
+                    break;
+
+                case "Friday":
+                    weekday="F";
+                    break;
+
+                case "friday":
+                    weekday="F";
+                    break;
+
+                case "f":
+                    weekday="F";
+                    break; 
+
+                case "Saturday":
+                    weekday="Sat";
+                    break;
+
+                case "saturday":
+                    weekday="Sat";
+                    break;
+
+                case "sat":
+                    weekday="Sat";
+                    break;
+
+                case "Sunday":
+                    weekday="Sun";
+                    break;
+
+                case "sunday":
+                    weekday="Sun";
+                    break;
+
+                case "sun":
+                    weekday="Sun";
+                    break;
+
+                default:
+                    weekday="";
+                    break;
+            }
         }
-        this.data.setCourseList(name, beginTime, date, endTime, weekday);
+        while(weekday.equals(""));
+        this.data.setCourseList(beginTime, name, date, endTime, weekday);
         System.out.println("Couse has been added!");
         this.pausing();
         this.coursesMenu();
@@ -858,7 +875,7 @@ public class Gui
         {
             endTime= this.scanner.next();
             matcher = pattern.matcher(beginTime);
-            if(!(matcher.find()&& matcher.group().equals(beginTime)))
+            if(!(matcher.find()&& matcher.group().equals(endTime)))
             {
                 System.out.println("time is not valid please enter in this pattern (hh:mm)");
                 endTime="";
@@ -880,98 +897,103 @@ public class Gui
             }
         }
         while(this.getInput().equals(""));
-        System.out.print("Please enter the weekday of the new course: ");
-        weekday=this.scanner.next();
-        switch(weekday)
+        do
         {
-            case "Monday":
-                weekday="M";
-                break;
-            
-            case "monday":
-                weekday="M";
-                break;
-            
-            case "m":
-                weekday="M";
-                break;
-                
-            case "Tuesday":
-                weekday="Tu";
-                break;
-            
-            case "tuesday":
-                weekday="Tu";
-                break;
-            
-            case "t":
-                weekday="Tu";
-                break; 
-                
-            case "Wensday":
-                weekday="W";
-                break;
-            
-            case "=wensday":
-                weekday="W";
-                break;
-            
-            case "w":
-                weekday="W";
-                break; 
-                
-            case "Thursday":
-                weekday="Thu";
-                break;
-            
-            case "thursday":
-                weekday="Thu";
-                break;
-            
-            case "thu":
-                weekday="Thu";
-                break;
-                
-            case "Friday":
-                weekday="F";
-                break;
-            
-            case "friday":
-                weekday="F";
-                break;
-            
-            case "f":
-                weekday="F";
-                break; 
-                
-            case "Saturday":
-                weekday="Sat";
-                break;
-            
-            case "saturday":
-                weekday="Sat";
-                break;
-            
-            case "sat":
-                weekday="Sat";
-                break;
-                
-            case "Sunday":
-                weekday="Sun";
-                break;
-            
-            case "sunday":
-                weekday="Sun";
-                break;
-            
-            case "sun":
-                weekday="Sun";
-                break;
-                
-            default:                
-                break;
+            System.out.print("Please enter the weekday of the new course: ");
+            weekday=this.scanner.next();
+            switch(weekday)
+            {
+                case "Monday":
+                    weekday="M";
+                    break;
+
+                case "monday":
+                    weekday="M";
+                    break;
+
+                case "m":
+                    weekday="M";
+                    break;
+
+                case "Tuesday":
+                    weekday="Tu";
+                    break;
+
+                case "tuesday":
+                    weekday="Tu";
+                    break;
+
+                case "t":
+                    weekday="Tu";
+                    break; 
+
+                case "Wensday":
+                    weekday="W";
+                    break;
+
+                case "=wensday":
+                    weekday="W";
+                    break;
+
+                case "w":
+                    weekday="W";
+                    break; 
+
+                case "Thursday":
+                    weekday="Thu";
+                    break;
+
+                case "thursday":
+                    weekday="Thu";
+                    break;
+
+                case "thu":
+                    weekday="Thu";
+                    break;
+
+                case "Friday":
+                    weekday="F";
+                    break;
+
+                case "friday":
+                    weekday="F";
+                    break;
+
+                case "f":
+                    weekday="F";
+                    break; 
+
+                case "Saturday":
+                    weekday="Sat";
+                    break;
+
+                case "saturday":
+                    weekday="Sat";
+                    break;
+
+                case "sat":
+                    weekday="Sat";
+                    break;
+
+                case "Sunday":
+                    weekday="Sun";
+                    break;
+
+                case "sunday":
+                    weekday="Sun";
+                    break;
+
+                case "sun":
+                    weekday="Sun";
+                    break;
+
+                default:
+                    weekday="";
+                    break;
+            }
         }
-        this.data.setCourseList(name, beginTime, date, endTime, weekday);
+        while(weekday.equals(""));
+        this.data.setCourseList(beginTime, name, date, endTime, weekday);
         System.out.println("Couse has been added!");
         this.pausing();
     }
@@ -1027,7 +1049,7 @@ public class Gui
         
         do
         {
-            System.out.print("plea enter the touble which you want to chanche(Name, start, end, date or weekday) with n cancel: ");
+            System.out.print("please enter the touble which you want to chanche(Name, start, end, date or weekday) with n cancel: ");
             this.setInput(this.scanner.next());
             if(this.getInput().equals("n"))
             {
@@ -1107,7 +1129,10 @@ public class Gui
     public void showCourseListMenu()
     {
         System.out.println("| ID | Name | Start | Ending | Date | Day |");
-        this.data.getCourseList();
+        for(int i=0;i<=this.data.getCourseListSize();i++)
+        {
+            System.out.println(this.data.getCourseList(i));
+        }
         this.pausing();
         this.coursesMenu();
     }
