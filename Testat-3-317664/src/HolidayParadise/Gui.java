@@ -24,17 +24,28 @@ public class Gui
     private Filter filter = new Filter();
     
     private String regex="^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$";
-    
+
+    /**
+     * 
+     * @param pInput 
+     */
     public void setInput(String pInput)
     {
       this.input=pInput;  
     }
     
+    /**
+     * 
+     * @return input
+     */
     public String getInput()
     {
         return this.input;
     }
-       
+ 
+    /**
+     * is the Main menu
+     */
     public void mainMenu()
     {
         System.out.println("/n HOLIDAY PARADISE");
@@ -65,7 +76,10 @@ public class Gui
                 break;
         }
     }
-    
+
+    /**
+     * ist the instructor menu
+     */    
     public void instructionMenu()
     {
         System.out.println("/n HOLIDAY PARADISE");
@@ -101,7 +115,10 @@ public class Gui
                 break;
         }      
     }
-    
+
+    /**
+     * creats a new Instructor and creats a new course if needed if all inputs a correct
+     */
     public void createInstructorMenu()
     {
         String name;
@@ -233,12 +250,24 @@ public class Gui
             this.setInput(this.scanner.next());
         }
         while(this.getInput().equals("y")||this.getInput().equals("Y"));
-        this.data.setInstructorList(birthday, name, preName, sex, spesification, workRelation);        
-        System.out.println("Instructor has been added!");
-        this.pausing();
-        this.instructionMenu();
+        if(this.filter.compareInstructor(name, preName, birthday, sex)==false)
+        {
+            this.data.setInstructorList(birthday, name, preName, sex, spesification, workRelation);        
+            System.out.println("Instructor has been added!");
+            this.pausing();
+            this.instructionMenu();
+        }
+        else
+        {
+            System.out.println("Instructor allready exist");
+            this.pausing();
+            this.instructionMenu();
+        }
     }
-    
+
+    /**
+    * update the instructor if chanches are needed alsow check if the Instructor which showeb be change exists
+    */    
     public void updateInstructorMenu()
     {
         int index;
@@ -302,7 +331,10 @@ public class Gui
         this.pausing();
         this.instructionMenu();
     }
-    
+
+    /**
+     * delets a Instructor and checks if the instructor exists
+     */
     public void deleteInstructorMenu()
     {
         int index=-1;
@@ -362,7 +394,10 @@ public class Gui
             this.instructionMenu();
         }
     }
-    
+
+/**
+ * retursn the instructor List with its values
+ */    
     public void showInstrucorListMenu()
     {
         System.out.println("| ID | Name | Prename | Birthday | Sex | Spesification | Workrelation | CoursID |");
@@ -373,7 +408,10 @@ public class Gui
         this.pausing();
         this.instructionMenu();
     }
-       
+
+    /**
+     * the customer menu
+     */
     public void customerMenu()
     {
         System.out.println("/n HOLIDAY PARADISE");
@@ -410,6 +448,9 @@ public class Gui
         }       
     }
     
+    /**
+     * creats a new customer and cheks if all inputs a correct
+     */
     public void creatCustomerMenu()
     {
         String title;
@@ -515,12 +556,23 @@ public class Gui
             }
         }
         while(sex.equals(""));
-        data.setCustomerList(title, name, birthday, prename, sex);
-        System.out.println("Customer has been added");
-        this.pausing();
-        this.customerMenu();
+        if(this.filter.compareCustomer(title, name, prename, birthday, sex)==false)
+        {
+            data.setCustomerList(title, name, birthday, prename, sex);
+            System.out.println("Customer has been added");
+            this.pausing();
+            this.customerMenu();            
+        }
+        else
+        {
+            System.out.println("The Customer already exist");
+            this.pausing();
+            this.customerMenu();
+        }
     }
-    
+/**
+ * updates the customer and cheks if the customer exists
+ */    
     public void updateCustomerMenu()
     {
         int index=-1;
@@ -582,7 +634,10 @@ public class Gui
         this.pausing();
         this.customerMenu();
     }
-    
+
+/**
+ * udelets the customer and cheks if the customer exists
+ */    
     public void deleteCustomerMenu()
     {
         int index=-1;
@@ -643,7 +698,9 @@ public class Gui
             
         }        
     }
-    
+/**
+ * returs all customers with theri walues
+ */   
     public void showCustomerListMenu()
     {
         System.out.println("| ID | Title | Name | Prename | Birtdate | Sex |");
@@ -654,7 +711,9 @@ public class Gui
         this.pausing();
         this.customerMenu();
     }
-    
+/**
+ * cours menu
+ */    
     public void coursesMenu()
     {
         System.out.println("/n HOLIDAY PARADISE");
@@ -690,7 +749,10 @@ public class Gui
                 break;
         }        
     }
-    
+
+/**
+ * crats a new Cours
+ */    
     public void createCourseMenu()
     {
         String name;
@@ -839,12 +901,23 @@ public class Gui
             }
         }
         while(weekday.equals(""));
-        this.data.setCourseList(beginTime, name, date, endTime, weekday);
-        System.out.println("Couse has been added!");
-        this.pausing();
-        this.coursesMenu();
+        if(this.filter.compareCours(name, beginTime, endTime, date, weekday)==false)
+        {
+            this.data.setCourseList(beginTime, name, date, endTime, weekday);
+            System.out.println("Couse has been added!");
+            this.pausing();
+            this.coursesMenu();
+        }
+        else
+        {
+            System.out.println("the Cours allready exist");
+            this.pausing();
+            this.coursesMenu();
+        }
     }
-    
+/**
+ * creats new cours but its for the creat instructor menu to not jump into the cours menu and skips the the prosses of creating the instructor
+ */    
     public void createCourseMenuInstructor()
     {
         String name;
@@ -997,7 +1070,10 @@ public class Gui
         System.out.println("Couse has been added!");
         this.pausing();
     }
-    
+
+/**
+ * updates a new course an check if the cours exists
+ */    
     public void updateCourseMenu()
     {
         int index;
@@ -1065,7 +1141,9 @@ public class Gui
         this.pausing();
         this.coursesMenu();
     }
-    
+/**
+ * delets a new course an check if the cours exists
+ */    
     public void deleteCourseMenu()
     {
         int index=-1;
@@ -1125,7 +1203,9 @@ public class Gui
             this.coursesMenu();
         }       
     }
-    
+/**
+ * returns all Courses with their data
+ */    
     public void showCourseListMenu()
     {
         System.out.println("| ID | Name | Start | Ending | Date | Day |");
@@ -1136,7 +1216,9 @@ public class Gui
         this.pausing();
         this.coursesMenu();
     }
-    
+/**
+ * an error Message which waits after an enter input
+ */    
     public void errorMenu()
     {
         
@@ -1153,7 +1235,9 @@ public class Gui
         }    
         while(!(this.getInput().isEmpty()));
     }
-    
+/**
+ * waits that so long if an enter input is made 
+ */    
     public void pausing()
     {
         do

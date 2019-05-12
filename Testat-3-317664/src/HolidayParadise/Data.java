@@ -26,11 +26,20 @@ public class Data
     private Matcher matcher;
     private String regex="^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$";
     
+    /**
+     * 
+     * @param pCoursID 
+     */
     public void setCoursIDList(int pCoursID)
     {
         this.coursIdList.add(pCoursID);
     }
     
+    /**
+     * 
+     * @param index
+     * @return id 
+     */
     public int getCoursIDList(int index)
     {
         int id;
@@ -38,11 +47,19 @@ public class Data
         return id;
     }
     
+    /**
+     * cleas the coursIdList
+     */
     public void clearCoursIdlist()
     {
         this.coursIdList.clear();
     }
     
+    /**
+     * returens the Instructor withe their data in a String
+     * @param pIndex
+     * @return output
+     */
     public String getInstructorList (int pIndex)
     {
         String output;
@@ -79,7 +96,38 @@ public class Data
         output="| "+id+" | "+name+" | "+prename+" | "+birtday+" | "+sex+" | "+spesification+" | "+workRelation+" | "+courseOutput+" |";
         return output;
     }
-        
+    
+    /**
+     * returns an outpu to check if thei is allready an object with the same data
+     * @param pIndex
+     * @return output
+     */
+    public String getInstructorListCompare (int pIndex)
+    {
+        String output;
+        String name;
+        String prename;
+        LocalDate birtday;
+        String sex;
+       
+        name=this.instructorList.get(pIndex).getInstructorName();
+        prename=this.instructorList.get(pIndex).getInstructorPrname();
+        birtday=this.instructorList.get(pIndex).getBirthDate();
+        sex=this.instructorList.get(pIndex).getSex();
+
+        output=name+","+prename+","+birtday+","+sex;
+        return output;
+    }
+    
+    /**
+     * sets a new Instructor
+     * @param pBirthDate
+     * @param pInstructorName
+     * @param pInstructorPrname
+     * @param pSex
+     * @param pSpesification
+     * @param pWorkRelation 
+     */
     public void setInstructorList (LocalDate pBirthDate, String pInstructorName, String pInstructorPrname, String pSex, String pSpesification, String pWorkRelation)
     {
         Instructor instructor = new Instructor();
@@ -96,12 +144,20 @@ public class Data
         this.instructorList.add(instructor);
     }
     
-    
+    /**
+     * delets an Instructor
+     * @param pIndex 
+     */
     public void deleteInstructor(int pIndex)
     {
         this.instructorList.remove(pIndex);
     }
     
+    /**
+     * updates an Instructor and checks if all inputs are coorect
+     * @param pIndex
+     * @param pInput 
+     */
     public void updataInstructor(int pIndex, String pInput)
     {
         int id;
@@ -539,7 +595,11 @@ public class Data
                 break;           
         }
     }
-   
+
+/**
+ * returns the size of the array minus 1 
+ * @return size
+ */    
     public int getInstructorListSize()
     {
         int size;
@@ -547,7 +607,12 @@ public class Data
         size--;
         return size;
     }
-    
+ 
+    /**
+     * generats an output for an customer
+     * @param pIndex
+     * @return output
+     */
     public String getCustomer (int pIndex)
     {
         String output;
@@ -555,18 +620,48 @@ public class Data
         String title;
         String name;
         String prename;
-        LocalDate birtday;
+        LocalDate birthday;
         String sex;
         id=this.customerList.get(pIndex).getCustomerId();
         title=this.customerList.get(pIndex).getTitle();
         name=this.customerList.get(pIndex).getCustomerName();
         prename=this.customerList.get(pIndex).getCustomerPrename();
-        birtday=this.customerList.get(pIndex).getBirthData();
+        birthday=this.customerList.get(pIndex).getBirthData();
         sex=this.customerList.get(pIndex).getSex();
-        output=("| "+id+" | "+title+" | "+name+" | "+prename+" | "+birtday+" | "+sex+" |");
+        output=("| "+id+" | "+title+" | "+name+" | "+prename+" | "+birthday+" | "+sex+" |");
         return output;
     }
-        
+    
+    /**
+     * generats an output for an customer for comapre
+     * @param pIndex
+     * @return output
+     */
+    public String getCustomerCompare (int pIndex)
+    {
+        String output;
+        String title;
+        String name;
+        String prename;
+        LocalDate birthday;
+        String sex;
+        title=this.customerList.get(pIndex).getTitle();
+        name=this.customerList.get(pIndex).getCustomerName();
+        prename=this.customerList.get(pIndex).getCustomerPrename();
+        birthday=this.customerList.get(pIndex).getBirthData();
+        sex=this.customerList.get(pIndex).getSex();
+        output=title+name+prename+birthday+sex;
+        return output;
+    }
+    
+/**
+ * sets a customer
+ * @param pTitle
+ * @param pCustomerName
+ * @param pBirthData
+ * @param pCustomerPrename
+ * @param pSex 
+ */    
     public void setCustomerList (String pTitle, String pCustomerName, LocalDate pBirthData, String pCustomerPrename, String pSex)
     {
         Customer customer = new Customer();
@@ -577,7 +672,10 @@ public class Data
         customer.setSex(pSex);
         this.customerList.add(customer);
     }
-    
+/**
+ * returns the size of the array minus 1
+ * @return 
+ */   
     public int getCustomerListSize()
     {
         int size;
@@ -585,12 +683,21 @@ public class Data
         size--;
         return size;
     }
-    
+ 
+    /**
+     * delets an customer
+     * @param pIndex 
+     */
     public void deleteCustomer(int pIndex)
     {
         this.customerList.remove(pIndex);
     }
     
+    /**
+     * updates an customer and checks if all the inputs ar corect
+     * @param pIndex
+     * @param pInput 
+     */
     public void updataCustomer(int pIndex, String pInput)
     {
         int id;
@@ -891,6 +998,11 @@ public class Data
         }
     }
     
+    /**
+     * generats an output for an course
+     * @param pIndex
+     * @return output
+     */
     public String getCourseList(int pIndex)
     {
         String output;
@@ -909,7 +1021,38 @@ public class Data
         output=("| "+id+" | "+name+" | "+begin+" | "+end+" | "+date+" | "+day+"| ");
         return output;
     }
-   
+    
+    /**
+     * generats an output for an customer for compare
+     * @param pIndex
+     * @return output
+     */
+    public String getCourseListCompare(int pIndex)
+    {
+        String output;
+        String name;
+        String begin;
+        String end;
+        LocalDate date;
+        String day;               
+
+        name=this.courseList.get(pIndex).getCousrsName();
+        begin=this.courseList.get(pIndex).getBeginingOfCourse();
+        end=this.courseList.get(pIndex).getEndOfCourse();
+        date=this.courseList.get(pIndex).getDateOfCourse();
+        day=this.courseList.get(pIndex).getWeekday();
+        output=(name+","+begin+","+end+","+date+","+day);
+        return output;
+    }
+    
+    /**
+     * sets an course
+     * @param pBeginingOfCourse
+     * @param pCousrsName
+     * @param pdateOfCourse
+     * @param pEndOfCourse
+     * @param pWeekday 
+     */
     public void setCourseList(String pBeginingOfCourse, String pCousrsName, LocalDate pdateOfCourse, String pEndOfCourse, String pWeekday)
     {
         Course course = new Course();
@@ -921,6 +1064,10 @@ public class Data
         this.courseList.add(course);
     }
     
+    /**
+     * returs cours size mines one
+     * @return size
+     */
     public int getCourseListSize()
     {
         int size;
@@ -929,11 +1076,20 @@ public class Data
         return size;
     }
     
+    /**
+     * delets an course
+     * @param pindex 
+     */
     public void deleteCourse(int pindex)
     {
         this.courseList.remove(pindex);
     }
     
+    /**
+     * updates an course and checks if all inputs are correct
+     * @param pIndex
+     * @param pInput 
+     */
     public void updataCourse(int pIndex, String pInput)
     {
         int id;
@@ -1284,6 +1440,10 @@ public class Data
         }
     }
     
+    /**
+     * returns the last id of the course wich has been created
+     * @return id
+     */
     public int getlastCourseId()
     {
         int id;
