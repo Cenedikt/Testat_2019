@@ -3,8 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel;
-
+package HolidayParadise;
 /**
  *
  * @author Benedict
@@ -16,6 +15,13 @@ public class Main {
      */
     public static void main(String[] args) 
     {
+        MainMenu mainMenu =MainMenu();
+        
+        mainMenu.setVisible(true);
     }
-    
+
+    private static MainMenu MainMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+   
 }
