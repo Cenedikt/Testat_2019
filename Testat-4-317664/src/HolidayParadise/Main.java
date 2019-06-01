@@ -15,13 +15,8 @@ public class Main {
      */
     public static void main(String[] args) 
     {
-        MainMenu mainMenu =MainMenu();
-        
-        mainMenu.setVisible(true);
+
     }
 
-    private static MainMenu MainMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
    
 }
