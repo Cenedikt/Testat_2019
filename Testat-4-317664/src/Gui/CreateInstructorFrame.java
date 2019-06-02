@@ -25,8 +25,6 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
     private LocalDate birthdate;
     private CoursData coursData=new CoursData();
     private InstructorData instructorData= new InstructorData();
-    private ArrayList<Integer> coursIDList = new ArrayList<Integer>();
-    int  id;
     /**
      * Creates new form createInstructor
      */
@@ -38,24 +36,7 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         sexButtonGroup.add(maleRadioButton1);
         sexButtonGroup.add(femaleRadioButton);
         sexButtonGroup.add(diversRadioButton);
-        String name;
-        for(int i=0;i <= coursData.getCourseListSize(); i++)
-        {
-          name=Integer.toString(coursData.getCoursId(i));
-          javax.swing.JRadioButton coursIDRadioButton = new JRadioButton(name);
-          id=coursData.getCoursId(i);
-          class ActionCoursIdRadioButton implements ActionListener 
-          {
-           public void actionPerformed(ActionEvent e)
-           {
-               coursIDList.add(id);
-           }
-          }
-          ActionCoursIdRadioButton actionCoursIdRadioButton = new ActionCoursIdRadioButton();
-          coursIDRadioButton.addActionListener(actionCoursIdRadioButton);
-          coursIdScrollPane.add(coursIDRadioButton);
-          coursIdScrollPane.validate();
-        }
+        
     }
 
     /**
@@ -89,6 +70,7 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         prenameTextField = new javax.swing.JTextField();
         nameTextField = new javax.swing.JTextField();
         coursIdScrollPane = new javax.swing.JScrollPane();
+        coursIDTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,6 +142,32 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         jLabel8.setText("CoursID:");
 
         birthdateTextField.setText("JJJJ-MM-DD");
+
+        coursIDTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "Name"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        coursIdScrollPane.setViewportView(coursIDTable);
+        if (coursIDTable.getColumnModel().getColumnCount() > 0) {
+            coursIDTable.getColumnModel().getColumn(0).setHeaderValue("ID");
+            coursIDTable.getColumnModel().getColumn(1).setHeaderValue("Name");
+        }
+        coursData.getCoursForInstructor();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -291,7 +299,13 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         name=nameTextField.getText();
         prename=prenameTextField.getText();
         speficication=spesificationTextField.getText();
-        
+        int index=0;
+        int[] selectedRows = Gui.CreateInstructorFrame.coursIDTable.getSelectedRows();
+        if(selectedRows.length == 0)
+        {
+            error = true;
+            JOptionPane.showMessageDialog(new JFrame(), "Please select a course, if there are none please create some in the course menu", "Error",JOptionPane.ERROR_MESSAGE);
+        }
         if(name.isEmpty())
         {
             JOptionPane.showMessageDialog(null, "The instructor has no name ");
@@ -329,7 +343,17 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         }
         if(error==false)
         {
-            instructorData.setInstructor(name,prename,birthdate,sex,speficication,workrelation);
+            if (selectedRows.length > 0) 
+            {
+                instructorData.setInstructor(name, prename, birthdate, sex, speficication, workrelation);
+                for (int i = selectedRows.length - 1; i >= 0; i--) 
+                {              
+                    String idString = (CreateInstructorFrame.coursIDTable.getValueAt(selectedRows[i], 0).toString());
+                    int id = Integer.valueOf(idString);
+                    index = instructorData.getLastInstructorID();
+                    instructorData.setInstructorCourseId(index, id);                            
+                }
+            }
             dispose();
         }
     }//GEN-LAST:event_createButtonActionPerformed
@@ -339,47 +363,10 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         this.dispose();    
     }//GEN-LAST:event_cancleButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateInstructorFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateInstructorFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateInstructorFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateInstructorFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreateInstructorFrame().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField birthdateTextField;
     private javax.swing.JButton cancleButton;
+    public static javax.swing.JTable coursIDTable;
     private javax.swing.JScrollPane coursIdScrollPane;
     private javax.swing.JButton createButton;
     private javax.swing.JRadioButton diversRadioButton;

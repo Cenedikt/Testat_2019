@@ -196,4 +196,25 @@ public class CoursData
         return  courseList.get(index).getCousrseID();        
     }
     
+        public static void getCoursForInstructor() {
+        String col[] = {"CourseID", "Name"};
+        DefaultTableModel model = new DefaultTableModel(col, 0) {
+            public boolean isCellEditable(int row, int col) {
+                //sets first column to non editable
+                if (col < 4) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        };
+        Gui.CreateInstructorFrame.coursIDTable.setModel(model);
+
+        for (int i = 0; i < courseList.size(); i++) {
+            int courseID = courseList.get(i).getCousrseID();
+            String name = courseList.get(i).getCousrsName();
+            Object[] item = {courseID, name};
+            model.addRow(item);
+        }
+    }
 }

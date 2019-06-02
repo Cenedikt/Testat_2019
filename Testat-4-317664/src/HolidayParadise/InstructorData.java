@@ -143,46 +143,7 @@ public class InstructorData
         };
         model.addTableModelListener(modelListener);
     }
-   
-    /**
-     * Method to change an instructor
-     * @param index
-     * @param userInputOld
-     * @param userInputNew
-     */
-    public void changeInstructor(int index, String userInputOld, String userInputNew) {
-        switch (userInputOld) 
-        {
-            case "Name":
-                this.instructorList.get(index).setInstructorName(userInputNew);
-                break;
-            case "Prename":
-
-                this.instructorList.get(index).setInstructorPrname(userInputNew);
-                break;
-
-            case "Speciality":
-                this.instructorList.get(index).setSpesification(userInputNew);
-                break;
-
-            case "Sex":
-                this.instructorList.get(index).setSex(userInputNew);
-                break;
-                
-            case "Workrelation":
-                this.instructorList.get(index).setWorkRelation(userInputNew);
-                break;
-                
-            case "Birthdate":
-                this.instructorList.get(index).setBirthDate(LocalDate.parse(userInputNew));
-                break;            
-            
-            default:
-                break;
-
-        }
-    }
-    
+      
     /**
      * creats an instructor and saves it in the arraylist
      * @param name
@@ -204,5 +165,26 @@ public class InstructorData
         instructor.setWorkRelation(Workrelation);
         
         instructorList.add(instructor);
+    }
+    
+    public int getLastInstructorID()
+    {
+        int instructorid;
+        instructorid = -1;
+        for (int i = 0; i < instructorList.size(); i++) 
+        {
+            instructorid = instructorList.get(i).getInstructorID();
+        }
+        return instructorid;
+    }
+    
+        /**
+     * Add a course to an instructor
+     * @param index
+     * @param courseID
+     */
+    public void setInstructorCourseId(int index, int courseID) 
+    {
+        instructorList.get(index).setCourseID(courseID);
     }
 }

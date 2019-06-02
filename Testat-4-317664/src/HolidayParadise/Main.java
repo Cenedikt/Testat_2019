@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package HolidayParadise;
+import Gui.MainFrame;
 /**
  *
  * @author Benedict
@@ -15,7 +16,8 @@ public class Main {
      */
     public static void main(String[] args) 
     {
-
+       MainFrame mainFrame=new MainFrame();
+       mainFrame.setVisible(true);
     }
 
    
