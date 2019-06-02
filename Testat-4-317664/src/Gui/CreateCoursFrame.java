@@ -7,7 +7,7 @@ package Gui;
 
 import java.time.LocalDate;
 import javax.swing.*;
-import HolidayParadise.Data;
+import HolidayParadise.CoursData;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,14 +15,14 @@ import java.util.regex.Pattern;
  *
  * @author Benedict
  */
-public class CreateCours extends javax.swing.JFrame {
+public class CreateCoursFrame extends javax.swing.JFrame {
     
     private String name;
     private String begin;
     private String end;
     private LocalDate date;
     private String weekday="a";
-    private Data data =new Data();
+    private CoursData data =new CoursData();
     private Pattern pattern;
     private Matcher matcher;
     private String regex="^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$";    
@@ -30,8 +30,15 @@ public class CreateCours extends javax.swing.JFrame {
     /**
      * Creates new form CreateCours
      */
-    public CreateCours() {
+    public CreateCoursFrame() {
         initComponents();
+        weekdayButtonGroup.add(mondayRadioButton);
+        weekdayButtonGroup.add(tuesdayRadioButton);
+        weekdayButtonGroup.add(wednesdayRadioButton);
+        weekdayButtonGroup.add(thursdayRadioButton);
+        weekdayButtonGroup.add(fridayRadioButton);
+        weekdayButtonGroup.add(saturdayRadioButton);
+        weekdayButtonGroup.add(sundayRadioButton);
     }
 
     /**
@@ -57,12 +64,12 @@ public class CreateCours extends javax.swing.JFrame {
         dateTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         mondayRadioButton = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
+        tuesdayRadioButton = new javax.swing.JRadioButton();
+        wednesdayRadioButton = new javax.swing.JRadioButton();
+        thursdayRadioButton = new javax.swing.JRadioButton();
+        fridayRadioButton = new javax.swing.JRadioButton();
+        saturdayRadioButton = new javax.swing.JRadioButton();
+        sundayRadioButton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,18 +108,53 @@ public class CreateCours extends javax.swing.JFrame {
         jLabel6.setText("Weekday:");
 
         mondayRadioButton.setText("Monday");
+        mondayRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mondayRadioButtonActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("jRadioButton2");
+        tuesdayRadioButton.setText("Tuesday");
+        tuesdayRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tuesdayRadioButtonActionPerformed(evt);
+            }
+        });
 
-        jRadioButton3.setText("jRadioButton3");
+        wednesdayRadioButton.setText("Wednesday");
+        wednesdayRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wednesdayRadioButtonActionPerformed(evt);
+            }
+        });
 
-        jRadioButton4.setText("jRadioButton4");
+        thursdayRadioButton.setText("Thursday");
+        thursdayRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thursdayRadioButtonActionPerformed(evt);
+            }
+        });
 
-        jRadioButton5.setText("Frieday");
+        fridayRadioButton.setText("Friday");
+        fridayRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fridayRadioButtonActionPerformed(evt);
+            }
+        });
 
-        jRadioButton6.setText("jRadioButton6");
+        saturdayRadioButton.setText("Saturday");
+        saturdayRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saturdayRadioButtonActionPerformed(evt);
+            }
+        });
 
-        jRadioButton7.setText("Sunday");
+        sundayRadioButton.setText("Sunday");
+        sundayRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sundayRadioButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,14 +170,7 @@ public class CreateCours extends javax.swing.JFrame {
                         .addComponent(cancleButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton6))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton4))
+                            .addComponent(sundayRadioButton)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
@@ -153,15 +188,17 @@ public class CreateCours extends javax.swing.JFrame {
                                         .addComponent(dateTextField))))
                             .addComponent(jLabel6)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(mondayRadioButton)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(wednesdayRadioButton)
+                                    .addComponent(mondayRadioButton)
+                                    .addComponent(fridayRadioButton))
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton2)))
-                        .addGap(0, 34, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(saturdayRadioButton)
+                                    .addComponent(tuesdayRadioButton)
+                                    .addComponent(thursdayRadioButton))))
+                        .addGap(0, 42, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jRadioButton7)
-                .addGap(88, 88, 88))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,18 +225,18 @@ public class CreateCours extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mondayRadioButton)
-                    .addComponent(jRadioButton2))
+                    .addComponent(tuesdayRadioButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
+                    .addComponent(wednesdayRadioButton)
+                    .addComponent(thursdayRadioButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                    .addComponent(fridayRadioButton)
+                    .addComponent(saturdayRadioButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sundayRadioButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createButton)
                     .addComponent(cancleButton))
@@ -250,6 +287,7 @@ public class CreateCours extends javax.swing.JFrame {
         if(weekday=="a")
         {
             JOptionPane.showMessageDialog(null, "Pleas select a weekday ");
+            error=true;
         }
         if(error==false)
         {
@@ -257,6 +295,41 @@ public class CreateCours extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_createButtonActionPerformed
+
+    private void mondayRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mondayRadioButtonActionPerformed
+        // TODO add your handling code here:
+        weekday="Mon";
+    }//GEN-LAST:event_mondayRadioButtonActionPerformed
+
+    private void tuesdayRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuesdayRadioButtonActionPerformed
+        // TODO add your handling code here:
+        weekday="Tue";
+    }//GEN-LAST:event_tuesdayRadioButtonActionPerformed
+
+    private void wednesdayRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wednesdayRadioButtonActionPerformed
+        // TODO add your handling code here:
+        weekday="Wed";
+    }//GEN-LAST:event_wednesdayRadioButtonActionPerformed
+
+    private void thursdayRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thursdayRadioButtonActionPerformed
+        // TODO add your handling code here:
+        weekday="Thu";
+    }//GEN-LAST:event_thursdayRadioButtonActionPerformed
+
+    private void fridayRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fridayRadioButtonActionPerformed
+        // TODO add your handling code here:
+        weekday="Fri";
+    }//GEN-LAST:event_fridayRadioButtonActionPerformed
+
+    private void saturdayRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saturdayRadioButtonActionPerformed
+        // TODO add your handling code here:
+        weekday="Sat";
+    }//GEN-LAST:event_saturdayRadioButtonActionPerformed
+
+    private void sundayRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sundayRadioButtonActionPerformed
+        // TODO add your handling code here:
+        weekday="Sun";
+    }//GEN-LAST:event_sundayRadioButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,20 +348,21 @@ public class CreateCours extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateCours.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateCoursFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateCours.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateCoursFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateCours.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateCoursFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateCours.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateCoursFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateCours().setVisible(true);
+                new CreateCoursFrame().setVisible(true);
             }
         });
     }
@@ -299,20 +373,20 @@ public class CreateCours extends javax.swing.JFrame {
     private javax.swing.JButton createButton;
     private javax.swing.JTextField dateTextField;
     private javax.swing.JTextField endTextField;
+    private javax.swing.JRadioButton fridayRadioButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton mondayRadioButton;
     private javax.swing.JTextField nameTextField;
+    private javax.swing.JRadioButton saturdayRadioButton;
+    private javax.swing.JRadioButton sundayRadioButton;
+    private javax.swing.JRadioButton thursdayRadioButton;
+    private javax.swing.JRadioButton tuesdayRadioButton;
+    private javax.swing.JRadioButton wednesdayRadioButton;
     private javax.swing.ButtonGroup weekdayButtonGroup;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,13 +4,15 @@
  * and open the template in the editor.
  */
 package Gui;
-
+import HolidayParadise.CoursData;
+import javax.swing.*;
 /**
  *
  * @author Benedict
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    
+    private CoursData coursData = new CoursData();
     /**
      * Creates new form MainFrame
      */
@@ -29,13 +31,13 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         defaultPanel = new javax.swing.JPanel();
-        instructorPanel = new javax.swing.JPanel();
-        instructorLabel = new javax.swing.JLabel();
-        instructorUpdateButton = new javax.swing.JButton();
-        instructorCreateButton = new javax.swing.JButton();
-        instructorReadButton = new javax.swing.JButton();
-        instructorDeleteButton = new javax.swing.JButton();
-        instructorScrollPane = new javax.swing.JScrollPane();
+        coursPanel = new javax.swing.JPanel();
+        coursLabel = new javax.swing.JLabel();
+        coursCreateButton = new javax.swing.JButton();
+        coursReadButton = new javax.swing.JButton();
+        coursDeleteButton = new javax.swing.JButton();
+        coursScrollPane = new javax.swing.JScrollPane();
+        coursTable = new javax.swing.JTable();
         jMenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -51,62 +53,83 @@ public class MainFrame extends javax.swing.JFrame {
 
         defaultPanel.setLayout(new java.awt.CardLayout());
 
-        instructorLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        instructorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        instructorLabel.setText("Instructor");
+        coursLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        coursLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        coursLabel.setText("Courses");
 
-        instructorUpdateButton.setText("Update");
-
-        instructorCreateButton.setText("Create");
-        instructorCreateButton.addActionListener(new java.awt.event.ActionListener() {
+        coursCreateButton.setText("Create");
+        coursCreateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                instructorCreateButtonActionPerformed(evt);
+                coursCreateButtonActionPerformed(evt);
             }
         });
 
-        instructorReadButton.setText("Read");
-        instructorReadButton.addActionListener(new java.awt.event.ActionListener() {
+        coursReadButton.setText("Read");
+        coursReadButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                instructorReadButtonActionPerformed(evt);
+                coursReadButtonActionPerformed(evt);
             }
         });
 
-        instructorDeleteButton.setText("Delete");
-        instructorDeleteButton.setToolTipText("");
+        coursDeleteButton.setText("Delete");
+        coursDeleteButton.setToolTipText("");
+        coursDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                coursDeleteButtonActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout instructorPanelLayout = new javax.swing.GroupLayout(instructorPanel);
-        instructorPanel.setLayout(instructorPanelLayout);
-        instructorPanelLayout.setHorizontalGroup(
-            instructorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(instructorLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(instructorPanelLayout.createSequentialGroup()
+        coursTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Name", "Begin", "End", "Date", "Weekday"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        coursScrollPane.setViewportView(coursTable);
+
+        javax.swing.GroupLayout coursPanelLayout = new javax.swing.GroupLayout(coursPanel);
+        coursPanel.setLayout(coursPanelLayout);
+        coursPanelLayout.setHorizontalGroup(
+            coursPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(coursLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(coursPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(instructorCreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(coursCreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(instructorUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(coursReadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(instructorReadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(instructorDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
-            .addComponent(instructorScrollPane)
+                .addComponent(coursDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(coursScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
         );
-        instructorPanelLayout.setVerticalGroup(
-            instructorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(instructorPanelLayout.createSequentialGroup()
-                .addComponent(instructorLabel)
+        coursPanelLayout.setVerticalGroup(
+            coursPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(coursPanelLayout.createSequentialGroup()
+                .addComponent(coursLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(instructorScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addComponent(coursScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(instructorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(instructorCreateButton)
-                    .addComponent(instructorUpdateButton)
-                    .addComponent(instructorReadButton)
-                    .addComponent(instructorDeleteButton))
+                .addGroup(coursPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(coursCreateButton)
+                    .addComponent(coursReadButton)
+                    .addComponent(coursDeleteButton))
                 .addContainerGap())
         );
 
-        defaultPanel.add(instructorPanel, "card2");
+        defaultPanel.add(coursPanel, "card2");
 
         getContentPane().add(defaultPanel, "card2");
 
@@ -174,14 +197,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void coursMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursMenuItemActionPerformed
         // TODO add your handling code here:
+        defaultPanel.removeAll();
+        defaultPanel.add(coursPanel);
+        defaultPanel.repaint();
+        defaultPanel.revalidate();
     }//GEN-LAST:event_coursMenuItemActionPerformed
 
     private void instructorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorMenuItemActionPerformed
         // TODO add your handling code here:
-        defaultPanel.removeAll();
-        defaultPanel.add(instructorPanel);
-        defaultPanel.repaint();
-        defaultPanel.revalidate();
     }//GEN-LAST:event_instructorMenuItemActionPerformed
 
     private void customerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerMenuItemActionPerformed
@@ -192,15 +215,25 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_helpMenuItemActionPerformed
 
-    private void instructorReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorReadButtonActionPerformed
+    private void coursReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursReadButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_instructorReadButtonActionPerformed
+            CoursData.getCoursList();
+    }//GEN-LAST:event_coursReadButtonActionPerformed
 
-    private void instructorCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorCreateButtonActionPerformed
+    private void coursCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursCreateButtonActionPerformed
         // TODO add your handling code here:
-        CreateInstructorFrame create=new CreateInstructorFrame();
+        CreateCoursFrame create=new CreateCoursFrame();
         create.setVisible(true);
-    }//GEN-LAST:event_instructorCreateButtonActionPerformed
+    }//GEN-LAST:event_coursCreateButtonActionPerformed
+
+    private void coursDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursDeleteButtonActionPerformed
+        // TODO add your handling code here:
+        int action = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete that cours?", "Delete", JOptionPane.YES_NO_OPTION );
+        if(action==0)
+        {
+            coursData.delteCoursefromTable();  
+        }
+    }//GEN-LAST:event_coursDeleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,20 +273,20 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu FileMenu;
     private javax.swing.JMenu basicDataMenu;
+    private javax.swing.JButton coursCreateButton;
+    private javax.swing.JButton coursDeleteButton;
+    private javax.swing.JLabel coursLabel;
     private javax.swing.JMenuItem coursMenuItem;
+    private javax.swing.JPanel coursPanel;
+    private javax.swing.JButton coursReadButton;
+    private javax.swing.JScrollPane coursScrollPane;
+    public static javax.swing.JTable coursTable;
     private javax.swing.JMenuItem customerMenuItem;
     private javax.swing.JPanel defaultPanel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem helpMenuItem;
-    private javax.swing.JButton instructorCreateButton;
-    private javax.swing.JButton instructorDeleteButton;
-    private javax.swing.JLabel instructorLabel;
     private javax.swing.JMenuItem instructorMenuItem;
-    private javax.swing.JPanel instructorPanel;
-    private javax.swing.JButton instructorReadButton;
-    private javax.swing.JScrollPane instructorScrollPane;
-    private javax.swing.JButton instructorUpdateButton;
     private javax.swing.JMenuBar jMenuBar;
     // End of variables declaration//GEN-END:variables
 }

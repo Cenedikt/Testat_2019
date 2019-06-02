@@ -631,20 +631,13 @@ public class Data
      */
     public String getCourseListCompare(int pIndex)
     {
-        String output;
         String name;
         String begin;
         String end;
         LocalDate date;
         String day;               
 
-        name=this.courseList.get(pIndex).getCousrsName();
-        begin=this.courseList.get(pIndex).getBeginingOfCourse();
-        end=this.courseList.get(pIndex).getEndOfCourse();
-        date=this.courseList.get(pIndex).getDateOfCourse();
-        day=this.courseList.get(pIndex).getWeekday();
-        output=(name+","+begin+","+end+","+date+","+day);
-        return output;
+        
     }
     
     /**
