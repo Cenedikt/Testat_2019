@@ -76,7 +76,7 @@ public class CoursData
      */
     public static void getCoursList() {
         String col[] = {"ID", "Name", "Begin", "End", "Date", "Day"};
-        DefaultTableModel model = new DefaultTableModel(col, 0) {
+        DefaultTableModel tbaleModel = new DefaultTableModel(col, 0) {
             public boolean isCellEditable(int row, int col) {
                 //first column not editable
                 if (col == 0) {
@@ -86,7 +86,7 @@ public class CoursData
                 }
             }
         };
-        Gui.MainFrame.coursTable.setModel(model);
+        Gui.MainFrame.coursTable.setModel(tbaleModel);
         for (int i = 0; i < courseList.size(); i++) 
         {
             int id = courseList.get(i).getCousrseID();
@@ -97,12 +97,15 @@ public class CoursData
             String dateAsString = String.valueOf(date);
             String day = courseList.get(i).getWeekday();
             Object[] item = {id, name, start, end, dateAsString, day};
-            model.addRow(item);
-
+            tbaleModel.addRow(item);
         }
         
         TableModelListener modelListener = new TableModelListener() 
         {
+            /**
+             * changes the table by chanching the values in the arrylist
+             * @param evt
+             */
             public void tableChanged(TableModelEvent evt) 
             {
 
@@ -161,7 +164,7 @@ public class CoursData
                 }
             }
         };
-        model.addTableModelListener(modelListener);
+        tbaleModel.addTableModelListener(modelListener);
     }
     
     /**
@@ -186,5 +189,11 @@ public class CoursData
                 model2.removeRow(selectedRows[i]);
             }
         }
-    }   
+    }
+    
+    public int getCoursId(int index)
+    {
+        return  courseList.get(index).getCousrseID();        
+    }
+    
 }

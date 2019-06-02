@@ -6,9 +6,11 @@
 package Gui;
 import java.time.LocalDate;
 import javax.swing.*;
-import HolidayParadise.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import HolidayParadise.InstructorData;
+import HolidayParadise.CoursData;
+import java.util.ArrayList;
 /**
  *
  * @author Benedict
@@ -21,8 +23,10 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
     private String sex="a";
     private String workrelation;
     private LocalDate birthdate;
-    private Data data=new Data();
-    
+    private CoursData coursData=new CoursData();
+    private InstructorData instructorData= new InstructorData();
+    private ArrayList<Integer> coursIDList = new ArrayList<Integer>();
+    int  id;
     /**
      * Creates new form createInstructor
      */
@@ -35,15 +39,16 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         sexButtonGroup.add(femaleRadioButton);
         sexButtonGroup.add(diversRadioButton);
         String name;
-        for(int i=0;i <=data.getCustomerListSize();i++)
+        for(int i=0;i <= coursData.getCourseListSize(); i++)
         {
-          name=data.getCourseList(i);
+          name=Integer.toString(coursData.getCoursId(i));
           javax.swing.JRadioButton coursIDRadioButton = new JRadioButton(name);
+          id=coursData.getCoursId(i);
           class ActionCoursIdRadioButton implements ActionListener 
           {
            public void actionPerformed(ActionEvent e)
            {
-               
+               coursIDList.add(id);
            }
           }
           ActionCoursIdRadioButton actionCoursIdRadioButton = new ActionCoursIdRadioButton();
@@ -324,7 +329,7 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         }
         if(error==false)
         {
-            data.setInstructorList(birthdate, name, prename, sex, speficication, workrelation);
+            instructorData.setInstructor(name,prename,birthdate,sex,speficication,workrelation);
             dispose();
         }
     }//GEN-LAST:event_createButtonActionPerformed
