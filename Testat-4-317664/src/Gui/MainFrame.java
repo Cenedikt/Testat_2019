@@ -31,9 +31,9 @@ public class MainFrame extends javax.swing.JFrame {
         defaultPanel = new javax.swing.JPanel();
         instructorPanel = new javax.swing.JPanel();
         instructorLabel = new javax.swing.JLabel();
+        instructorUpdateButton = new javax.swing.JButton();
         instructorCreateButton = new javax.swing.JButton();
         instructorReadButton = new javax.swing.JButton();
-        instructorUpdateButton = new javax.swing.JButton();
         instructorDeleteButton = new javax.swing.JButton();
         instructorScrollPane = new javax.swing.JScrollPane();
         jMenuBar = new javax.swing.JMenuBar();
@@ -49,19 +49,30 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        defaultPanel.setLayout(new java.awt.BorderLayout());
+        defaultPanel.setLayout(new java.awt.CardLayout());
 
         instructorLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         instructorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         instructorLabel.setText("Instructor");
 
-        instructorCreateButton.setText("Create");
-
-        instructorReadButton.setText("Read");
-
         instructorUpdateButton.setText("Update");
 
+        instructorCreateButton.setText("Create");
+        instructorCreateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                instructorCreateButtonActionPerformed(evt);
+            }
+        });
+
+        instructorReadButton.setText("Read");
+        instructorReadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                instructorReadButtonActionPerformed(evt);
+            }
+        });
+
         instructorDeleteButton.setText("Delete");
+        instructorDeleteButton.setToolTipText("");
 
         javax.swing.GroupLayout instructorPanelLayout = new javax.swing.GroupLayout(instructorPanel);
         instructorPanel.setLayout(instructorPanelLayout);
@@ -69,32 +80,33 @@ public class MainFrame extends javax.swing.JFrame {
             instructorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(instructorLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(instructorPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(instructorCreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(instructorReadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(instructorUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(instructorReadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(instructorDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 155, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
             .addComponent(instructorScrollPane)
         );
         instructorPanelLayout.setVerticalGroup(
             instructorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(instructorPanelLayout.createSequentialGroup()
                 .addComponent(instructorLabel)
-                .addGap(4, 4, 4)
-                .addComponent(instructorScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(instructorScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(instructorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(instructorCreateButton)
-                    .addComponent(instructorReadButton)
                     .addComponent(instructorUpdateButton)
+                    .addComponent(instructorReadButton)
                     .addComponent(instructorDeleteButton))
-                .addGap(22, 22, 22))
+                .addContainerGap())
         );
 
-        defaultPanel.add(instructorPanel, java.awt.BorderLayout.CENTER);
+        defaultPanel.add(instructorPanel, "card2");
 
         getContentPane().add(defaultPanel, "card2");
 
@@ -179,6 +191,16 @@ public class MainFrame extends javax.swing.JFrame {
     private void helpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpMenuItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_helpMenuItemActionPerformed
+
+    private void instructorReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorReadButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_instructorReadButtonActionPerformed
+
+    private void instructorCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorCreateButtonActionPerformed
+        // TODO add your handling code here:
+        CreateInstructorFrame create=new CreateInstructorFrame();
+        create.setVisible(true);
+    }//GEN-LAST:event_instructorCreateButtonActionPerformed
 
     /**
      * @param args the command line arguments

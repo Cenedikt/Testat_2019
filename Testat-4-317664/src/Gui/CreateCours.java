@@ -5,12 +5,28 @@
  */
 package Gui;
 
+import java.time.LocalDate;
+import javax.swing.*;
+import HolidayParadise.Data;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Benedict
  */
 public class CreateCours extends javax.swing.JFrame {
-
+    
+    private String name;
+    private String begin;
+    private String end;
+    private LocalDate date;
+    private String weekday="a";
+    private Data data =new Data();
+    private Pattern pattern;
+    private Matcher matcher;
+    private String regex="^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$";    
+    
     /**
      * Creates new form CreateCours
      */
@@ -27,6 +43,7 @@ public class CreateCours extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        weekdayButtonGroup = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
@@ -34,9 +51,18 @@ public class CreateCours extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         beginTextField = new javax.swing.JTextField();
         endTextField = new javax.swing.JTextField();
-        weekdayComboBox = new javax.swing.JComboBox<>();
         createButton = new javax.swing.JButton();
         cancleButton = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        dateTextField = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        mondayRadioButton = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        jRadioButton7 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,14 +80,12 @@ public class CreateCours extends javax.swing.JFrame {
 
         endTextField.setText("HH:MM");
 
-        weekdayComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Monday", "Tersday", "Wensday", "Thusday", "Friday", "Satherday", "Sunday" }));
-        weekdayComboBox.addActionListener(new java.awt.event.ActionListener() {
+        createButton.setText("Create");
+        createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                weekdayComboBoxActionPerformed(evt);
+                createButtonActionPerformed(evt);
             }
         });
-
-        createButton.setText("Create");
 
         cancleButton.setText("Cancle");
         cancleButton.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +93,26 @@ public class CreateCours extends javax.swing.JFrame {
                 cancleButtonActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("Date:");
+
+        dateTextField.setText("JJJJ-MM-DD");
+
+        jLabel6.setText("Weekday:");
+
+        mondayRadioButton.setText("Monday");
+
+        jRadioButton2.setText("jRadioButton2");
+
+        jRadioButton3.setText("jRadioButton3");
+
+        jRadioButton4.setText("jRadioButton4");
+
+        jRadioButton5.setText("Frieday");
+
+        jRadioButton6.setText("jRadioButton6");
+
+        jRadioButton7.setText("Sunday");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,26 +123,45 @@ public class CreateCours extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(beginTextField)
-                                    .addComponent(endTextField)))
-                            .addComponent(weekdayComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 41, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(createButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancleButton)))
+                        .addComponent(cancleButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jRadioButton5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jRadioButton3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton4))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel5))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(beginTextField)
+                                        .addComponent(endTextField)
+                                        .addComponent(dateTextField))))
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(mondayRadioButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton2)))
+                        .addGap(0, 34, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jRadioButton7)
+                .addGap(88, 88, 88))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,9 +179,27 @@ public class CreateCours extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(endTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(weekdayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mondayRadioButton)
+                    .addComponent(jRadioButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton3)
+                    .addComponent(jRadioButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton5)
+                    .addComponent(jRadioButton6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createButton)
                     .addComponent(cancleButton))
@@ -128,16 +209,54 @@ public class CreateCours extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void weekdayComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weekdayComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_weekdayComboBoxActionPerformed
-
     private void cancleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancleButtonActionPerformed
         // TODO add your handling code here:
-        MainFrame main =new MainFrame();
         this.dispose();
-        main.setVisible(true);
     }//GEN-LAST:event_cancleButtonActionPerformed
+
+    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+        // TODO add your handling code here:
+        name=nameTextField.getText();
+        begin=beginTextField.getText();
+        end=endTextField.getText();
+        boolean error=false;
+        pattern = Pattern.compile(regex);
+        if(name.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "The cours has no name");
+            error=true;
+        }
+        try
+        {
+            date=LocalDate.parse(dateTextField.getText());
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "The date is inncorrect");
+            error=true;
+        }
+        matcher = pattern.matcher(begin);
+        if(!(matcher.find()&& matcher.group().equals(begin)))
+        {
+            JOptionPane.showMessageDialog(null, "The starting time of the cours is incorect");
+            error=true;
+        }
+        matcher=pattern.matcher(end);
+        if(!(matcher.find()&&matcher.group().equals(end)))
+        {
+            JOptionPane.showMessageDialog(null, "The ending time of the cours is incorect");
+            error=true;
+        }
+        if(weekday=="a")
+        {
+            JOptionPane.showMessageDialog(null, "Pleas select a weekday ");
+        }
+        if(error==false)
+        {
+            data.setCourseList(begin, name, date, end, weekday);
+            dispose();
+        }
+    }//GEN-LAST:event_createButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,12 +297,22 @@ public class CreateCours extends javax.swing.JFrame {
     private javax.swing.JTextField beginTextField;
     private javax.swing.JButton cancleButton;
     private javax.swing.JButton createButton;
+    private javax.swing.JTextField dateTextField;
     private javax.swing.JTextField endTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButton7;
+    private javax.swing.JRadioButton mondayRadioButton;
     private javax.swing.JTextField nameTextField;
-    private javax.swing.JComboBox<String> weekdayComboBox;
+    private javax.swing.ButtonGroup weekdayButtonGroup;
     // End of variables declaration//GEN-END:variables
 }
