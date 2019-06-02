@@ -132,6 +132,7 @@ public class CoursData
                         if(!(matcher.find()&&matcher.group().equals(end)))
                         {
                             JOptionPane.showMessageDialog(new JFrame(), "Error, not saved. Please check Time HH:mm, Date YYYY-MM-DD", "Error", JOptionPane.ERROR_MESSAGE);
+                            
                         }
                         else
                         {
@@ -161,53 +162,6 @@ public class CoursData
             }
         };
         model.addTableModelListener(modelListener);
-    }
-
-    /**
-     * Method to change a course
-     *
-     * @param index
-     * @param userInputOld
-     * @param userInputNew
-     */
-    public void updateCourse(int index, String userInputOld, String userInputNew) 
-    {
-        LocalDate courseDateInput;
-        
-        switch (userInputOld) 
-        {
-            case "Name":
-                this.courseList.get(index).setCousrsName(userInputNew);
-                break;
-                
-            case "Start":
-                this.courseList.get(index).setBeginingOfCourse(userInputNew);
-                break;
-
-            case "End":               
-                this.courseList.get(index).setEndOfCourse(userInputNew);
-                break;
-
-            case "Date":
-                try
-                {
-                    courseDateInput = LocalDate.parse(userInputNew);
-                    this.courseList.get(index).setDateOfCourse(courseDateInput);
-                }
-                catch(Exception e)
-                {
-                  JOptionPane.showMessageDialog(null, "Date is incorrect!");
-                }                
-                break;
-
-            case "Day":
-
-                this.courseList.get(index).setWeekday(userInputNew);
-                break;
-
-            default:
-                break;
-        }
     }
     
     /**
