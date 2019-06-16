@@ -16,20 +16,34 @@ import java.sql.Statement;
  */
 public class DBConnection 
 {
-   public Connection dbConnection()
+   private String url= "jdbc:sqlite:Hotel.db";
+   private Connection conn = null;
+   
+   /**
+    * connects to the db 
+    */
+   public void connectToDb() throws SQLException
    {
-        String url = "jdbc:sqlite:Hotel.db";
-        Connection conn = null;
         try
         {
             conn = DriverManager.getConnection(url);
-            System.out.println("Connectet to DB");
+            System.out.println("Connectet to db");
+            
+            String createInstructorTable;
+            createInstructorTable="CREATE TABLE \\\"CoustomerToCourse\\\" (\\n\"\n" +
+"                    + \"	\\\"ID\\\"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\\n\"\n" +
+"                    + \"	\\\"FK_Customer\\\"	INTEGER NOT NULL,\\n\"\n" +
+"                    + \"	\\\"FK_Course\\\"	INTEGER NOT NULL,\\n\"\n" +
+"                    + \"	FOREIGN KEY(\\\"FK_Course\\\") REFERENCES \\\"Course\\\"(\\\"ID\\\"),\\n\"\n" +
+"                    + \"	FOREIGN KEY(\\\"FK_Customer\\\") REFERENCES \\\"Customer\\\"(\\\"ID\\\")\\n\"\n" +
+"                    + \");";
+            Statement stmt  = conn.createStatement();
+            stmt.execute(createInstructorTable);
         }
         catch(SQLException e)
         {
            System.out.println(e.getMessage()); 
         }
-        return conn;
-   }
-    
+        conn.close();
+   }    
 }

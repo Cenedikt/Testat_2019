@@ -5,6 +5,8 @@
  */
 package Logic;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author Cenedikt
@@ -14,10 +16,10 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) 
+    public static void main(String[] args) throws SQLException 
     {
        DBConnection db = new DBConnection();
-       db.dbConnection();
+       db.connectToDb();
     }
     
 }
