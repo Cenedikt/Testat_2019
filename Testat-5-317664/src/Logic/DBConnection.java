@@ -7,7 +7,6 @@ package Logic;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 /**
@@ -16,11 +15,12 @@ import java.sql.Statement;
  */
 public class DBConnection 
 {
-   private String url= "jdbc:sqlite:Hotel.db";
+    
+   private String url= "jdbc:sqlite:HolidayParadise.db";
    private Connection conn = null;
    
    /**
-    * connects to the db 
+    * connects to the db and creats the tabels if the tables dont exist
     */
    public void connectToDb() throws SQLException
    {
@@ -30,20 +30,78 @@ public class DBConnection
             System.out.println("Connectet to db");
             
             String createInstructorTable;
-            createInstructorTable="CREATE TABLE \\\"CoustomerToCourse\\\" (\\n\"\n" +
-"                    + \"	\\\"ID\\\"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\\n\"\n" +
-"                    + \"	\\\"FK_Customer\\\"	INTEGER NOT NULL,\\n\"\n" +
-"                    + \"	\\\"FK_Course\\\"	INTEGER NOT NULL,\\n\"\n" +
-"                    + \"	FOREIGN KEY(\\\"FK_Course\\\") REFERENCES \\\"Course\\\"(\\\"ID\\\"),\\n\"\n" +
-"                    + \"	FOREIGN KEY(\\\"FK_Customer\\\") REFERENCES \\\"Customer\\\"(\\\"ID\\\")\\n\"\n" +
-"                    + \");";
+            String createManageTable;
+            String createCoursTable;
+            String createCustomerTable;
+            String createBookingTable;
+            
+            createBookingTable="CREATE TABLE IF NOT EXIST \"Booking\" (\n" +
+                               "    ID         INTEGER PRIMARY KEY,\n" +
+                               "    CustomerID INTEGER REFERENCES Customer (ID),\n" +
+                               "    CoursID    INTEGER REFERENCES Cours (ID) \n" +
+                               ");"
+            ;
+            
+            createCoursTable="CREATE TABLE IF NOT EXISTS \"Cours\" (\n" +
+                             "    ID      INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                             "    Name    TEXT    NOT NULL,\n" +
+                             "    [Begin] STRING  NOT NULL,\n" +
+                             "    [End]   STRING  NOT NULL,\n" +
+                             "    Date    DATE    NOT NULL,\n" +
+                             "    Day     STRING  NOT NULL\n" +
+                             ");"
+            ;
+            
+            createCustomerTable="CREATE TABLE IF NOT EXISTS \"Customer\" (\n" +
+                                "    ID        INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                                "    Title     STRING  NOT NULL,\n" +
+                                "    Name      TEXT    NOT NULL,\n" +
+                                "    Prename   TEXT    NOT NULL,\n" +
+                                "    Birthdate DATE    NOT NULL,\n" +
+                                "    Sex       STRING  NOT NULL\n" +
+                                ");"
+            ;
+            
+            createInstructorTable="CREATE TABLE IF NOT EXISTS \"Instructor\" (\n" +
+                                  "    ID            INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                                  "    Name          TEXT    NOT NULL,\n" +
+                                  "    Prename       TEXT    NOT NULL,\n" +
+                                  "    Birthdate     DATE    NOT NULL,\n" +
+                                  "    Sex           STRING  NOT NULL,\n" +
+                                  "    Spesification TEXT    NOT NULL,\n" +
+                                  "    Workrelation  STRING  NOT NULL\n" +
+                                  ");"
+            ;
+            
+            createManageTable="CREATE TABLE IF NOT EXIST \"Booking\" (\n" +
+                              "    ID         INTEGER PRIMARY KEY,\n" +
+                              "    CustomerID INTEGER REFERENCES Customer (ID),\n" +
+                              "    CoursID    INTEGER REFERENCES Cours (ID) \n" +
+                              ");"
+            ;
             Statement stmt  = conn.createStatement();
             stmt.execute(createInstructorTable);
+            stmt.execute(createBookingTable);
+            stmt.execute(createCoursTable);
+            stmt.execute(createCustomerTable);
+            stmt.execute(createManageTable);
         }
         catch(SQLException e)
         {
            System.out.println(e.getMessage()); 
         }
-        conn.close();
+        finally
+        {
+            try
+            {
+                conn.close();
+                System.out.println("DB connection has been closed");
+            }
+            catch(SQLException exception)
+            {
+                System.out.println(exception.getMessage());
+            }
+        }
+        
    }    
 }

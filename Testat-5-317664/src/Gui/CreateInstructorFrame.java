@@ -6,11 +6,6 @@
 package Gui;
 import java.time.LocalDate;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import HolidayParadise.InstructorData;
-import HolidayParadise.CoursData;
-import java.util.ArrayList;
 /**
  *
  * @author Benedict
@@ -19,12 +14,10 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
     
     private String name;
     private String prename;
-    private String speficication="a";
-    private String sex="a";
+    private String speficication="";
+    private String sex="";
     private String workrelation;
     private LocalDate birthdate;
-    private CoursData coursData=new CoursData();
-    private InstructorData instructorData= new InstructorData();
     /**
      * Creates new form createInstructor
      */
@@ -167,7 +160,7 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
             coursIDTable.getColumnModel().getColumn(0).setHeaderValue("ID");
             coursIDTable.getColumnModel().getColumn(1).setHeaderValue("Name");
         }
-        coursData.getCoursForInstructor();
+        //coursData.getCoursForInstructor();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -299,7 +292,6 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         name=nameTextField.getText();
         prename=prenameTextField.getText();
         speficication=spesificationTextField.getText();
-        int index=0;
         int[] selectedRows = Gui.CreateInstructorFrame.coursIDTable.getSelectedRows();
         if(selectedRows.length == 0)
         {
@@ -322,12 +314,12 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "The instructor has no spesification "); 
             error=true;
         }
-        if(sex=="a")
+        if(sex.equals(""))
         {
            JOptionPane.showMessageDialog(null, "The instructor has no sex ");
            error=true;
         }
-        if(workrelation=="a")
+        if(workrelation.equals(""))
         {
             JOptionPane.showMessageDialog(null, "The instructor has no workrelation ");
             error=true;
@@ -345,13 +337,13 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         {
             if (selectedRows.length > 0) 
             {
-                instructorData.setInstructor(name, prename, birthdate, sex, speficication, workrelation);
+//                instructorData.setInstructor(name, prename, birthdate, sex, speficication, workrelation);
                 for (int i = selectedRows.length - 1; i >= 0; i--) 
                 {              
                     String idString = (CreateInstructorFrame.coursIDTable.getValueAt(selectedRows[i], 0).toString());
                     int id = Integer.valueOf(idString);
-                    index = instructorData.getLastInstructorID();
-                    instructorData.setInstructorCourseId(index, id);                            
+//                    index = instructorData.getLastInstructorID();
+//                    instructorData.setInstructorCourseId(index, id);                            
                 }
             }
             dispose();

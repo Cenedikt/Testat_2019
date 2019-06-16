@@ -5,6 +5,7 @@
  */
 package Logic;
 
+import Gui.MainFrame;
 import java.sql.SQLException;
 
 /**
@@ -18,8 +19,8 @@ public class Main {
      */
     public static void main(String[] args) throws SQLException 
     {
-       DBConnection db = new DBConnection();
-       db.connectToDb();
+        MainFrame frame= new MainFrame();
+        frame.setVisible(true);
     }
     
 }

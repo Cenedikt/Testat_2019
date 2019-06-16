@@ -7,7 +7,6 @@ package Gui;
 
 import java.time.LocalDate;
 import javax.swing.*;
-import HolidayParadise.CoursData;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,7 +21,6 @@ public class CreateCoursFrame extends javax.swing.JFrame {
     private String end;
     private LocalDate date;
     private String weekday="a";
-    private CoursData data =new CoursData();
     private Pattern pattern;
     private Matcher matcher;
     private String regex="^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$";    
@@ -291,7 +289,7 @@ public class CreateCoursFrame extends javax.swing.JFrame {
         }
         if(error==false)
         {
-            data.setCourseList(begin, name, date, end, weekday);
+//            data.setCourseList(begin, name, date, end, weekday);
             dispose();
         }
     }//GEN-LAST:event_createButtonActionPerformed

@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package Gui;
-import HolidayParadise.CoursData;
-import HolidayParadise.InstructorData;
+
 import javax.swing.*;
 /**
  *
@@ -13,8 +12,7 @@ import javax.swing.*;
  */
 public class MainFrame extends javax.swing.JFrame {
     
-    private CoursData coursData = new CoursData();
-    private InstructorData instructorData = new InstructorData();
+
     /**
      * Creates new form MainFrame
      */
@@ -452,7 +450,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void coursReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursReadButtonActionPerformed
         // TODO add your handling code here:
-            CoursData.getCoursList();
+//            CoursData.getCoursList();
     }//GEN-LAST:event_coursReadButtonActionPerformed
 
     private void coursCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursCreateButtonActionPerformed
@@ -466,7 +464,7 @@ public class MainFrame extends javax.swing.JFrame {
         int action = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete that cours?", "Delete", JOptionPane.YES_NO_OPTION );
         if(action==0)
         {
-            coursData.delteCoursefromTable();  
+//            coursData.delteCoursefromTable();  
         }
     }//GEN-LAST:event_coursDeleteButtonActionPerformed
 
@@ -478,7 +476,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void instructorReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorReadButtonActionPerformed
         // TODO add your handling code here:
-        instructorData.showInstructors();
+//        instructorData.showInstructors();
         
     }//GEN-LAST:event_instructorReadButtonActionPerformed
 
@@ -487,13 +485,14 @@ public class MainFrame extends javax.swing.JFrame {
         int action = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete that cours?", "Delete", JOptionPane.YES_NO_OPTION );
         if(action==0)
         {
-            instructorData.deleteInstructorfromTable();
+//            instructorData.deleteInstructorfromTable();
         }
     }//GEN-LAST:event_instructorDeleteButtonActionPerformed
 
     private void customerCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerCreateButtonActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "This part isn't implementet yet!");
+        CreateCustomerFrame create = new CreateCustomerFrame();
+        create.setVisible(true);
     }//GEN-LAST:event_customerCreateButtonActionPerformed
 
     private void customerReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerReadButtonActionPerformed
