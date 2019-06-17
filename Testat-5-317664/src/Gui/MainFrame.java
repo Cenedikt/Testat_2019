@@ -57,16 +57,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         aboutPanel = new javax.swing.JPanel();
-        coursLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        instrructorPanel1 = new javax.swing.JPanel();
-        instructorLabel1 = new javax.swing.JLabel();
-        instructorCreateButton1 = new javax.swing.JButton();
-        instructorReadButton1 = new javax.swing.JButton();
-        instructorDeleteButton1 = new javax.swing.JButton();
-        instructorScrollPane1 = new javax.swing.JScrollPane();
-        instructorTable1 = new javax.swing.JTable();
+        jLabel = new javax.swing.JLabel();
         managingPanel = new javax.swing.JPanel();
         managingLabel = new javax.swing.JLabel();
         managingCreateButton = new javax.swing.JButton();
@@ -342,113 +333,24 @@ public class MainFrame extends javax.swing.JFrame {
 
         defaultPanel.add(helpPanel, "card2");
 
-        coursLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        coursLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        coursLabel2.setText("About");
-
-        jLabel3.setText("Welcome to Holiday Paradise Managing Program");
-
-        jLabel4.setText("credits Benedict Goldhorn ");
-
-        instructorLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        instructorLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        instructorLabel1.setText("Instructor");
-
-        instructorCreateButton1.setText("Create");
-        instructorCreateButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                instructorCreateButton1ActionPerformed(evt);
-            }
-        });
-
-        instructorReadButton1.setText("Read");
-        instructorReadButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                instructorReadButton1ActionPerformed(evt);
-            }
-        });
-
-        instructorDeleteButton1.setText("Delete");
-        instructorDeleteButton1.setToolTipText("");
-        instructorDeleteButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                instructorDeleteButton1ActionPerformed(evt);
-            }
-        });
-
-        instructorTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        instructorScrollPane1.setViewportView(instructorTable1);
-
-        javax.swing.GroupLayout instrructorPanel1Layout = new javax.swing.GroupLayout(instrructorPanel1);
-        instrructorPanel1.setLayout(instrructorPanel1Layout);
-        instrructorPanel1Layout.setHorizontalGroup(
-            instrructorPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(instructorLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(instrructorPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(instructorCreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(instructorReadButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(instructorDeleteButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(instructorScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
-        );
-        instrructorPanel1Layout.setVerticalGroup(
-            instrructorPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(instrructorPanel1Layout.createSequentialGroup()
-                .addComponent(instructorLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(instructorScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(instrructorPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(instructorCreateButton1)
-                    .addComponent(instructorReadButton1)
-                    .addComponent(instructorDeleteButton1))
-                .addContainerGap())
-        );
+        jLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel.setText("About");
 
         javax.swing.GroupLayout aboutPanelLayout = new javax.swing.GroupLayout(aboutPanel);
         aboutPanel.setLayout(aboutPanelLayout);
         aboutPanelLayout.setHorizontalGroup(
             aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(coursLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3))
-                .addGap(281, 281, 281))
-            .addGroup(aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(aboutPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(instrructorPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(aboutPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+                .addContainerGap())
         );
         aboutPanelLayout.setVerticalGroup(
             aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(aboutPanelLayout.createSequentialGroup()
-                .addComponent(coursLabel2)
-                .addGap(65, 65, 65)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addContainerGap(275, Short.MAX_VALUE))
-            .addGroup(aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(aboutPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(instrructorPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jLabel)
+                .addContainerGap(386, Short.MAX_VALUE))
         );
 
         defaultPanel.add(aboutPanel, "card2");
@@ -778,18 +680,6 @@ public class MainFrame extends javax.swing.JFrame {
         defaultPanel.revalidate();
     }//GEN-LAST:event_AboutMenuItemActionPerformed
 
-    private void instructorCreateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorCreateButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_instructorCreateButton1ActionPerformed
-
-    private void instructorReadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorReadButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_instructorReadButton1ActionPerformed
-
-    private void instructorDeleteButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorDeleteButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_instructorDeleteButton1ActionPerformed
-
     private void managingCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managingCreateButtonActionPerformed
         // TODO add your handling code here:
         CreateManagingFrame frame = new CreateManagingFrame();
@@ -851,7 +741,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton coursDeleteButton;
     private javax.swing.JLabel coursLabel;
     private javax.swing.JLabel coursLabel1;
-    private javax.swing.JLabel coursLabel2;
     private javax.swing.JMenuItem coursMenuItem;
     private javax.swing.JPanel coursPanel;
     private javax.swing.JButton coursReadButton;
@@ -871,24 +760,16 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem helpMenuItem;
     private javax.swing.JPanel helpPanel;
     private javax.swing.JPanel instrructorPanel;
-    private javax.swing.JPanel instrructorPanel1;
     private javax.swing.JButton instructorCreateButton;
-    private javax.swing.JButton instructorCreateButton1;
     private javax.swing.JButton instructorDeleteButton;
-    private javax.swing.JButton instructorDeleteButton1;
     private javax.swing.JLabel instructorLabel;
-    private javax.swing.JLabel instructorLabel1;
     private javax.swing.JMenuItem instructorMenuItem;
     private javax.swing.JButton instructorReadButton;
-    private javax.swing.JButton instructorReadButton1;
     private javax.swing.JScrollPane instructorScrollPane;
-    private javax.swing.JScrollPane instructorScrollPane1;
     public static javax.swing.JTable instructorTable;
-    public static javax.swing.JTable instructorTable1;
+    private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem manageMenuItem;
     private javax.swing.JButton managingCreateButton;
