@@ -57,13 +57,10 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         internRadioButton = new javax.swing.JRadioButton();
         createButton = new javax.swing.JButton();
         cancleButton = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
         spesificationTextField = new javax.swing.JTextField();
         birthdateTextField = new javax.swing.JTextField();
         prenameTextField = new javax.swing.JTextField();
         nameTextField = new javax.swing.JTextField();
-        coursIdScrollPane = new javax.swing.JScrollPane();
-        coursIDTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,35 +129,7 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("CoursID:");
-
         birthdateTextField.setText("JJJJ-MM-DD");
-
-        coursIDTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "ID", "Name"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        coursIdScrollPane.setViewportView(coursIDTable);
-        if (coursIDTable.getColumnModel().getColumnCount() > 0) {
-            coursIDTable.getColumnModel().getColumn(0).setHeaderValue("ID");
-            coursIDTable.getColumnModel().getColumn(1).setHeaderValue("Name");
-        }
-        //coursData.getCoursForInstructor();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,15 +145,10 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(createButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cancleButton))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(externRadioButton)
                                         .addGap(18, 18, 18)
@@ -210,8 +174,10 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
                                 .addComponent(nameTextField)))
                         .addGap(81, 81, 81))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(coursIdScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(createButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cancleButton)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,15 +213,11 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(externRadioButton)
                     .addComponent(internRadioButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(coursIdScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createButton)
                     .addComponent(cancleButton))
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -286,14 +248,19 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         workrelation="Intern";
     }//GEN-LAST:event_internRadioButtonActionPerformed
 
+    private void cancleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancleButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();    
+    }//GEN-LAST:event_cancleButtonActionPerformed
+
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         // TODO add your handling code here:
         boolean error=false;
         name=nameTextField.getText();
         prename=prenameTextField.getText();
         speficication=spesificationTextField.getText();
-        int[] selectedRows = Gui.CreateInstructorFrame.coursIDTable.getSelectedRows();
-        if(selectedRows.length == 0)
+//        int[] selectedRows = Gui.CreateInstructorFrame.coursIDTable.getSelectedRows();
+//        if(selectedRows.length == 0)
         {
             error = true;
             JOptionPane.showMessageDialog(new JFrame(), "Please select a course, if there are none please create some in the course menu", "Error",JOptionPane.ERROR_MESSAGE);
@@ -303,7 +270,7 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "The instructor has no name ");
             error=true;
         }
-        
+
         if(prename.isEmpty())
         {
             JOptionPane.showMessageDialog(null, "The instructor has no prename ");
@@ -311,13 +278,13 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         }
         if(speficication.isEmpty())
         {
-            JOptionPane.showMessageDialog(null, "The instructor has no spesification "); 
+            JOptionPane.showMessageDialog(null, "The instructor has no spesification ");
             error=true;
         }
         if(sex.equals(""))
         {
-           JOptionPane.showMessageDialog(null, "The instructor has no sex ");
-           error=true;
+            JOptionPane.showMessageDialog(null, "The instructor has no sex ");
+            error=true;
         }
         if(workrelation.equals(""))
         {
@@ -326,7 +293,7 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         }
         try
         {
-          birthdate=LocalDate.parse(birthdateTextField.getText());
+            birthdate=LocalDate.parse(birthdateTextField.getText());
         }
         catch(Exception e)
         {
@@ -335,31 +302,24 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         }
         if(error==false)
         {
-            if (selectedRows.length > 0) 
+//            if (selectedRows.length > 0)
             {
-//                instructorData.setInstructor(name, prename, birthdate, sex, speficication, workrelation);
-                for (int i = selectedRows.length - 1; i >= 0; i--) 
-                {              
-                    String idString = (CreateInstructorFrame.coursIDTable.getValueAt(selectedRows[i], 0).toString());
-                    int id = Integer.valueOf(idString);
-//                    index = instructorData.getLastInstructorID();
-//                    instructorData.setInstructorCourseId(index, id);                            
+                //                instructorData.setInstructor(name, prename, birthdate, sex, speficication, workrelation);
+//                for (int i = selectedRows.length - 1; i >= 0; i--)
+                {
+//                    String idString = (CreateInstructorFrame.coursIDTable.getValueAt(selectedRows[i], 0).toString());
+//                    int id = Integer.valueOf(idString);
+                    //                    index = instructorData.getLastInstructorID();
+                    //                    instructorData.setInstructorCourseId(index, id);
                 }
             }
             dispose();
         }
     }//GEN-LAST:event_createButtonActionPerformed
 
-    private void cancleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancleButtonActionPerformed
-        // TODO add your handling code here:
-        this.dispose();    
-    }//GEN-LAST:event_cancleButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField birthdateTextField;
     private javax.swing.JButton cancleButton;
-    public static javax.swing.JTable coursIDTable;
-    private javax.swing.JScrollPane coursIdScrollPane;
     private javax.swing.JButton createButton;
     private javax.swing.JRadioButton diversRadioButton;
     private javax.swing.JRadioButton externRadioButton;
@@ -372,7 +332,6 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JRadioButton maleRadioButton1;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JTextField prenameTextField;

@@ -51,7 +51,7 @@ public class MainFrame extends javax.swing.JFrame {
         customerReadButton = new javax.swing.JButton();
         customerDeleteButton = new javax.swing.JButton();
         customerScrollPane = new javax.swing.JScrollPane();
-        warningLabel = new javax.swing.JLabel();
+        customerTable = new javax.swing.JTable();
         helpPanel = new javax.swing.JPanel();
         coursLabel1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -60,6 +60,27 @@ public class MainFrame extends javax.swing.JFrame {
         coursLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        instrructorPanel1 = new javax.swing.JPanel();
+        instructorLabel1 = new javax.swing.JLabel();
+        instructorCreateButton1 = new javax.swing.JButton();
+        instructorReadButton1 = new javax.swing.JButton();
+        instructorDeleteButton1 = new javax.swing.JButton();
+        instructorScrollPane1 = new javax.swing.JScrollPane();
+        instructorTable1 = new javax.swing.JTable();
+        managingPanel = new javax.swing.JPanel();
+        managingLabel = new javax.swing.JLabel();
+        managingCreateButton = new javax.swing.JButton();
+        managingReadButton = new javax.swing.JButton();
+        managingDeleteButton = new javax.swing.JButton();
+        managingScrollPane = new javax.swing.JScrollPane();
+        managingTable = new javax.swing.JTable();
+        bookingPanel = new javax.swing.JPanel();
+        bookingLabel = new javax.swing.JLabel();
+        bookingCreateButton = new javax.swing.JButton();
+        bookingReadButton = new javax.swing.JButton();
+        bookingDeleteButton = new javax.swing.JButton();
+        bookingScrollPane = new javax.swing.JScrollPane();
+        bookingTable = new javax.swing.JTable();
         jMenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -67,6 +88,8 @@ public class MainFrame extends javax.swing.JFrame {
         instructorMenuItem = new javax.swing.JMenuItem();
         customerMenuItem = new javax.swing.JMenuItem();
         coursMenuItem = new javax.swing.JMenuItem();
+        manageMenuItem = new javax.swing.JMenuItem();
+        bookingMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         helpMenuItem = new javax.swing.JMenuItem();
         AboutMenuItem = new javax.swing.JMenuItem();
@@ -242,10 +265,18 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        warningLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        warningLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        warningLabel.setText("This isn't implementet and will be add in on the next update!");
-        customerScrollPane.setViewportView(warningLabel);
+        customerTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        customerScrollPane.setViewportView(customerTable);
 
         javax.swing.GroupLayout customerPanelLayout = new javax.swing.GroupLayout(customerPanel);
         customerPanel.setLayout(customerPanelLayout);
@@ -319,6 +350,74 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel4.setText("credits Benedict Goldhorn ");
 
+        instructorLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        instructorLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        instructorLabel1.setText("Instructor");
+
+        instructorCreateButton1.setText("Create");
+        instructorCreateButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                instructorCreateButton1ActionPerformed(evt);
+            }
+        });
+
+        instructorReadButton1.setText("Read");
+        instructorReadButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                instructorReadButton1ActionPerformed(evt);
+            }
+        });
+
+        instructorDeleteButton1.setText("Delete");
+        instructorDeleteButton1.setToolTipText("");
+        instructorDeleteButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                instructorDeleteButton1ActionPerformed(evt);
+            }
+        });
+
+        instructorTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        instructorScrollPane1.setViewportView(instructorTable1);
+
+        javax.swing.GroupLayout instrructorPanel1Layout = new javax.swing.GroupLayout(instrructorPanel1);
+        instrructorPanel1.setLayout(instrructorPanel1Layout);
+        instrructorPanel1Layout.setHorizontalGroup(
+            instrructorPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(instructorLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(instrructorPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(instructorCreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(instructorReadButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(instructorDeleteButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(instructorScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
+        );
+        instrructorPanel1Layout.setVerticalGroup(
+            instrructorPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(instrructorPanel1Layout.createSequentialGroup()
+                .addComponent(instructorLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(instructorScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(instrructorPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(instructorCreateButton1)
+                    .addComponent(instructorReadButton1)
+                    .addComponent(instructorDeleteButton1))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout aboutPanelLayout = new javax.swing.GroupLayout(aboutPanel);
         aboutPanel.setLayout(aboutPanelLayout);
         aboutPanelLayout.setHorizontalGroup(
@@ -330,6 +429,11 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel3))
                 .addGap(281, 281, 281))
+            .addGroup(aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(aboutPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(instrructorPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         aboutPanelLayout.setVerticalGroup(
             aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,9 +444,154 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addContainerGap(275, Short.MAX_VALUE))
+            .addGroup(aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(aboutPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(instrructorPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         defaultPanel.add(aboutPanel, "card2");
+
+        managingLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        managingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        managingLabel.setText("Manage");
+
+        managingCreateButton.setText("Create");
+        managingCreateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managingCreateButtonActionPerformed(evt);
+            }
+        });
+
+        managingReadButton.setText("Read");
+        managingReadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managingReadButtonActionPerformed(evt);
+            }
+        });
+
+        managingDeleteButton.setText("Delete");
+        managingDeleteButton.setToolTipText("");
+        managingDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managingDeleteButtonActionPerformed(evt);
+            }
+        });
+
+        managingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        managingScrollPane.setViewportView(managingTable);
+
+        javax.swing.GroupLayout managingPanelLayout = new javax.swing.GroupLayout(managingPanel);
+        managingPanel.setLayout(managingPanelLayout);
+        managingPanelLayout.setHorizontalGroup(
+            managingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(managingLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(managingPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(managingCreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(managingReadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(managingDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(managingScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
+        );
+        managingPanelLayout.setVerticalGroup(
+            managingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(managingPanelLayout.createSequentialGroup()
+                .addComponent(managingLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(managingScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(managingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(managingCreateButton)
+                    .addComponent(managingReadButton)
+                    .addComponent(managingDeleteButton))
+                .addContainerGap())
+        );
+
+        defaultPanel.add(managingPanel, "card2");
+
+        bookingLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bookingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bookingLabel.setText("Booking");
+
+        bookingCreateButton.setText("Create");
+        bookingCreateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingCreateButtonActionPerformed(evt);
+            }
+        });
+
+        bookingReadButton.setText("Read");
+        bookingReadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingReadButtonActionPerformed(evt);
+            }
+        });
+
+        bookingDeleteButton.setText("Delete");
+        bookingDeleteButton.setToolTipText("");
+        bookingDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingDeleteButtonActionPerformed(evt);
+            }
+        });
+
+        bookingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        bookingScrollPane.setViewportView(bookingTable);
+
+        javax.swing.GroupLayout bookingPanelLayout = new javax.swing.GroupLayout(bookingPanel);
+        bookingPanel.setLayout(bookingPanelLayout);
+        bookingPanelLayout.setHorizontalGroup(
+            bookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bookingLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(bookingPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bookingCreateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bookingReadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bookingDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(bookingScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
+        );
+        bookingPanelLayout.setVerticalGroup(
+            bookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bookingPanelLayout.createSequentialGroup()
+                .addComponent(bookingLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bookingScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(bookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bookingCreateButton)
+                    .addComponent(bookingReadButton)
+                    .addComponent(bookingDeleteButton))
+                .addContainerGap())
+        );
+
+        defaultPanel.add(bookingPanel, "card2");
 
         getContentPane().add(defaultPanel, "card2");
 
@@ -383,6 +632,22 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         basicDataMenu.add(coursMenuItem);
+
+        manageMenuItem.setText("Manage instructor to cours");
+        manageMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageMenuItemActionPerformed(evt);
+            }
+        });
+        basicDataMenu.add(manageMenuItem);
+
+        bookingMenuItem.setText("Manage booking");
+        bookingMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingMenuItemActionPerformed(evt);
+            }
+        });
+        basicDataMenu.add(bookingMenuItem);
 
         jMenuBar.add(basicDataMenu);
 
@@ -513,11 +778,75 @@ public class MainFrame extends javax.swing.JFrame {
         defaultPanel.revalidate();
     }//GEN-LAST:event_AboutMenuItemActionPerformed
 
+    private void instructorCreateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorCreateButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_instructorCreateButton1ActionPerformed
+
+    private void instructorReadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorReadButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_instructorReadButton1ActionPerformed
+
+    private void instructorDeleteButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorDeleteButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_instructorDeleteButton1ActionPerformed
+
+    private void managingCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managingCreateButtonActionPerformed
+        // TODO add your handling code here:
+        CreateManagingFrame frame = new CreateManagingFrame();
+        frame.setVisible(true);
+    }//GEN-LAST:event_managingCreateButtonActionPerformed
+
+    private void managingReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managingReadButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_managingReadButtonActionPerformed
+
+    private void managingDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managingDeleteButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_managingDeleteButtonActionPerformed
+
+    private void bookingCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingCreateButtonActionPerformed
+        // TODO add your handling code here:
+        CreateBookingFrame frame = new CreateBookingFrame();
+        frame.setVisible(true);
+    }//GEN-LAST:event_bookingCreateButtonActionPerformed
+
+    private void bookingReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingReadButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bookingReadButtonActionPerformed
+
+    private void bookingDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingDeleteButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bookingDeleteButtonActionPerformed
+
+    private void bookingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingMenuItemActionPerformed
+        // TODO add your handling code here:
+        defaultPanel.removeAll();
+        defaultPanel.add(bookingPanel);
+        defaultPanel.repaint();
+        defaultPanel.revalidate();
+    }//GEN-LAST:event_bookingMenuItemActionPerformed
+
+    private void manageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageMenuItemActionPerformed
+        // TODO add your handling code here:
+        defaultPanel.removeAll();
+        defaultPanel.add(managingPanel);
+        defaultPanel.repaint();
+        defaultPanel.revalidate();
+    }//GEN-LAST:event_manageMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AboutMenuItem;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JPanel aboutPanel;
     private javax.swing.JMenu basicDataMenu;
+    private javax.swing.JButton bookingCreateButton;
+    private javax.swing.JButton bookingDeleteButton;
+    private javax.swing.JLabel bookingLabel;
+    private javax.swing.JMenuItem bookingMenuItem;
+    private javax.swing.JPanel bookingPanel;
+    private javax.swing.JButton bookingReadButton;
+    private javax.swing.JScrollPane bookingScrollPane;
+    public static javax.swing.JTable bookingTable;
     private javax.swing.JButton coursCreateButton;
     private javax.swing.JButton coursDeleteButton;
     private javax.swing.JLabel coursLabel;
@@ -535,24 +864,39 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel customerPanel;
     private javax.swing.JButton customerReadButton;
     private javax.swing.JScrollPane customerScrollPane;
+    private javax.swing.JTable customerTable;
     private javax.swing.JPanel defaultPanel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem helpMenuItem;
     private javax.swing.JPanel helpPanel;
     private javax.swing.JPanel instrructorPanel;
+    private javax.swing.JPanel instrructorPanel1;
     private javax.swing.JButton instructorCreateButton;
+    private javax.swing.JButton instructorCreateButton1;
     private javax.swing.JButton instructorDeleteButton;
+    private javax.swing.JButton instructorDeleteButton1;
     private javax.swing.JLabel instructorLabel;
+    private javax.swing.JLabel instructorLabel1;
     private javax.swing.JMenuItem instructorMenuItem;
     private javax.swing.JButton instructorReadButton;
+    private javax.swing.JButton instructorReadButton1;
     private javax.swing.JScrollPane instructorScrollPane;
+    private javax.swing.JScrollPane instructorScrollPane1;
     public static javax.swing.JTable instructorTable;
+    public static javax.swing.JTable instructorTable1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar;
-    private javax.swing.JLabel warningLabel;
+    private javax.swing.JMenuItem manageMenuItem;
+    private javax.swing.JButton managingCreateButton;
+    private javax.swing.JButton managingDeleteButton;
+    private javax.swing.JLabel managingLabel;
+    private javax.swing.JPanel managingPanel;
+    private javax.swing.JButton managingReadButton;
+    private javax.swing.JScrollPane managingScrollPane;
+    public static javax.swing.JTable managingTable;
     // End of variables declaration//GEN-END:variables
 }
