@@ -15,7 +15,7 @@ import java.time.LocalDate;
  */
 public class InstructorData 
 {    
-    private DBConnection connection = new DBConnection();
+    private final DBConnection connection = new DBConnection();
     
     public void addInstructor(String name, String prename, LocalDate birtdate, String sex, String spesification, String workrelation) throws SQLException
     {
@@ -31,8 +31,24 @@ public class InstructorData
             pstmt.setString(5, spesification);
             pstmt.setString(6, workrelation);
             pstmt.execute();
+            pstmt.close();
         }
         System.out.println("Instructor has been added to the DB");
         connection.dbClose();
-    }    
+    }
+    
+    
+    public void deleteInstructor(int id) throws SQLException
+    {
+        String deleteInstructor;
+        deleteInstructor="DELETE FROM Cours as c,  WHERE c.ID=?;";
+        try(PreparedStatement pstmt = connection.connectToDb().prepareStatement(deleteInstructor))
+        {
+            pstmt.setInt(1,id);
+            pstmt.execute();
+            pstmt.close();
+        }
+        System.out.println("Instructor has been deleted");
+        connection.dbClose();
+    }
 }

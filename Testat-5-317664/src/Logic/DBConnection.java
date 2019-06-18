@@ -78,9 +78,9 @@ public class DBConnection
                                   ");"
             ;
             
-            createManageTable="CREATE TABLE IF NOT EXISTS \"Booking\" (\n" +
+            createManageTable="CREATE TABLE IF NOT EXISTS \"Manage\" (\n" +
                               "    ID         INTEGER PRIMARY KEY,\n" +
-                              "    CustomerID INTEGER REFERENCES Customer (ID),\n" +
+                              "    InstructorID INTEGER REFERENCES Instructor (ID),\n" +
                               "    CoursID    INTEGER REFERENCES Cours (ID) \n" +
                               ");"
             ;

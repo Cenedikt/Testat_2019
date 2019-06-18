@@ -287,7 +287,7 @@ public class CreateCustomerFrame extends javax.swing.JFrame {
             data = new CustumorData();
             try 
             {
-                data.addCoustomer(title, name, prename, birthdate, sex);
+                data.addCustomer(title, name, prename, birthdate, sex);
             }
             catch (SQLException ex) 
             {

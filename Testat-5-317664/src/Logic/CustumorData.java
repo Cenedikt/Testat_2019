@@ -17,7 +17,7 @@ public class CustumorData
 {
     private DBConnection connection = new DBConnection();
     
-    public void addCoustomer(String title, String name, String prename, LocalDate birtdate, String sex) throws SQLException
+    public void addCustomer(String title, String name, String prename, LocalDate birtdate, String sex) throws SQLException
     {
         String addCoustomer;
         addCoustomer = "INSERT INTO Customer (Title,Name,Prename,Birthdate,Sex) VALUES (?,?,?,?,?);";
@@ -30,8 +30,23 @@ public class CustumorData
             pstmt.setString(4, birthdateasString);
             pstmt.setString(5, sex);
             pstmt.execute();
+            pstmt.close();
         }
         System.out.println("Customer has been added to the DB");
         connection.dbClose();
-    }    
+    } 
+    
+    public void deletCustomer(int id) throws SQLException
+    {
+        String deleteCustomer;
+        deleteCustomer="DELETE FROM Cours as c,  WHERE c.ID=?;";
+        try(PreparedStatement pstmt = connection.connectToDb().prepareStatement(deleteCustomer))
+        {
+            pstmt.setInt(1,id);
+            pstmt.execute();
+            pstmt.close();
+        }
+        System.out.println("Customer has been deleted");
+        connection.dbClose();
+    }
 }

@@ -5,13 +5,27 @@
  */
 package Gui;
 
+import Logic.BookingData;
+import Logic.CoursData;
+import Logic.CustumorData;
+import Logic.InstructorData;
+import Logic.ManagingInstructorToCoursData;
+import java.beans.Customizer;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 /**
  *
  * @author Benedict
  */
-public class MainFrame extends javax.swing.JFrame {
-    
+public class MainFrame extends javax.swing.JFrame 
+{
+    private final CoursData coursData = new CoursData();
+    private final InstructorData instructorData = new InstructorData();
+    private final CustumorData customerData = new CustumorData();
+    private final ManagingInstructorToCoursData managingInstructorToCoursData = new ManagingInstructorToCoursData();
+    private final BookingData bookingData = new BookingData();
 
     /**
      * Creates new form MainFrame
@@ -631,7 +645,14 @@ public class MainFrame extends javax.swing.JFrame {
         int action = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete that cours?", "Delete", JOptionPane.YES_NO_OPTION );
         if(action==0)
         {
-//            coursData.delteCoursefromTable();  
+            try 
+            {
+                coursData.deleteCours(action);
+            } 
+            catch (SQLException ex) 
+            {
+
+            }
         }
     }//GEN-LAST:event_coursDeleteButtonActionPerformed
 
@@ -652,7 +673,14 @@ public class MainFrame extends javax.swing.JFrame {
         int action = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete that cours?", "Delete", JOptionPane.YES_NO_OPTION );
         if(action==0)
         {
-//            instructorData.deleteInstructorfromTable();
+            try 
+            {
+                instructorData.deleteInstructor(action);
+            } 
+            catch (SQLException ex) 
+            {
+               
+            }
         }
     }//GEN-LAST:event_instructorDeleteButtonActionPerformed
 
@@ -669,7 +697,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void customerDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerDeleteButtonActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "This part isn't implementet yet!");
+        int action = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete that cours?", "Delete", JOptionPane.YES_NO_OPTION );
+        if(action==0)
+        {
+            try {
+                customerData.deletCustomer(action);
+            } catch (SQLException ex) {
+                
+            }
+        }
     }//GEN-LAST:event_customerDeleteButtonActionPerformed
 
     private void AboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutMenuItemActionPerformed
@@ -692,6 +728,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void managingDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managingDeleteButtonActionPerformed
         // TODO add your handling code here:
+        int action = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete that cours?", "Delete", JOptionPane.YES_NO_OPTION );
+        if(action==0)
+        {
+            try {
+            managingInstructorToCoursData.deleteManagingInstructorToCours(action);
+            } catch (SQLException ex) {
+                
+            }
+        }
     }//GEN-LAST:event_managingDeleteButtonActionPerformed
 
     private void bookingCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingCreateButtonActionPerformed
@@ -706,6 +751,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void bookingDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingDeleteButtonActionPerformed
         // TODO add your handling code here:
+        int action = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete that cours?", "Delete", JOptionPane.YES_NO_OPTION );
+        if(action==0)
+        {
+            try {
+                bookingData.deleteBooing(action);
+            } catch (SQLException ex) {
+                
+            }
+        }
     }//GEN-LAST:event_bookingDeleteButtonActionPerformed
 
     private void bookingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingMenuItemActionPerformed
