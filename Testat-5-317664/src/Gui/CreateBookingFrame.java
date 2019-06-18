@@ -5,12 +5,20 @@
  */
 package Gui;
 
+import Logic.BookingData;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Benedict
  */
 public class CreateBookingFrame extends javax.swing.JFrame {
 
+    private  BookingData data;
+    private int customerID;
+    private int coursID;
     /**
      * Creates new form CreateBookingFrame
      */
@@ -137,6 +145,18 @@ public class CreateBookingFrame extends javax.swing.JFrame {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         // TODO add your handling code here:
+        boolean error=false;
+        data = new BookingData();
+        if(error=false)
+        {
+            try {
+                data.addBooking(customerID, coursID);
+            } catch (SQLException ex) 
+            {
+                
+            }
+            this.dispose();
+        }
     }//GEN-LAST:event_createButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -17,6 +17,15 @@ public class CustumorData
 {
     private DBConnection connection = new DBConnection();
     
+    /**
+     * adds an Customer to the DB
+     * @param title
+     * @param name
+     * @param prename
+     * @param birtdate
+     * @param sex
+     * @throws SQLException 
+     */
     public void addCustomer(String title, String name, String prename, LocalDate birtdate, String sex) throws SQLException
     {
         String addCoustomer;
@@ -36,6 +45,11 @@ public class CustumorData
         connection.dbClose();
     } 
     
+    /**
+     * delets an Customer in the DB an thier bookings
+     * <br>booking means the Realationship between Customer and cours
+     * @throws SQLException 
+     */
     public void deletCustomer(int id) throws SQLException
     {
         String deleteCustomer;

@@ -19,6 +19,15 @@ public class CoursData
 {
     private DBConnection connection = new DBConnection();
     
+    /**
+     * adds the cours in the DB
+     * @param name
+     * @param begin
+     * @param end
+     * @param date
+     * @param day
+     * @throws SQLException 
+     */
     public void addCours(String name, String begin, String end, LocalDate date, String day) throws SQLException
     {
         String addCours;
@@ -38,6 +47,12 @@ public class CoursData
         connection.dbClose();
     }
     
+    /**
+     * delets the cours int the database and their Realation
+     * <br> Realtion means between cours and customer and between cours and instructor
+     * @param id
+     * @throws SQLException 
+     */
     public void deleteCours(int id) throws SQLException
     {
         String deleteCours;

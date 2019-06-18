@@ -17,6 +17,12 @@ public class BookingData
 {
    public final DBConnection connection = new DBConnection();
    
+   /**
+    * adda the relationship between Customer and cours 
+    * @param customerID
+    * @param coursID
+    * @throws SQLException 
+    */
    public void addBooking(int customerID, int coursID) throws SQLException
    {
        String addBooking;
@@ -31,7 +37,12 @@ public class BookingData
        System.out.println("Bookin has been added");
        connection.dbClose();
    }
-   
+  
+   /**
+    * delets the realtionship between an cours and an Customer 
+    * @param id
+    * @throws SQLException 
+    */
    public void deleteBooing(int id) throws SQLException
    {
        String deleteBooking;

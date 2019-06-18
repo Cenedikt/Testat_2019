@@ -16,6 +16,12 @@ public class ManagingInstructorToCoursData
 {
     private DBConnection connection = new DBConnection();
     
+    /**
+     * Adds the relationship between an cours and an instructor
+     * @param instructorID
+     * @param coursID
+     * @throws SQLException 
+     */
     public void addManagingInstructorToCours(int instructorID, int coursID) throws SQLException
     {
        String addManagingInstructorToCours;
@@ -31,6 +37,11 @@ public class ManagingInstructorToCoursData
        connection.dbClose();
     }
     
+    /**
+     * delets the relationship between Cours and instructor
+     * @param id
+     * @throws SQLException 
+     */
     public void deleteManagingInstructorToCours(int id) throws SQLException
     {
         String deleteManagingInstructorToCours;

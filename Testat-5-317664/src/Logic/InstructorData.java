@@ -17,6 +17,16 @@ public class InstructorData
 {    
     private final DBConnection connection = new DBConnection();
     
+    /**
+     * adds the instructor to DB
+     * @param name
+     * @param prename
+     * @param birtdate
+     * @param sex
+     * @param spesification
+     * @param workrelation
+     * @throws SQLException 
+     */
     public void addInstructor(String name, String prename, LocalDate birtdate, String sex, String spesification, String workrelation) throws SQLException
     {
         String addInstructor;
@@ -37,7 +47,12 @@ public class InstructorData
         connection.dbClose();
     }
     
-    
+    /**
+     * delets the Instructor in the DB and their Relationship
+     * <br>Relationship means the realtion between cours and Instructor
+     * @param id
+     * @throws SQLException 
+     */
     public void deleteInstructor(int id) throws SQLException
     {
         String deleteInstructor;
