@@ -807,7 +807,7 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JPanel customerPanel;
     private javax.swing.JButton customerReadButton;
     private javax.swing.JScrollPane customerScrollPane;
-    private javax.swing.JTable customerTable;
+    private static javax.swing.JTable customerTable;
     private javax.swing.JPanel defaultPanel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu helpMenu;

@@ -66,12 +66,17 @@ public class CoursData
         System.out.println("Cours has been deleted");
         connection.dbClose();
     }
-    
-    public void readCours()
+
+    /**
+     * sets the table modelin the gui
+     */
+    public void coursModel()
     {
         String col[] = {"ID", "Name", "Begin", "End", "Date", "Day"};
-        DefaultTableModel tbaleModel = new DefaultTableModel(col, 0) {
-            public boolean isCellEditable(int row, int col) {
+        DefaultTableModel tbaleModel = new DefaultTableModel(col, 0) 
+        {
+            public boolean isCellEditable(int row, int col) 
+            {
                 //first column not editable
                 if (col == 0) 
                 {
@@ -84,8 +89,7 @@ public class CoursData
             }
         };
         Gui.MainFrame.coursTable.setModel(tbaleModel);
-        String readCours;
-        readCours="SELECT * FROM Cours;";
+
     }
     
     public void updateCours()

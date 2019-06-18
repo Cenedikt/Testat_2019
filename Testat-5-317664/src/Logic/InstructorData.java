@@ -8,6 +8,8 @@ package Logic;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -65,5 +67,29 @@ public class InstructorData
         }
         System.out.println("Instructor has been deleted");
         connection.dbClose();
+    }
+    
+    /**
+     * setes the modle of the Jtable in the gui
+     */
+    public void instructorModle()
+    {
+        String col[]={""};
+        DefaultTableModel tbaleModel = new DefaultTableModel(col, 0) 
+        {
+            public boolean isCellEditable(int row, int col) 
+            {
+                //first column not editable
+                if (col == 0) 
+                {
+                    return false;
+                } 
+                else 
+                {
+                    return true;
+                }
+            }
+        }; 
+        Gui.MainFrame.instructorTable.setModel(tbaleModel);
     }
 }

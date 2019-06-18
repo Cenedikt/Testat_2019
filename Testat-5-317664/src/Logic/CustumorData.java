@@ -8,6 +8,7 @@ package Logic;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -62,5 +63,29 @@ public class CustumorData
         }
         System.out.println("Customer has been deleted");
         connection.dbClose();
+    }
+    
+    /**
+     * sets the modle of the jtable in the gui
+     */
+    public void customerModle()
+    {
+        String col[]= {};
+        DefaultTableModel tbaleModel = new DefaultTableModel(col, 0) 
+        {
+            public boolean isCellEditable(int row, int col) 
+            {
+                //first column not editable
+                if (col == 0) 
+                {
+                    return false;
+                } 
+                else 
+                {
+                    return true;
+                }
+            }
+        };
+        Gui.MainFrame.coursTable.setModel(tbaleModel);
     }
 }
