@@ -5,7 +5,11 @@
  */
 package Gui;
 
+import Logic.CoursData;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,10 +24,12 @@ public class CreateCoursFrame extends javax.swing.JFrame {
     private String begin;
     private String end;
     private LocalDate date;
-    private String weekday="a";
+    private String weekday="";
     private Pattern pattern;
     private Matcher matcher;
     private String regex="^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$";    
+    
+    private CoursData data;
     
     /**
      * Creates new form CreateCours
@@ -282,15 +288,24 @@ public class CreateCoursFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "The ending time of the cours is incorect");
             error=true;
         }
-        if(weekday=="a")
+        if(weekday.equals(""))
         {
             JOptionPane.showMessageDialog(null, "Pleas select a weekday ");
             error=true;
         }
         if(error==false)
         {
-//            data.setCourseList(begin, name, date, end, weekday);
+            data = new CoursData();
+            try 
+            {
+                data.addCours(name, begin, end, date, weekday);
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(CreateCoursFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dispose();
+            
         }
     }//GEN-LAST:event_createButtonActionPerformed
 

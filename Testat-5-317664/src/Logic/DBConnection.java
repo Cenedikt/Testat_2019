@@ -15,6 +15,11 @@ import java.sql.Statement;
  */
 public class DBConnection 
 {
+
+    public DBConnection() 
+    {
+    }
+    
     
    private String url= "jdbc:sqlite:HolidayParadise.db";
    private Connection conn = null;
@@ -22,7 +27,7 @@ public class DBConnection
    /**
     * connects to the db and creats the tabels if the tables dont exist
     */
-   public void connectToDb() throws SQLException
+   public Connection connectToDb() throws SQLException
    {
         try
         {
@@ -35,7 +40,7 @@ public class DBConnection
             String createCustomerTable;
             String createBookingTable;
             
-            createBookingTable="CREATE TABLE IF NOT EXIST \"Booking\" (\n" +
+            createBookingTable="CREATE TABLE IF NOT EXISTS \"Booking\" (\n" +
                                "    ID         INTEGER PRIMARY KEY,\n" +
                                "    CustomerID INTEGER REFERENCES Customer (ID),\n" +
                                "    CoursID    INTEGER REFERENCES Cours (ID) \n" +
@@ -44,10 +49,10 @@ public class DBConnection
             
             createCoursTable="CREATE TABLE IF NOT EXISTS \"Cours\" (\n" +
                              "    ID      INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                             "    Name    TEXT    NOT NULL,\n" +
-                             "    [Begin] STRING  NOT NULL,\n" +
-                             "    [End]   STRING  NOT NULL,\n" +
-                             "    Date    DATE    NOT NULL,\n" +
+                             "    Name  TEXT    NOT NULL,\n" +
+                             "    Begin STRING  NOT NULL,\n" +
+                             "    End   STRING  NOT NULL,\n" +
+                             "    Date    STRING    NOT NULL,\n" +
                              "    Day     STRING  NOT NULL\n" +
                              ");"
             ;
@@ -73,7 +78,7 @@ public class DBConnection
                                   ");"
             ;
             
-            createManageTable="CREATE TABLE IF NOT EXIST \"Booking\" (\n" +
+            createManageTable="CREATE TABLE IF NOT EXISTS \"Booking\" (\n" +
                               "    ID         INTEGER PRIMARY KEY,\n" +
                               "    CustomerID INTEGER REFERENCES Customer (ID),\n" +
                               "    CoursID    INTEGER REFERENCES Cours (ID) \n" +
@@ -89,19 +94,20 @@ public class DBConnection
         catch(SQLException e)
         {
            System.out.println(e.getMessage()); 
-        }
-        finally
-        {
-            try
-            {
-                conn.close();
-                System.out.println("DB connection has been closed");
-            }
-            catch(SQLException exception)
-            {
-                System.out.println(exception.getMessage());
-            }
-        }
-        
-   }    
+        } 
+        return conn;
+   }
+   
+   public void dbClose() throws SQLException
+   {
+       if(conn != null)
+       {
+         conn.close();
+           System.out.println("DB conenetion is closed");
+       }
+       else
+       {
+           System.out.println("No DB connection to close");
+       }
+   }
 }

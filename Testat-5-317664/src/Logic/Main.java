@@ -12,8 +12,8 @@ import java.sql.SQLException;
  *
  * @author Cenedikt
  */
-public class Main {
-
+public class Main 
+{
     /**
      * @param args the command line arguments
      */

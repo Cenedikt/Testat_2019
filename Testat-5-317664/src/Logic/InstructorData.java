@@ -5,10 +5,34 @@
  */
 package Logic;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDate;
+
 /**
  *
  * @author Benedict
  */
-public class InstructorData {
+public class InstructorData 
+{    
+    private DBConnection connection = new DBConnection();
     
+    public void addInstructor(String name, String prename, LocalDate birtdate, String sex, String spesification, String workrelation) throws SQLException
+    {
+        String addInstructor;
+        addInstructor = "INSERT INTO Instructor (Name,Prename,Birthdate,Sex,Spesification,Workrelation) VALUES (?,?,?,?,?,?);";
+        try (PreparedStatement pstmt = connection.connectToDb().prepareStatement(addInstructor)) 
+        {
+            pstmt.setString(1, name);
+            pstmt.setString(2, prename);
+            String birthdateasString=birtdate.toString();            
+            pstmt.setString(3, birthdateasString);
+            pstmt.setString(4, sex);
+            pstmt.setString(5, spesification);
+            pstmt.setString(6, workrelation);
+            pstmt.execute();
+        }
+        System.out.println("Instructor has been added to the DB");
+        connection.dbClose();
+    }    
 }

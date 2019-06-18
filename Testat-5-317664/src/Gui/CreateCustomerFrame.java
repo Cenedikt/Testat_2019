@@ -5,7 +5,11 @@
  */
 package Gui;
 
+import Logic.CustumorData;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -19,7 +23,8 @@ public class CreateCustomerFrame extends javax.swing.JFrame {
     private String name;
     private String prename;
     private String sex="";
-    private LocalDate birthdate; 
+    private LocalDate birthdate;
+    private CustumorData data;
     /**
      * Creates new form CreateCustomer
      */
@@ -91,6 +96,11 @@ public class CreateCustomerFrame extends javax.swing.JFrame {
         jLabel5.setText("Title:");
 
         mrRadioButton.setText("Mr");
+        mrRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mrRadioButtonActionPerformed(evt);
+            }
+        });
 
         msRadioButton.setText("Ms");
         msRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -100,14 +110,34 @@ public class CreateCustomerFrame extends javax.swing.JFrame {
         });
 
         drRadioButton.setText("Dr");
+        drRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                drRadioButtonActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Sex:");
 
         maleRadioButton.setText("Male");
+        maleRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maleRadioButtonActionPerformed(evt);
+            }
+        });
 
         femaleRadioButton.setText("Female");
+        femaleRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                femaleRadioButtonActionPerformed(evt);
+            }
+        });
 
         diversRadioButton.setText("Divers");
+        diversRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diversRadioButtonActionPerformed(evt);
+            }
+        });
 
         cancleButton.setText("cancle");
         cancleButton.addActionListener(new java.awt.event.ActionListener() {
@@ -215,6 +245,7 @@ public class CreateCustomerFrame extends javax.swing.JFrame {
 
     private void msRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msRadioButtonActionPerformed
         // TODO add your handling code here:
+        title="Ms";
     }//GEN-LAST:event_msRadioButtonActionPerformed
 
     private void createButtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtoActionPerformed
@@ -253,6 +284,15 @@ public class CreateCustomerFrame extends javax.swing.JFrame {
         }
         if(error==false)
         {
+            data = new CustumorData();
+            try 
+            {
+                data.addCoustomer(title, name, prename, birthdate, sex);
+            }
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(CreateCustomerFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_createButtoActionPerformed
@@ -261,6 +301,31 @@ public class CreateCustomerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_cancleButtonActionPerformed
+
+    private void mrRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mrRadioButtonActionPerformed
+        // TODO add your handling code here:
+        title="Mr";
+    }//GEN-LAST:event_mrRadioButtonActionPerformed
+
+    private void drRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drRadioButtonActionPerformed
+        // TODO add your handling code here:
+        title="Dr";
+    }//GEN-LAST:event_drRadioButtonActionPerformed
+
+    private void maleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleRadioButtonActionPerformed
+        // TODO add your handling code here:
+        sex="Male";
+    }//GEN-LAST:event_maleRadioButtonActionPerformed
+
+    private void femaleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleRadioButtonActionPerformed
+        // TODO add your handling code here:
+        sex="Female";
+    }//GEN-LAST:event_femaleRadioButtonActionPerformed
+
+    private void diversRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diversRadioButtonActionPerformed
+        // TODO add your handling code here:
+        sex="Divers";
+    }//GEN-LAST:event_diversRadioButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package Gui;
+import Logic.InstructorData;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 /**
  *
@@ -18,6 +22,7 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
     private String sex="";
     private String workrelation;
     private LocalDate birthdate;
+    private InstructorData data;
     /**
      * Creates new form createInstructor
      */
@@ -259,12 +264,7 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         name=nameTextField.getText();
         prename=prenameTextField.getText();
         speficication=spesificationTextField.getText();
-//        int[] selectedRows = Gui.CreateInstructorFrame.coursIDTable.getSelectedRows();
-//        if(selectedRows.length == 0)
-        {
-            error = true;
-            JOptionPane.showMessageDialog(new JFrame(), "Please select a course, if there are none please create some in the course menu", "Error",JOptionPane.ERROR_MESSAGE);
-        }
+
         if(name.isEmpty())
         {
             JOptionPane.showMessageDialog(null, "The instructor has no name ");
@@ -302,16 +302,14 @@ public class CreateInstructorFrame extends javax.swing.JFrame {
         }
         if(error==false)
         {
-//            if (selectedRows.length > 0)
+            data = new InstructorData();
+            try 
             {
-                //                instructorData.setInstructor(name, prename, birthdate, sex, speficication, workrelation);
-//                for (int i = selectedRows.length - 1; i >= 0; i--)
-                {
-//                    String idString = (CreateInstructorFrame.coursIDTable.getValueAt(selectedRows[i], 0).toString());
-//                    int id = Integer.valueOf(idString);
-                    //                    index = instructorData.getLastInstructorID();
-                    //                    instructorData.setInstructorCourseId(index, id);
-                }
+                data.addInstructor(name, prename, birthdate, sex, speficication, workrelation);
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(CreateInstructorFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
             dispose();
         }
