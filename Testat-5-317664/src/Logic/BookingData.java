@@ -5,9 +5,16 @@
  */
 package Logic;
 
-import com.sun.jdi.connect.spi.Connection;
+
+
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -16,6 +23,7 @@ import java.sql.SQLException;
 public class BookingData 
 {
    public final DBConnection connection = new DBConnection();
+   public Statement stmt;
    
    /**
     * adda the relationship between Customer and cours 
@@ -54,4 +62,113 @@ public class BookingData
        }
        System.out.println("booking has been deleted");
    }
+   
+   public void bookingModle()
+   {
+       String col[] = {"ID", "CustomerID", "CustomerName", "CoursID", "CoursName"};
+        DefaultTableModel tbaleModel = new DefaultTableModel(col, 0) 
+        {
+            public boolean isCellEditable(int row, int col) 
+            {
+                //first column not editable
+                if (col <=5) 
+                {
+                    return false;
+                } 
+                else 
+                {
+                    return true;
+                }
+            }
+        };
+        Gui.MainFrame.bookingTable.setModel(tbaleModel);
+   }
+    
+    /**
+     * fiels the Jtable withe the data of the DB
+     * @throws SQLException 
+     */
+       public void readBooking() throws SQLException
+    {
+        String readBooking;
+        readBooking="SELECT * FROM Booking;";
+        stmt=connection.connectToDb().createStatement();
+        ResultSet rs = stmt.executeQuery(readBooking);
+        ResultSetMetaData metaData = rs.getMetaData();
+        Vector<String> columnName = new Vector<>();
+        int countColum = metaData.getColumnCount();
+        for(int i =1; i<=countColum;i++)
+        {
+            columnName.add(metaData.getColumnName(i));
+        }
+        Vector<Vector<Object>> bookingData= new Vector<>();
+        while(rs.next())
+        {
+            Vector<Object> data =new Vector<>();
+            for(int i =1;i<= countColum;i++)
+            {
+                data.add(rs.getObject(i));
+            }
+            bookingData.add(data);
+        } 
+        System.out.println("Booking has been loded");
+        stmt.close();
+        connection.dbClose();
+        DefaultTableModel tbaleModel =(DefaultTableModel) Gui.MainFrame.bookingTable.getModel();
+        tbaleModel.setDataVector(bookingData, columnName);        
+    }
+       
+    /**
+     * sets the table modelin the gui
+     */
+    public void coursModel()
+    {
+        String col[] = {"ID", "Name", "Begin", "End", "Date", "Day"};
+        DefaultTableModel tbaleModel = new DefaultTableModel(col, 0) 
+        {
+            public boolean isCellEditable(int row, int col) 
+            {
+                //first column not editable
+                if (col == 6) 
+                {
+                    return false;
+                } 
+                else 
+                {
+                    return true;
+                }
+            }
+        };
+        Gui.CreateBookingFrame.coursTable.setModel(tbaleModel);
+    }
+    
+    public void readCours() throws SQLException
+    {
+        String readCours;
+        readCours="SELECT * FROM Cours;";
+        stmt=connection.connectToDb().createStatement();
+        ResultSet rs = stmt.executeQuery(readCours);
+        ResultSetMetaData metaData = rs.getMetaData();
+        Vector<String> columnName = new Vector<>();
+        int countColum = metaData.getColumnCount();
+        for(int i =1; i<=countColum;i++)
+        {
+            columnName.add(metaData.getColumnName(i));
+        }
+        Vector<Vector<Object>> coursData= new Vector<>();
+        while(rs.next())
+        {
+            Vector<Object> data =new Vector<>();
+            for(int i =1;i<= countColum;i++)
+            {
+                data.add(rs.getObject(i));
+            }
+            coursData.add(data);
+        } 
+        System.out.println("Cours has been loded");
+        stmt.close();
+        connection.dbClose();
+        DefaultTableModel tbaleModel =(DefaultTableModel) Gui.CreateBookingFrame.coursTable.getModel();
+        tbaleModel.setDataVector(coursData, columnName);        
+    }
 }

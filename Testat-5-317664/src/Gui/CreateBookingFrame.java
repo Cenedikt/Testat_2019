@@ -38,10 +38,10 @@ public class CreateBookingFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         customerIDScrollPane = new javax.swing.JScrollPane();
-        customerIDTable = new javax.swing.JTable();
+        customerTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         coursIDScrollPane = new javax.swing.JScrollPane();
-        coursIDTable = new javax.swing.JTable();
+        coursTable = new javax.swing.JTable();
         createButton = new javax.swing.JButton();
         cancaleButton = new javax.swing.JButton();
 
@@ -51,9 +51,9 @@ public class CreateBookingFrame extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Create Booking");
 
-        jLabel2.setText("Customer ID:");
+        jLabel2.setText("Customer:");
 
-        customerIDTable.setModel(new javax.swing.table.DefaultTableModel(
+        customerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -64,22 +64,11 @@ public class CreateBookingFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        customerIDScrollPane.setViewportView(customerIDTable);
+        customerIDScrollPane.setViewportView(customerTable);
 
-        jLabel3.setText("Cours ID:");
+        jLabel3.setText("Cours:");
 
-        coursIDTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        coursIDScrollPane.setViewportView(coursIDTable);
+        coursIDScrollPane.setViewportView(coursTable);
 
         createButton.setText("Create");
         createButton.addActionListener(new java.awt.event.ActionListener() {
@@ -162,10 +151,10 @@ public class CreateBookingFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancaleButton;
     private javax.swing.JScrollPane coursIDScrollPane;
-    private javax.swing.JTable coursIDTable;
+    public static javax.swing.JTable coursTable;
     private javax.swing.JButton createButton;
     private javax.swing.JScrollPane customerIDScrollPane;
-    private javax.swing.JTable customerIDTable;
+    public static javax.swing.JTable customerTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -9,7 +9,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
+import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 
 /**
  *
@@ -18,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class CoursData 
 {
     private DBConnection connection = new DBConnection();
-    
+    private Statement stmt;
     /**
      * adds the cours in the DB
      * @param name
@@ -89,7 +92,36 @@ public class CoursData
             }
         };
         Gui.MainFrame.coursTable.setModel(tbaleModel);
-
+    }
+    
+    public void readCours() throws SQLException
+    {
+        String readCours;
+        readCours="SELECT * FROM Cours;";
+        stmt=connection.connectToDb().createStatement();
+        ResultSet rs = stmt.executeQuery(readCours);
+        ResultSetMetaData metaData = rs.getMetaData();
+        Vector<String> columnName = new Vector<>();
+        int countColum = metaData.getColumnCount();
+        for(int i =1; i<=countColum;i++)
+        {
+            columnName.add(metaData.getColumnName(i));
+        }
+        Vector<Vector<Object>> coursData= new Vector<>();
+        while(rs.next())
+        {
+            Vector<Object> data =new Vector<>();
+            for(int i =1;i<= countColum;i++)
+            {
+                data.add(rs.getObject(i));
+            }
+            coursData.add(data);
+        } 
+        System.out.println("Cours has been loded");
+        stmt.close();
+        connection.dbClose();
+        DefaultTableModel tbaleModel =(DefaultTableModel) Gui.MainFrame.coursTable.getModel();
+        tbaleModel.setDataVector(coursData, columnName);        
     }
     
     public void updateCours()

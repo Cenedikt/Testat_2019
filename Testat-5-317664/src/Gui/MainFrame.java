@@ -631,7 +631,12 @@ public class MainFrame extends javax.swing.JFrame
 
     private void coursReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursReadButtonActionPerformed
         // TODO add your handling code here:
-//            CoursData.getCoursList();
+        coursData.coursModel();
+        try {
+            coursData.readCours();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_coursReadButtonActionPerformed
 
     private void coursCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursCreateButtonActionPerformed
@@ -664,8 +669,15 @@ public class MainFrame extends javax.swing.JFrame
 
     private void instructorReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorReadButtonActionPerformed
         // TODO add your handling code here:
-//        instructorData.showInstructors();
-        
+        instructorData.instructorModle();
+        try 
+        {        
+            instructorData.readInstructor();
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_instructorReadButtonActionPerformed
 
     private void instructorDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructorDeleteButtonActionPerformed
@@ -692,7 +704,15 @@ public class MainFrame extends javax.swing.JFrame
 
     private void customerReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerReadButtonActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "This part isn't implementet yet!");
+        customerData.customerModle();
+        try 
+        {
+            customerData.readCustomer();
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_customerReadButtonActionPerformed
 
     private void customerDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerDeleteButtonActionPerformed
@@ -702,7 +722,9 @@ public class MainFrame extends javax.swing.JFrame
         {
             try {
                 customerData.deletCustomer(action);
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) 
+            {
                 
             }
         }
@@ -718,12 +740,21 @@ public class MainFrame extends javax.swing.JFrame
 
     private void managingCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managingCreateButtonActionPerformed
         // TODO add your handling code here:
-        CreateManagingFrame frame = new CreateManagingFrame();
-        frame.setVisible(true);
+//        CreateManagingFrame frame = new CreateManagingFrame();
+//        frame.setVisible(true);
     }//GEN-LAST:event_managingCreateButtonActionPerformed
 
     private void managingReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managingReadButtonActionPerformed
         // TODO add your handling code here:
+        managingInstructorToCoursData.manageModle();
+        try 
+        {
+            managingInstructorToCoursData.readManage();
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_managingReadButtonActionPerformed
 
     private void managingDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managingDeleteButtonActionPerformed
@@ -731,9 +762,12 @@ public class MainFrame extends javax.swing.JFrame
         int action = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete that cours?", "Delete", JOptionPane.YES_NO_OPTION );
         if(action==0)
         {
-            try {
+            try 
+            {
             managingInstructorToCoursData.deleteManagingInstructorToCours(action);
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) 
+            {
                 
             }
         }
@@ -747,6 +781,15 @@ public class MainFrame extends javax.swing.JFrame
 
     private void bookingReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingReadButtonActionPerformed
         // TODO add your handling code here:
+        bookingData.bookingModle();
+        try 
+        {
+            bookingData.readBooking();
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }       
     }//GEN-LAST:event_bookingReadButtonActionPerformed
 
     private void bookingDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingDeleteButtonActionPerformed
@@ -756,7 +799,9 @@ public class MainFrame extends javax.swing.JFrame
         {
             try {
                 bookingData.deleteBooing(action);
-            } catch (SQLException ex) {
+            } 
+            catch (SQLException ex) 
+            {
                 
             }
         }
@@ -807,7 +852,7 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JPanel customerPanel;
     private javax.swing.JButton customerReadButton;
     private javax.swing.JScrollPane customerScrollPane;
-    private static javax.swing.JTable customerTable;
+    public static javax.swing.JTable customerTable;
     private javax.swing.JPanel defaultPanel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu helpMenu;
