@@ -7,8 +7,7 @@ package Gui;
 
 import Logic.BookingData;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -64,11 +63,13 @@ public class CreateBookingFrame extends javax.swing.JFrame {
 
             }
         ));
+        Logic.BookingData.readCustomer();
         customerIDScrollPane.setViewportView(customerTable);
 
         jLabel3.setText("Cours:");
 
         coursIDScrollPane.setViewportView(coursTable);
+        Logic.BookingData.readCours();
 
         createButton.setText("Create");
         createButton.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +139,8 @@ public class CreateBookingFrame extends javax.swing.JFrame {
         data = new BookingData();
         if(error=false)
         {
-            try {
+            try 
+            {
                 data.addBooking(customerID, coursID);
             } catch (SQLException ex) 
             {

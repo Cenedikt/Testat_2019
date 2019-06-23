@@ -5,6 +5,8 @@
  */
 package Logic;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -139,69 +141,17 @@ public class ManagingInstructorToCoursData
         readManage();
     }
     
-    public void instructorModle()
-    {
-        String col[]={"ID", "Name", "Prename", "Birthdate", "Sex", "Spesification", "Workrealtion"};
-        DefaultTableModel tbaleModel = new DefaultTableModel(col, 0) 
-        {
-            public boolean isCellEditable(int row, int col) 
-            {
-                //first column not editable
-                if (col == 0) 
-                {
-                    return false;
-                } 
-                else 
-                {
-                    return true;
-                }
-            }
-        }; 
-        Gui.CreateManagingFrame.instructorIDTable.setModel(tbaleModel);
-    }
-    
-    public void readInstructor() throws SQLException
-    {
-        String readInstructor;
-        readInstructor="SELECT * FROM Instructor;";
-        stmt=connection.connectToDb().createStatement();
-        ResultSet rs = stmt.executeQuery(readInstructor);
-        ResultSetMetaData metaData = rs.getMetaData();
-        Vector<String> columnName = new Vector<>();
-        int countColum = metaData.getColumnCount();
-        for(int i =1; i<=countColum;i++)
-        {
-            columnName.add(metaData.getColumnName(i));
-        }
-        Vector<Vector<Object>> instructorData= new Vector<>();
-        while(rs.next())
-        {
-            Vector<Object> data =new Vector<>();
-            for(int i =1;i<= countColum;i++)
-            {
-                data.add(rs.getObject(i));
-            }
-            instructorData.add(data);
-        } 
-        System.out.println("Instructor has been loded");
-        stmt.close();
-        connection.dbClose();
-        DefaultTableModel tbaleModel =(DefaultTableModel) Gui.MainFrame.instructorTable.getModel();
-        tbaleModel.setDataVector(instructorData, columnName);        
-    }
-
     /**
-     * sets the table modelin the gui
+     * imports the data to jtable "courses"
      */
-    public void coursModel()
+    public static void readCours() 
     {
-        String col[] = {"ID", "Name", "Begin", "End", "Date", "Day"};
-        DefaultTableModel tbaleModel = new DefaultTableModel(col, 0) 
+        String col[] = {"CourseID", "Name"};
+        DefaultTableModel tablemodel = new DefaultTableModel(col, 0) 
         {
             public boolean isCellEditable(int row, int col) 
             {
-                //first column not editable
-                if (col == 0) 
+                if (col <= 2) 
                 {
                     return false;
                 } 
@@ -211,36 +161,94 @@ public class ManagingInstructorToCoursData
                 }
             }
         };
-        Gui.CreateManagingFrame.coursIDTable.setModel(tbaleModel);
+        Gui.CreateManagingFrame.coursIDTable.setModel(tablemodel);        
+        DefaultTableModel tableModel = (DefaultTableModel) Gui.CreateManagingFrame.coursIDTable.getModel();
+        String url= "jdbc:sqlite:HolidayParadise.db";
+        Connection conn=null;
+        try  
+        {
+            conn=DriverManager.getConnection(url);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT ID,Name FROM Cours;");
+            ResultSetMetaData metaData = rs.getMetaData();            
+            Vector<String> columnNames = new Vector<String>();
+            int columnCount = metaData.getColumnCount();
+            for (int i = 1; i <= columnCount; i++) 
+            {
+                columnNames.add(metaData.getColumnName(i));
+            }
+
+            Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+            while (rs.next()) {
+                Vector<Object> vector = new Vector<Object>();
+                for (int i = 1; i <= columnCount; i++) 
+                {
+                    vector.add(rs.getObject(i));
+                }
+                data.add(vector);
+            }
+            tableModel.setDataVector(data, columnNames);
+            conn.close();
+        } 
+        catch (Exception e) 
+        {
+        }
+        System.out.println("cours has been loded");       
     }
     
-    public void readCours() throws SQLException
+    /**
+     * imports the data to jtable "courses"
+     */
+    public static void readInstructor() 
     {
-        String readCours;
-        readCours="SELECT * FROM Cours;";
-        stmt=connection.connectToDb().createStatement();
-        ResultSet rs = stmt.executeQuery(readCours);
-        ResultSetMetaData metaData = rs.getMetaData();
-        Vector<String> columnName = new Vector<>();
-        int countColum = metaData.getColumnCount();
-        for(int i =1; i<=countColum;i++)
+        String col[] = {"ID", "Name"};
+        DefaultTableModel tablemodel = new DefaultTableModel(col, 0) 
         {
-            columnName.add(metaData.getColumnName(i));
-        }
-        Vector<Vector<Object>> coursData= new Vector<>();
-        while(rs.next())
-        {
-            Vector<Object> data =new Vector<>();
-            for(int i =1;i<= countColum;i++)
+            public boolean isCellEditable(int row, int col) 
             {
-                data.add(rs.getObject(i));
+                if (col <= 2) 
+                {
+                    return false;
+                } 
+                else 
+                {
+                    return true;
+                }
             }
-            coursData.add(data);
+        };
+        Gui.CreateManagingFrame.instructorIDTable.setModel(tablemodel);        
+        DefaultTableModel tableModel = (DefaultTableModel) Gui.CreateManagingFrame.instructorIDTable.getModel();
+        String url= "jdbc:sqlite:HolidayParadise.db";
+        Connection conn=null;
+        try  
+        {
+            conn=DriverManager.getConnection(url);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT ID,Name FROM Instructor;");
+            ResultSetMetaData metaData = rs.getMetaData();          
+            Vector<String> columnNames = new Vector<String>();
+            int columnCount = metaData.getColumnCount();
+            for (int i = 1; i <= columnCount; i++) 
+            {
+                columnNames.add(metaData.getColumnName(i));
+            }
+
+            Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+            while (rs.next()) 
+            {
+                Vector<Object> vector = new Vector<Object>();
+                for (int i = 1; i <= columnCount; i++) 
+                {
+                    vector.add(rs.getObject(i));
+                }
+                data.add(vector);
+            }
+            tableModel.setDataVector(data, columnNames);
+            conn.close();
         } 
-        System.out.println("Cours has been loded");
-        stmt.close();
-        connection.dbClose();
-        DefaultTableModel tbaleModel =(DefaultTableModel) Gui.MainFrame.coursTable.getModel();
-        tbaleModel.setDataVector(coursData, columnName);        
-    }    
+        catch (Exception e) 
+        {
+        }
+        System.out.println("Instructor has been loded");       
+    } 
 }

@@ -736,7 +736,12 @@ public class MainFrame extends javax.swing.JFrame
 
     private void managingCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managingCreateButtonActionPerformed
         // TODO add your handling code here:
-        CreateManagingFrame frame = new CreateManagingFrame();
+        CreateManagingFrame frame = null;
+        try {
+            frame = new CreateManagingFrame();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         frame.setVisible(true);
     }//GEN-LAST:event_managingCreateButtonActionPerformed
 

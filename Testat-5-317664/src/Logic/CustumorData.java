@@ -182,16 +182,14 @@ public class CustumorData
     public void updateCustomer(String title, String name, String prename, String birthdate, String sex, int id) throws SQLException
     {
         String updateCustomer;
-        updateCustomer="UPDATE Customer"
-                      +"SET Title=?, Name=?, Prename=?, Birthdate=?,Sex=?"
-                      +"WHERE ID=?;";
+        updateCustomer="UPDATE Customer SET Title=?, Name=?, Prename=?, Birthdate=?,Sex=? WHERE ID=?;";
         PreparedStatement pstmt=connection.connectToDb().prepareStatement(updateCustomer);
-        pstmt.setString(0, title);
-        pstmt.setString(1, name);
-        pstmt.setString(2, prename);
-        pstmt.setString(3, birthdate);
-        pstmt.setString(4, sex);
-        pstmt.setInt(5, id);
+        pstmt.setString(1, title);
+        pstmt.setString(2, name);
+        pstmt.setString(3, prename);
+        pstmt.setString(4, birthdate);
+        pstmt.setString(5, sex);
+        pstmt.setInt(6, id);
         pstmt.executeUpdate();
         System.out.println("customer has been updated");
         pstmt.close();

@@ -187,17 +187,15 @@ public class InstructorData
     public void updateInstructor(String name, String prename, String birthdate, String sex, String spesification, String workrelation, int id) throws SQLException
     {
         String updateInstructor;
-        updateInstructor="UPDATE Instructor"
-                        +"SET Name=?, Prename=?, Birthdate=?, Sex=?, Spesification=?, Workrelation=?"
-                        +"WHERE ID=?;";
+        updateInstructor="UPDATE Instructor SET Name=?, Prename=?, Birthdate=?, Sex=?, Spesification=?, Workrelation=? WHERE ID=?;";
         PreparedStatement pstmt=connection.connectToDb().prepareStatement(updateInstructor);
-        pstmt.setString(0, name);
-        pstmt.setString(1, prename);
-        pstmt.setString(2, birthdate);
-        pstmt.setString(3, spesification);
-        pstmt.setString(4, workrelation);
-        pstmt.setString(5, sex);
-        pstmt.setInt(6, id);
+        pstmt.setString(1, name);
+        pstmt.setString(2, prename);
+        pstmt.setString(3, birthdate);
+        pstmt.setString(4, spesification);
+        pstmt.setString(5, workrelation);
+        pstmt.setString(6, sex);
+        pstmt.setInt(7, id);
         pstmt.executeUpdate();
         pstmt.close();
         System.out.println("Instructor has been updated");

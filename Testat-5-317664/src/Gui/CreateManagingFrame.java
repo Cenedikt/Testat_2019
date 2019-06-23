@@ -5,16 +5,22 @@
  */
 package Gui;
 
+import Logic.ManagingInstructorToCoursData;
+import java.sql.SQLException;
+
+
 /**
  *
  * @author Benedict
  */
 public class CreateManagingFrame extends javax.swing.JFrame {
-
+    
+    public ManagingInstructorToCoursData data = new ManagingInstructorToCoursData();
     /**
      * Creates new form CreateManagingFrame
+     * @throws java.sql.SQLException
      */
-    public CreateManagingFrame() {
+    public CreateManagingFrame() throws SQLException {
         initComponents();
     }
 
@@ -56,20 +62,13 @@ public class CreateManagingFrame extends javax.swing.JFrame {
 
             }
         ));
+        Logic.ManagingInstructorToCoursData.readInstructor();
         instructorIDScrollPane.setViewportView(instructorIDTable);
 
         jLabel3.setText("Cours ID");
 
         coursIDTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
 
-            }
         ));
         coursIDScrollPane.setViewportView(coursIDTable);
 
@@ -124,6 +123,8 @@ public class CreateManagingFrame extends javax.swing.JFrame {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
+        Logic.ManagingInstructorToCoursData.readCours();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,40 +137,7 @@ public class CreateManagingFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_createButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateManagingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateManagingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateManagingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateManagingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreateManagingFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancleButton;
