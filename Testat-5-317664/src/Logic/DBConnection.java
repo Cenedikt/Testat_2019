@@ -39,6 +39,7 @@ public class DBConnection
             String createCoursTable;
             String createCustomerTable;
             String createBookingTable;
+            String createSetting;
             
             createBookingTable="CREATE TABLE IF NOT EXISTS \"Booking\" (\n" +
                                "    ID         INTEGER PRIMARY KEY,\n" +
@@ -82,14 +83,23 @@ public class DBConnection
                               "    ID         INTEGER PRIMARY KEY,\n" +
                               "    InstructorID INTEGER REFERENCES Instructor (ID),\n" +
                               "    CoursID    INTEGER REFERENCES Cours (ID) \n" +
-                              ");"
+                              ");"                    
             ;
+            
+            createSetting="CREATE TABLE IF NOT EXISTS \"Setting\" (\n" +
+                              "    ID         INTEGER PRIMARY KEY,\n" +
+                              "    Version    TEXT    NOT NULL,\n" +
+                              "    Name    TEXT    NOT NULL,\n" +
+                              "    Company TEXT NOT NULL);"
+            ;
+                                    
             Statement stmt  = conn.createStatement();
             stmt.execute(createInstructorTable);
             stmt.execute(createBookingTable);
             stmt.execute(createCoursTable);
             stmt.execute(createCustomerTable);
             stmt.execute(createManageTable);
+            stmt.execute(createSetting);
         }
         catch(SQLException e)
         {

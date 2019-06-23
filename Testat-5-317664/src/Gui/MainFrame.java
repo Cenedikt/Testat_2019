@@ -10,6 +10,7 @@ import Logic.CoursData;
 import Logic.CustumorData;
 import Logic.InstructorData;
 import Logic.ManagingInstructorToCoursData;
+import Logic.SettingData;
 import java.beans.Customizer;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -26,13 +27,18 @@ public class MainFrame extends javax.swing.JFrame
     private final CustumorData customerData = new CustumorData();
     private final ManagingInstructorToCoursData managingInstructorToCoursData = new ManagingInstructorToCoursData();
     private final BookingData bookingData = new BookingData();
+    private final SettingData setting = new SettingData();
 
     /**
      * Creates new form MainFrame
+     * @throws java.sql.SQLException
      */
-    public MainFrame() {
+    public MainFrame() throws SQLException {
         initComponents();
         defaultPanel.removeAll();
+        setTitle(setting.getProgramName());
+        versionLabel.setName(setting.getVersion());
+        companyLabel.setName(setting.getCompany());      
     }
 
     /**
@@ -72,6 +78,8 @@ public class MainFrame extends javax.swing.JFrame
         jLabel2 = new javax.swing.JLabel();
         aboutPanel = new javax.swing.JPanel();
         jLabel = new javax.swing.JLabel();
+        versionLabel = new javax.swing.JLabel();
+        companyLabel = new javax.swing.JLabel();
         managingPanel = new javax.swing.JPanel();
         managingLabel = new javax.swing.JLabel();
         managingCreateButton = new javax.swing.JButton();
@@ -86,6 +94,18 @@ public class MainFrame extends javax.swing.JFrame
         bookingDeleteButton = new javax.swing.JButton();
         bookingScrollPane = new javax.swing.JScrollPane();
         bookingTable = new javax.swing.JTable();
+        settingPanel = new javax.swing.JPanel();
+        settingLabel = new javax.swing.JLabel();
+        settingjPanel = new javax.swing.JPanel();
+        programmNameTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        versionjTextField = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        companyTextField = new javax.swing.JTextField();
+        saveButton = new javax.swing.JButton();
+        cancleButton = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -98,6 +118,7 @@ public class MainFrame extends javax.swing.JFrame
         helpMenu = new javax.swing.JMenu();
         helpMenuItem = new javax.swing.JMenuItem();
         AboutMenuItem = new javax.swing.JMenuItem();
+        settingMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -359,12 +380,22 @@ public class MainFrame extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(aboutPanelLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addGroup(aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(versionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(companyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         aboutPanelLayout.setVerticalGroup(
             aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(aboutPanelLayout.createSequentialGroup()
                 .addComponent(jLabel)
-                .addContainerGap(386, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addComponent(versionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(companyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(234, Short.MAX_VALUE))
         );
 
         defaultPanel.add(aboutPanel, "card2");
@@ -506,6 +537,102 @@ public class MainFrame extends javax.swing.JFrame
 
         defaultPanel.add(bookingPanel, "card2");
 
+        settingLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        settingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        settingLabel.setText("Setting");
+
+        jLabel4.setText("Programmname:");
+
+        jLabel5.setText("Version:");
+
+        jLabel6.setText("Commpany using the licens:");
+
+        javax.swing.GroupLayout settingjPanelLayout = new javax.swing.GroupLayout(settingjPanel);
+        settingjPanel.setLayout(settingjPanelLayout);
+        settingjPanelLayout.setHorizontalGroup(
+            settingjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(settingjPanelLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(settingjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(settingjPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(companyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(settingjPanelLayout.createSequentialGroup()
+                        .addGroup(settingjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(settingjPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3))
+                            .addComponent(jLabel5))
+                        .addGap(68, 68, 68)
+                        .addGroup(settingjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(versionjTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                            .addComponent(programmNameTextField))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        settingjPanelLayout.setVerticalGroup(
+            settingjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(settingjPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(settingjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(programmNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(settingjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(settingjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(versionjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(settingjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(companyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
+        cancleButton.setText("Cancle");
+        cancleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancleButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout settingPanelLayout = new javax.swing.GroupLayout(settingPanel);
+        settingPanel.setLayout(settingPanelLayout);
+        settingPanelLayout.setHorizontalGroup(
+            settingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(settingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
+            .addComponent(settingjPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(settingPanelLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancleButton)
+                .addGap(159, 159, 159))
+        );
+        settingPanelLayout.setVerticalGroup(
+            settingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(settingPanelLayout.createSequentialGroup()
+                .addComponent(settingLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(settingjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addGroup(settingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveButton)
+                    .addComponent(cancleButton))
+                .addContainerGap())
+        );
+
+        defaultPanel.add(settingPanel, "card2");
+
         getContentPane().add(defaultPanel, "card2");
 
         FileMenu.setText("FILE");
@@ -581,6 +708,14 @@ public class MainFrame extends javax.swing.JFrame
             }
         });
         helpMenu.add(AboutMenuItem);
+
+        settingMenuItem.setText("Settings");
+        settingMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                settingMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(settingMenuItem);
 
         jMenuBar.add(helpMenu);
 
@@ -823,6 +958,45 @@ public class MainFrame extends javax.swing.JFrame
         defaultPanel.revalidate();
     }//GEN-LAST:event_manageMenuItemActionPerformed
 
+    private void settingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingMenuItemActionPerformed
+        // TODO add your handling code here:
+        defaultPanel.removeAll();
+        defaultPanel.add(settingPanel);
+        defaultPanel.repaint();
+        defaultPanel.revalidate();
+    }//GEN-LAST:event_settingMenuItemActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+        String name;
+        name=programmNameTextField.getText();
+        String version;
+        version=versionjTextField.getText();
+        String company;
+        company=companyTextField.getText();
+        try 
+        {
+            if(!(name.isEmpty() && version.isEmpty() && company.isEmpty()))
+            setting.updateSetting(name, version, company);
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int action = JOptionPane.showConfirmDialog(null,"Are you sure yto restart and svae the settings", "Restart", JOptionPane.YES_NO_OPTION );
+        if(action==0)
+        {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void cancleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancleButtonActionPerformed
+        // TODO add your handling code here:
+        defaultPanel.removeAll();
+        defaultPanel.repaint();
+        defaultPanel.revalidate();
+    }//GEN-LAST:event_cancleButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AboutMenuItem;
     private javax.swing.JMenu FileMenu;
@@ -836,6 +1010,9 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JButton bookingReadButton;
     private javax.swing.JScrollPane bookingScrollPane;
     public static javax.swing.JTable bookingTable;
+    private javax.swing.JButton cancleButton;
+    private javax.swing.JLabel companyLabel;
+    private javax.swing.JTextField companyTextField;
     private javax.swing.JButton coursCreateButton;
     private javax.swing.JButton coursDeleteButton;
     private javax.swing.JLabel coursLabel;
@@ -869,6 +1046,10 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem manageMenuItem;
     private javax.swing.JButton managingCreateButton;
@@ -878,5 +1059,13 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JButton managingReadButton;
     private javax.swing.JScrollPane managingScrollPane;
     public static javax.swing.JTable managingTable;
+    private javax.swing.JTextField programmNameTextField;
+    private javax.swing.JButton saveButton;
+    private javax.swing.JLabel settingLabel;
+    private javax.swing.JMenuItem settingMenuItem;
+    private javax.swing.JPanel settingPanel;
+    private javax.swing.JPanel settingjPanel;
+    private javax.swing.JLabel versionLabel;
+    private javax.swing.JTextField versionjTextField;
     // End of variables declaration//GEN-END:variables
 }

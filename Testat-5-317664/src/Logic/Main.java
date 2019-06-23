@@ -20,8 +20,11 @@ public class Main
      */
     public static void main(String[] args) throws SQLException 
     {
+        SettingData setting= new SettingData();
+        setting.setSetting();
         MainFrame frame= new MainFrame();
         frame.setVisible(true);
+        
     }
     
 }
