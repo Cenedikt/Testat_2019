@@ -7,6 +7,8 @@ package Gui;
 
 import Logic.BookingData;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -135,19 +137,17 @@ public class CreateBookingFrame extends javax.swing.JFrame {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         // TODO add your handling code here:
-        boolean error=false;
-        data = new BookingData();
-        if(error=false)
+        int coursRow= Gui.CreateManagingFrame.coursIDTable.getSelectedRow();
+        int instructorRow= Gui.CreateManagingFrame.instructorIDTable.getSelectedRow();
+
+        if(coursRow >=0 && instructorRow<0)
         {
-            try 
-            {
-                data.addBooking(customerID, coursID);
-            } catch (SQLException ex) 
-            {
-                
-            }
-            this.dispose();
-        }
+            String coursIDAsString=(Gui.CreateManagingFrame.coursIDTable.getValueAt(coursRow, 0).toString());
+            String instructorIDAsString=(Gui.CreateManagingFrame.instructorIDTable.getValueAt(instructorRow, 0).toString());
+            int coursID=Integer.valueOf(coursIDAsString);
+            int instructorID=Integer.valueOf(instructorIDAsString);
+            data.addManagingInstructorToCours(instructorID, coursID);
+        } 
     }//GEN-LAST:event_createButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -254,5 +254,9 @@ public class BookingData
     public void getCoursesForInstructor() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public void addManagingInstructorToCours(int instructorID, int coursID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
