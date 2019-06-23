@@ -26,7 +26,7 @@ public class BookingData
    public Statement stmt;
    
    /**
-    * adda the relationship between Customer and cours 
+    * adds the relationship between Customer and cours 
     * @param customerID
     * @param coursID
     * @throws SQLException 
@@ -63,6 +63,9 @@ public class BookingData
        System.out.println("booking has been deleted");
    }
    
+   /**
+    * creats the moddle of the table
+    */
    public void bookingModle()
    {
        String col[] = {"ID", "CustomerID", "CustomerName", "CoursID", "CoursName"};
@@ -83,7 +86,11 @@ public class BookingData
         };
         Gui.MainFrame.bookingTable.setModel(tbaleModel);
    }
-    
+
+   /**
+    * removs boking from the table
+    * @throws SQLException 
+    */
    public void removeBooking() throws SQLException
    {
        int[] selectedRows = Gui.MainFrame.bookingTable.getSelectedRows();
@@ -96,6 +103,7 @@ public class BookingData
         }
         readBooking();
    }
+   
     /**
      * fiels the Jtable withe the data of the DB
      * @throws SQLException 
@@ -103,7 +111,10 @@ public class BookingData
        public void readBooking() throws SQLException
     {
         String readBooking;
-        readBooking="SELECT * FROM Booking;";
+        readBooking="SELECT b.ID,b.CustomerID,cu.Name,b.CoursID,c.Name\n" +
+                    "FROM Booking AS b, Customer AS cu, Cours AS c\n" +
+                    "WHERE b.CustomerID=cu.ID\n" +
+                    "AND b.CoursID=c.ID;";
         stmt=connection.connectToDb().createStatement();
         ResultSet rs = stmt.executeQuery(readBooking);
         ResultSetMetaData metaData = rs.getMetaData();

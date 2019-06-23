@@ -203,7 +203,7 @@ public class CoursData
         String updateCours;
         updateCours="UPDATE Cours "
                    +"SET Name = ?, Begin = ?, End = ?, Date = ?, Day = ?"
-                   + "WHERE ID = ?;";
+                   +"WHERE ID = ?;";
         PreparedStatement pstmt =connection.connectToDb().prepareStatement(updateCours);   
         pstmt.setString(1, name);
         pstmt.setString(2, begin);

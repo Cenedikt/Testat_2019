@@ -31,7 +31,7 @@ public class ManagingInstructorToCoursData
     public void addManagingInstructorToCours(int instructorID, int coursID) throws SQLException
     {
        String addManagingInstructorToCours;
-       addManagingInstructorToCours="INSERT INTO Manage (InstructorID,CoursID) VALUES(?,?)";
+       addManagingInstructorToCours="INSERT INTO Manage (InstructorID,CoursID) VALUES(?,?);";
        try (PreparedStatement pstmt = connection.connectToDb().prepareStatement(addManagingInstructorToCours)) 
        {
            pstmt.setInt(1, instructorID);
@@ -61,6 +61,9 @@ public class ManagingInstructorToCoursData
         System.out.println("Managing Instructor To Cours has been deleted");
     }
     
+    /**
+     * set the modle of the table in the gui
+     */
     public void manageModle()
     {
         String col[] = {"ID", "InstructorID", "InstructorName", "CoursID", "CoursName"};
@@ -68,7 +71,7 @@ public class ManagingInstructorToCoursData
         {
             public boolean isCellEditable(int row, int col) 
             {
-                //first column not editable
+                
                 if (col <= 5) 
                 {
                     return false;
@@ -82,10 +85,17 @@ public class ManagingInstructorToCoursData
         Gui.MainFrame.managingTable.setModel(tbaleModel);
     }
     
+    /**
+     * reds the data from the db and iports it into the jtable
+     * @throws SQLException 
+     */
     public void readManage() throws SQLException
     {
         String readManage;
-        readManage="SELECT * FROM Manage;";
+        readManage="SELECT m.ID,m.InstructorID,i.Name,m.CoursID,c.Name\n" +
+                    "FROM Manage AS m, Instructor AS i, Cours AS c\n" +
+                    "WHERE m.InstructorID=i.ID\n" +
+                    "AND m.CoursID=c.ID;";
         stmt=connection.connectToDb().createStatement();
         ResultSet rs = stmt.executeQuery(readManage);
         ResultSetMetaData metaData = rs.getMetaData();
@@ -112,6 +122,10 @@ public class ManagingInstructorToCoursData
         tbaleModel.setDataVector(manageData, columnName);        
     }
     
+    /**
+     * removes the data from the jtable
+     * @throws SQLException 
+     */
     public void removManage() throws SQLException
     {
         int[] selectedRows = Gui.MainFrame.managingTable.getSelectedRows();

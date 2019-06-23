@@ -397,10 +397,7 @@ public class MainFrame extends javax.swing.JFrame
 
         managingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 

@@ -49,9 +49,9 @@ public class DBConnection
             
             createCoursTable="CREATE TABLE IF NOT EXISTS \"Cours\" (\n" +
                              "    ID      INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                             "    Name  TEXT    NOT NULL,\n" +
-                             "    Begin STRING  NOT NULL,\n" +
-                             "    End   STRING  NOT NULL,\n" +
+                             "    Name    TEXT    NOT NULL,\n" +
+                             "    Begin   STRING  NOT NULL,\n" +
+                             "    End     STRING  NOT NULL,\n" +
                              "    Date    STRING    NOT NULL,\n" +
                              "    Day     STRING  NOT NULL\n" +
                              ");"
