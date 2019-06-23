@@ -13,6 +13,10 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 /**
  *
@@ -92,6 +96,44 @@ public class CoursData
             }
         };
         Gui.MainFrame.coursTable.setModel(tbaleModel);
+        
+        TableModelListener modelListener = new TableModelListener() 
+        {
+            public void tableChanged(TableModelEvent evt) 
+            {
+                Boolean error = false;
+
+                try 
+                {
+                    int rows = Gui.MainFrame.coursTable.getRowCount();
+
+                    for (int row = 0; row < rows; row++) {
+                        String id = (Gui.MainFrame.coursTable.getModel().getValueAt(row, 0).toString());
+                        Integer idToInt = Integer.valueOf(id);
+                        String name = (Gui.MainFrame.coursTable.getModel().getValueAt(row, 1).toString());
+                        String begin = (Gui.MainFrame.coursTable.getModel().getValueAt(row, 2).toString());
+                        String end = (Gui.MainFrame.coursTable.getModel().getValueAt(row, 3).toString());
+                        String date = (Gui.MainFrame.coursTable.getModel().getValueAt(row, 4).toString());
+                        String day = (Gui.MainFrame.coursTable.getModel().getValueAt(row, 5).toString());
+                        updateCours(name, begin, end, date, day, idToInt);
+                    }
+                } 
+                catch (IndexOutOfBoundsException ex) 
+                {
+                } 
+                catch (Exception e) 
+                {
+                    JOptionPane.showMessageDialog(null, "Incorect input pls cehck day, time or date ");
+                    System.out.println(e);
+                    error = true;
+                    if (error == false) 
+                    {
+                        System.out.println("Saving successfull");
+                    }
+                }
+            }
+        };
+        tbaleModel.addTableModelListener(modelListener);
     }
     
     public void readCours() throws SQLException
@@ -124,8 +166,21 @@ public class CoursData
         tbaleModel.setDataVector(coursData, columnName);        
     }
     
-    public void updateCours()
+    public void updateCours(String name, String begin, String end, String date, String day, int id) throws SQLException
     {
-        
+        String updateCours;
+        updateCours="UPDATE Cours "
+                   +"SET Name = ?, Begin = ?, End = ?, Date = ?, Day = ?"
+                   + "WHERE ID = ?;";
+        PreparedStatement pstmt =connection.connectToDb().prepareStatement(updateCours);   
+        pstmt.setString(1, name);
+        pstmt.setString(2, begin);
+        pstmt.setString(3, end);
+        pstmt.setString(4, date);
+        pstmt.setString(5, day);
+        pstmt.setInt(6, id);
+        pstmt.executeUpdate();
+        pstmt.close();
+        connection.dbClose();
     }
 }
