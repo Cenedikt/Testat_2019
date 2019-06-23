@@ -137,17 +137,15 @@ public class CreateBookingFrame extends javax.swing.JFrame {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         // TODO add your handling code here:
-        int coursRow= Gui.CreateManagingFrame.coursIDTable.getSelectedRow();
-        int instructorRow= Gui.CreateManagingFrame.instructorIDTable.getSelectedRow();
 
-        if(coursRow >=0 && instructorRow<0)
-        {
-            String coursIDAsString=(Gui.CreateManagingFrame.coursIDTable.getValueAt(coursRow, 0).toString());
-            String instructorIDAsString=(Gui.CreateManagingFrame.instructorIDTable.getValueAt(instructorRow, 0).toString());
-            int coursID=Integer.valueOf(coursIDAsString);
-            int instructorID=Integer.valueOf(instructorIDAsString);
-            data.addManagingInstructorToCours(instructorID, coursID);
-        } 
+        int coursRow= Gui.CreateBookingFrame.coursTable.getSelectedRow();
+        int customerRow= Gui.CreateBookingFrame.customerTable.getSelectedRow();        
+        String coursIDAsString=(Gui.CreateBookingFrame.coursTable.getValueAt(coursRow, 0).toString());
+        String customerIDAsString=(Gui.CreateBookingFrame.customerTable.getValueAt(customerRow, 0).toString());
+        int coursID=Integer.valueOf(coursIDAsString);
+        int customerID=Integer.valueOf(customerIDAsString);
+        data.addManagingInstructorToCours(customerID, coursID);        
+        dispose();       
     }//GEN-LAST:event_createButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -137,24 +137,25 @@ public class CreateManagingFrame extends javax.swing.JFrame {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         // TODO add your handling code here:
-        int coursRow= Gui.CreateBookingFrame.coursTable.getSelectedRow();
-        int instructorRow= Gui.CreateBookingFrame.customerTable.getSelectedRow();
-
-        if(coursRow >=0 && instructorRow<0)
-        {
-            String coursIDAsString=(Gui.CreateBookingFrame.coursTable.getValueAt(coursRow, 0).toString());
-            String customerIDAsString=(Gui.CreateBookingFrame.customerTable.getValueAt(instructorRow, 0).toString());
+        int coursRow= Gui.CreateManagingFrame.coursIDTable.getSelectedRow();
+        int instructorRow= Gui.CreateManagingFrame.instructorIDTable.getSelectedRow();
+        System.out.println(coursRow);
+        System.out.println(instructorRow);
+            String coursIDAsString=(Gui.CreateManagingFrame.coursIDTable.getValueAt(coursRow, 0).toString());
+            String instructorIDAsString=(Gui.CreateManagingFrame.instructorIDTable.getValueAt(instructorRow, 0).toString());
             int coursID=Integer.valueOf(coursIDAsString);
-            int customerID=Integer.valueOf(customerIDAsString);
+            System.out.println(coursID);
+            int instructorID=Integer.valueOf(instructorIDAsString);
+            System.out.println(instructorID);
             try 
             {
-                data.addManagingInstructorToCours(customerID, coursID);
+                data.addManagingInstructorToCours(instructorID, coursID);
             } 
             catch (SQLException ex) 
             {
                 Logger.getLogger(CreateManagingFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } 
+            }       
+        dispose();
     }//GEN-LAST:event_createButtonActionPerformed
 
 

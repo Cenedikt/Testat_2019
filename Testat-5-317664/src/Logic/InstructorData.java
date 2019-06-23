@@ -192,9 +192,9 @@ public class InstructorData
         pstmt.setString(1, name);
         pstmt.setString(2, prename);
         pstmt.setString(3, birthdate);
-        pstmt.setString(4, spesification);
-        pstmt.setString(5, workrelation);
-        pstmt.setString(6, sex);
+        pstmt.setString(4, sex);
+        pstmt.setString(5, spesification);
+        pstmt.setString(6, workrelation);
         pstmt.setInt(7, id);
         pstmt.executeUpdate();
         pstmt.close();
