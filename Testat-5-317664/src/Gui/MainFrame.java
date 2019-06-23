@@ -652,11 +652,10 @@ public class MainFrame extends javax.swing.JFrame
         {
             try 
             {
-                coursData.deleteCours(action);
+                coursData.removeCourse();
             } 
             catch (SQLException ex) 
             {
-
             }
         }
     }//GEN-LAST:event_coursDeleteButtonActionPerformed
@@ -687,7 +686,7 @@ public class MainFrame extends javax.swing.JFrame
         {
             try 
             {
-                instructorData.deleteInstructor(action);
+                instructorData.readInstructor();
             } 
             catch (SQLException ex) 
             {
@@ -721,7 +720,7 @@ public class MainFrame extends javax.swing.JFrame
         if(action==0)
         {
             try {
-                customerData.deletCustomer(action);
+                customerData.removeCustomer();
             } 
             catch (SQLException ex) 
             {

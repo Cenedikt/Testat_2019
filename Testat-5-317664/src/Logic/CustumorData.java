@@ -12,6 +12,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -92,6 +95,43 @@ public class CustumorData
             }
         };
         Gui.MainFrame.customerTable.setModel(tbaleModel);
+        TableModelListener modelListener = new TableModelListener() 
+        {
+            public void tableChanged(TableModelEvent evt) 
+            {
+                Boolean error = false;
+
+                try 
+                {
+                    int rows = Gui.MainFrame.customerTable.getRowCount();
+
+                    for (int row = 0; row < rows; row++) {
+                        String id = (Gui.MainFrame.customerTable.getModel().getValueAt(row, 0).toString());
+                        Integer idToInt = Integer.valueOf(id);
+                        String title = (Gui.MainFrame.customerTable.getModel().getValueAt(row, 1).toString());
+                        String name = (Gui.MainFrame.customerTable.getModel().getValueAt(row, 2).toString());
+                        String prename = (Gui.MainFrame.customerTable.getModel().getValueAt(row, 3).toString());
+                        String birthdate = (Gui.MainFrame.customerTable.getModel().getValueAt(row, 4).toString());
+                        String sex = (Gui.MainFrame.customerTable.getModel().getValueAt(row, 5).toString());
+                        updateCustomer(title, name, prename, birthdate, sex, idToInt);
+                    }
+                } 
+                catch (IndexOutOfBoundsException ex) 
+                {
+                } 
+                catch (Exception e) 
+                {
+                    JOptionPane.showMessageDialog(null, "Incorect input pls cehck day, time or date ");
+                    System.out.println(e);
+                    error = true;
+                    if (error == false) 
+                    {
+                        System.out.println("Saving successfull");
+                    }
+                }
+            }
+        };
+        tbaleModel.addTableModelListener(modelListener);
     }
     
     public void readCustomer() throws SQLException
@@ -122,5 +162,37 @@ public class CustumorData
         connection.dbClose();
         DefaultTableModel tbaleModel =(DefaultTableModel) Gui.MainFrame.customerTable.getModel();
         tbaleModel.setDataVector(customerData, columnName);        
+    }
+    
+    public void updateCustomer(String title, String name, String prename, String birthdate, String sex, int id) throws SQLException
+    {
+        String updateCustomer;
+        updateCustomer="UPDATE Customer"
+                      +"SET Title = ?, Name=?, Prename=?,Birthdate=?,Sex=?"
+                      +"WHERE ID=?;";
+        PreparedStatement pstmt=connection.connectToDb().prepareStatement(updateCustomer);
+        pstmt.setString(0, title);
+        pstmt.setString(1, name);
+        pstmt.setString(2, prename);
+        pstmt.setString(3, birthdate);
+        pstmt.setString(4, sex);
+        pstmt.setInt(5, id);
+        pstmt.executeUpdate();
+        System.out.println("customer has been updated");
+        pstmt.close();
+        connection.dbClose();
+    }
+    
+    public void removeCustomer() throws SQLException
+    {
+        int[] selectedRows = Gui.MainFrame.customerTable.getSelectedRows();
+        if (selectedRows.length > 0) {
+            for (int i = selectedRows.length - 1; i >= 0; i--) {
+                String idAsString = (Gui.MainFrame.customerTable.getValueAt(selectedRows[i], 0).toString());
+                int id = Integer.valueOf(idAsString);
+                deletCustomer(id);
+            }
+        }
+        readCustomer();
     }
 }

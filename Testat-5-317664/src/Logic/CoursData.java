@@ -61,19 +61,31 @@ public class CoursData
      * @throws SQLException 
      */
     public void deleteCours(int id) throws SQLException
-    {
+    {        
         String deleteCours;
-        deleteCours="DELETE FROM Cours as c,  WHERE c.ID=?;";
+        deleteCours="DELETE FROM Cours WHERE ID=?;";
         try(PreparedStatement pstmt = connection.connectToDb().prepareStatement(deleteCours))
         {
             pstmt.setInt(1,id);
-            pstmt.execute();
+            pstmt.executeUpdate();
             pstmt.close();
         }
         System.out.println("Cours has been deleted");
         connection.dbClose();
     }
-
+    
+    public void removeCourse() throws SQLException 
+    {
+        int[] selectedRows = Gui.MainFrame.coursTable.getSelectedRows();
+        if (selectedRows.length > 0) {
+            for (int i = selectedRows.length - 1; i >= 0; i--) {
+                String idAsString = (Gui.MainFrame.coursTable.getValueAt(selectedRows[i], 0).toString());
+                int id = Integer.valueOf(idAsString);
+                deleteCours(id);
+            }
+        }
+        readCours();
+    }
     /**
      * sets the table modelin the gui
      */
@@ -181,6 +193,7 @@ public class CoursData
         pstmt.setInt(6, id);
         pstmt.executeUpdate();
         pstmt.close();
+        System.out.println("Cours has benn updatet");
         connection.dbClose();
     }
 }

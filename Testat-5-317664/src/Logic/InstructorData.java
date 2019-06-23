@@ -12,6 +12,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -95,6 +98,44 @@ public class InstructorData
             }
         }; 
         Gui.MainFrame.instructorTable.setModel(tbaleModel);
+        TableModelListener modelListener = new TableModelListener() 
+        {
+            public void tableChanged(TableModelEvent evt) 
+            {
+                Boolean error = false;
+
+                try 
+                {
+                    int rows = Gui.MainFrame.instructorTable.getRowCount();
+
+                    for (int row = 0; row < rows; row++) {
+                        String id = (Gui.MainFrame.instructorTable.getModel().getValueAt(row, 0).toString());
+                        Integer idToInt = Integer.valueOf(id);
+                        String name = (Gui.MainFrame.instructorTable.getModel().getValueAt(row, 1).toString());
+                        String prename = (Gui.MainFrame.instructorTable.getModel().getValueAt(row, 2).toString());
+                        String birthdate = (Gui.MainFrame.instructorTable.getModel().getValueAt(row, 3).toString());
+                        String sex = (Gui.MainFrame.instructorTable.getModel().getValueAt(row, 4).toString());
+                        String spesification = (Gui.MainFrame.instructorTable.getModel().getValueAt(row, 5).toString());
+                        String workrelation = (Gui.MainFrame.instructorTable.getModel().getValueAt(row, 6).toString());
+                        updateInstructor(name, prename, birthdate, sex, spesification, workrelation, idToInt);
+                    }
+                } 
+                catch (IndexOutOfBoundsException ex) 
+                {
+                } 
+                catch (Exception e) 
+                {
+                    JOptionPane.showMessageDialog(null, "Incorect input pls cehck day, time or date ");
+                    System.out.println(e);
+                    error = true;
+                    if (error == false) 
+                    {
+                        System.out.println("Saving successfull");
+                    }
+                }
+            }
+        };
+        tbaleModel.addTableModelListener(modelListener);
     }
     
     public void readInstructor() throws SQLException
@@ -125,5 +166,38 @@ public class InstructorData
         connection.dbClose();
         DefaultTableModel tbaleModel =(DefaultTableModel) Gui.MainFrame.instructorTable.getModel();
         tbaleModel.setDataVector(instructorData, columnName);        
+    }
+    
+    public void updateInstructor(String name, String prename, String birthdate, String sex, String spesification, String workrelation, int id) throws SQLException
+    {
+        String updateInstructor;
+        updateInstructor="UPDATE Instructor"
+                        +"SET Name=?, Prename=?, Birthdate=?, Sex=?, Spesification=?, Workrelation=?"
+                        +"WHERE ID=?;";
+        PreparedStatement pstmt=connection.connectToDb().prepareStatement(updateInstructor);
+        pstmt.setString(0, name);
+        pstmt.setString(1, prename);
+        pstmt.setString(2, birthdate);
+        pstmt.setString(3, spesification);
+        pstmt.setString(4, workrelation);
+        pstmt.setString(5, sex);
+        pstmt.setInt(6, id);
+        pstmt.executeUpdate();
+        pstmt.close();
+        System.out.println("Instructor has been updated");
+        connection.dbClose();
+    }
+    
+    public void removInstructor() throws SQLException
+    {
+        int[] selectedRows = Gui.MainFrame.instructorTable.getSelectedRows();
+        if (selectedRows.length > 0) {
+            for (int i = selectedRows.length - 1; i >= 0; i--) {
+                String idAsString = (Gui.MainFrame.instructorTable.getValueAt(selectedRows[i], 0).toString());
+                int id = Integer.valueOf(idAsString);
+                deleteInstructor(id);
+            }
+        }
+        readInstructor();  
     }
 }
