@@ -105,11 +105,24 @@ public class ManagingInstructorToCoursData
             }
             manageData.add(data);
         } 
-        System.out.println("Mnage has been loded");
+        System.out.println("Manage has been loded");
         stmt.close();
         connection.dbClose();
         DefaultTableModel tbaleModel =(DefaultTableModel) Gui.MainFrame.managingTable.getModel();
         tbaleModel.setDataVector(manageData, columnName);        
+    }
+    
+    public void removManage() throws SQLException
+    {
+        int[] selectedRows = Gui.MainFrame.managingTable.getSelectedRows();
+        if (selectedRows.length > 0) {
+            for (int i = selectedRows.length - 1; i >= 0; i--) {
+                String idAsString = (Gui.MainFrame.managingTable.getValueAt(selectedRows[i], 0).toString());
+                int id = Integer.valueOf(idAsString);
+                deleteManagingInstructorToCours(id);
+            }
+        }
+        readManage();
     }
     
     public void instructorModle()
@@ -130,7 +143,7 @@ public class ManagingInstructorToCoursData
                 }
             }
         }; 
-        
+        Gui.CreateManagingFrame.instructorIDTable.setModel(tbaleModel);
     }
     
     public void readInstructor() throws SQLException
@@ -184,7 +197,7 @@ public class ManagingInstructorToCoursData
                 }
             }
         };
-        Gui.MainFrame.coursTable.setModel(tbaleModel);
+        Gui.CreateManagingFrame.coursIDTable.setModel(tbaleModel);
     }
     
     public void readCours() throws SQLException

@@ -84,6 +84,18 @@ public class BookingData
         Gui.MainFrame.bookingTable.setModel(tbaleModel);
    }
     
+   public void removeBooking() throws SQLException
+   {
+       int[] selectedRows = Gui.MainFrame.bookingTable.getSelectedRows();
+        if (selectedRows.length > 0) {
+            for (int i = selectedRows.length - 1; i >= 0; i--) {
+                String idAsString = (Gui.MainFrame.bookingTable.getValueAt(selectedRows[i], 0).toString());
+                int id = Integer.valueOf(idAsString);
+                deleteBooing(id);
+            }
+        }
+        readBooking();
+   }
     /**
      * fiels the Jtable withe the data of the DB
      * @throws SQLException 

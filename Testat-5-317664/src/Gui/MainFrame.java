@@ -762,7 +762,7 @@ public class MainFrame extends javax.swing.JFrame
         {
             try 
             {
-            managingInstructorToCoursData.deleteManagingInstructorToCours(action);
+            managingInstructorToCoursData.removManage();
             } 
             catch (SQLException ex) 
             {
@@ -796,7 +796,7 @@ public class MainFrame extends javax.swing.JFrame
         if(action==0)
         {
             try {
-                bookingData.deleteBooing(action);
+                bookingData.removeBooking();
             } 
             catch (SQLException ex) 
             {

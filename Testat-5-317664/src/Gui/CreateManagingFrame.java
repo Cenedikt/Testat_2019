@@ -47,13 +47,13 @@ public class CreateManagingFrame extends javax.swing.JFrame {
 
         instructorIDTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         instructorIDScrollPane.setViewportView(instructorIDTable);
@@ -62,13 +62,13 @@ public class CreateManagingFrame extends javax.swing.JFrame {
 
         coursIDTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         coursIDScrollPane.setViewportView(coursIDTable);
@@ -174,10 +174,10 @@ public class CreateManagingFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancleButton;
     private javax.swing.JScrollPane coursIDScrollPane;
-    private javax.swing.JTable coursIDTable;
+    public static javax.swing.JTable coursIDTable;
     private javax.swing.JButton createButton;
     private javax.swing.JScrollPane instructorIDScrollPane;
-    private javax.swing.JTable instructorIDTable;
+    public static javax.swing.JTable instructorIDTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
