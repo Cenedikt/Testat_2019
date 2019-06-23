@@ -125,12 +125,12 @@ public class InstructorData
                 } 
                 catch (Exception e) 
                 {
-                    JOptionPane.showMessageDialog(null, "Incorect input pls cehck day, time or date ");
+                    JOptionPane.showMessageDialog(null, "Incorect input pls cehck birthdate, sex or workrelation ");
                     System.out.println(e);
                     error = true;
                     if (error == false) 
                     {
-                        System.out.println("Saving successfull");
+                        System.out.println("Instructor has been updated");
                     }
                 }
             }

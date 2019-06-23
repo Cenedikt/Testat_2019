@@ -140,7 +140,7 @@ public class CoursData
                     error = true;
                     if (error == false) 
                     {
-                        System.out.println("Saving successfull");
+                        System.out.println("cours has been updated");
                     }
                 }
             }

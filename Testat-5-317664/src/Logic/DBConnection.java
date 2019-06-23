@@ -59,10 +59,10 @@ public class DBConnection
             
             createCustomerTable="CREATE TABLE IF NOT EXISTS \"Customer\" (\n" +
                                 "    ID        INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                                "    Title     STRING  NOT NULL,\n" +
+                                "    Title     TEXT    NOT NULL,\n" +
                                 "    Name      TEXT    NOT NULL,\n" +
                                 "    Prename   TEXT    NOT NULL,\n" +
-                                "    Birthdate DATE    NOT NULL,\n" +
+                                "    Birthdate TEXT    NOT NULL,\n" +
                                 "    Sex       STRING  NOT NULL\n" +
                                 ");"
             ;
@@ -71,7 +71,7 @@ public class DBConnection
                                   "    ID            INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                                   "    Name          TEXT    NOT NULL,\n" +
                                   "    Prename       TEXT    NOT NULL,\n" +
-                                  "    Birthdate     DATE    NOT NULL,\n" +
+                                  "    Birthdate     TEXT    NOT NULL,\n" +
                                   "    Sex           STRING  NOT NULL,\n" +
                                   "    Spesification TEXT    NOT NULL,\n" +
                                   "    Workrelation  STRING  NOT NULL\n" +

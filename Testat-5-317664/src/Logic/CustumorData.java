@@ -121,12 +121,12 @@ public class CustumorData
                 } 
                 catch (Exception e) 
                 {
-                    JOptionPane.showMessageDialog(null, "Incorect input pls cehck day, time or date ");
+                    JOptionPane.showMessageDialog(null, "Incorect input pls cehck birthdate, title and sex ");
                     System.out.println(e);
                     error = true;
                     if (error == false) 
                     {
-                        System.out.println("Saving successfull");
+                        System.out.println("customer updated");
                     }
                 }
             }
@@ -168,7 +168,7 @@ public class CustumorData
     {
         String updateCustomer;
         updateCustomer="UPDATE Customer"
-                      +"SET Title = ?, Name=?, Prename=?,Birthdate=?,Sex=?"
+                      +"SET Title=?, Name=?, Prename=?, Birthdate=?,Sex=?"
                       +"WHERE ID=?;";
         PreparedStatement pstmt=connection.connectToDb().prepareStatement(updateCustomer);
         pstmt.setString(0, title);
