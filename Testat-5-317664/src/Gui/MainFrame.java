@@ -272,13 +272,13 @@ public class MainFrame extends javax.swing.JFrame
 
         customerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         customerScrollPane.setViewportView(customerTable);
@@ -740,8 +740,8 @@ public class MainFrame extends javax.swing.JFrame
 
     private void managingCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managingCreateButtonActionPerformed
         // TODO add your handling code here:
-//        CreateManagingFrame frame = new CreateManagingFrame();
-//        frame.setVisible(true);
+        CreateManagingFrame frame = new CreateManagingFrame();
+        frame.setVisible(true);
     }//GEN-LAST:event_managingCreateButtonActionPerformed
 
     private void managingReadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managingReadButtonActionPerformed
@@ -752,8 +752,7 @@ public class MainFrame extends javax.swing.JFrame
             managingInstructorToCoursData.readManage();
         } 
         catch (SQLException ex) 
-        {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        {            
         }
     }//GEN-LAST:event_managingReadButtonActionPerformed
 
