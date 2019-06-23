@@ -77,7 +77,7 @@ public class InstructorData
     }
     
     /**
-     * setes the modle of the Jtable in the gui
+     * setes the modle of the Jtable in the gui and adds an modle listener
      */
     public void instructorModle()
     {
@@ -108,7 +108,8 @@ public class InstructorData
                 {
                     int rows = Gui.MainFrame.instructorTable.getRowCount();
 
-                    for (int row = 0; row < rows; row++) {
+                    for (int row = 0; row < rows; row++) 
+                    {
                         String id = (Gui.MainFrame.instructorTable.getModel().getValueAt(row, 0).toString());
                         Integer idToInt = Integer.valueOf(id);
                         String name = (Gui.MainFrame.instructorTable.getModel().getValueAt(row, 1).toString());
@@ -138,6 +139,10 @@ public class InstructorData
         tbaleModel.addTableModelListener(modelListener);
     }
     
+    /**
+     * reads the data fro the db and import it in the jtable
+     * @throws SQLException 
+     */
     public void readInstructor() throws SQLException
     {
         String readInstructor;
@@ -168,6 +173,17 @@ public class InstructorData
         tbaleModel.setDataVector(instructorData, columnName);        
     }
     
+    /**
+     * updates the db
+     * @param name
+     * @param prename
+     * @param birthdate
+     * @param sex
+     * @param spesification
+     * @param workrelation
+     * @param id
+     * @throws SQLException 
+     */
     public void updateInstructor(String name, String prename, String birthdate, String sex, String spesification, String workrelation, int id) throws SQLException
     {
         String updateInstructor;
@@ -188,6 +204,10 @@ public class InstructorData
         connection.dbClose();
     }
     
+    /**
+     * removes the data from the jTable
+     * @throws SQLException 
+     */
     public void removInstructor() throws SQLException
     {
         int[] selectedRows = Gui.MainFrame.instructorTable.getSelectedRows();

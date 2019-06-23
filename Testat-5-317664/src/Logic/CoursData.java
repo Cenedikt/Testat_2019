@@ -73,7 +73,11 @@ public class CoursData
         System.out.println("Cours has been deleted");
         connection.dbClose();
     }
-    
+
+    /**
+     * removes the data set from the jTable
+     * @throws SQLException 
+     */
     public void removeCourse() throws SQLException 
     {
         int[] selectedRows = Gui.MainFrame.coursTable.getSelectedRows();
@@ -86,8 +90,9 @@ public class CoursData
         }
         readCours();
     }
+    
     /**
-     * sets the table modelin the gui
+     * sets the table modelin and adds an modle lisiener
      */
     public void coursModel()
     {
@@ -119,7 +124,8 @@ public class CoursData
                 {
                     int rows = Gui.MainFrame.coursTable.getRowCount();
 
-                    for (int row = 0; row < rows; row++) {
+                    for (int row = 0; row < rows; row++) 
+                    {
                         String id = (Gui.MainFrame.coursTable.getModel().getValueAt(row, 0).toString());
                         Integer idToInt = Integer.valueOf(id);
                         String name = (Gui.MainFrame.coursTable.getModel().getValueAt(row, 1).toString());
@@ -148,6 +154,10 @@ public class CoursData
         tbaleModel.addTableModelListener(modelListener);
     }
     
+    /**
+     * reads the data from the database and puts the in the database
+     * @throws SQLException 
+     */
     public void readCours() throws SQLException
     {
         String readCours;
@@ -178,6 +188,16 @@ public class CoursData
         tbaleModel.setDataVector(coursData, columnName);        
     }
     
+    /**
+     * updates the cours in the db
+     * @param name
+     * @param begin
+     * @param end
+     * @param date
+     * @param day
+     * @param id
+     * @throws SQLException 
+     */
     public void updateCours(String name, String begin, String end, String date, String day, int id) throws SQLException
     {
         String updateCours;

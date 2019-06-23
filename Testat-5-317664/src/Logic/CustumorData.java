@@ -74,7 +74,7 @@ public class CustumorData
     }
     
     /**
-     * sets the modle of the jtable in the gui
+     * sets the modle of the jtable in the gui and adds an modle lisener
      */
     public void customerModle()
     {
@@ -105,7 +105,8 @@ public class CustumorData
                 {
                     int rows = Gui.MainFrame.customerTable.getRowCount();
 
-                    for (int row = 0; row < rows; row++) {
+                    for (int row = 0; row < rows; row++) 
+                    {
                         String id = (Gui.MainFrame.customerTable.getModel().getValueAt(row, 0).toString());
                         Integer idToInt = Integer.valueOf(id);
                         String title = (Gui.MainFrame.customerTable.getModel().getValueAt(row, 1).toString());
@@ -134,6 +135,10 @@ public class CustumorData
         tbaleModel.addTableModelListener(modelListener);
     }
     
+    /**
+     * thakes the data from the db and import them in the db
+     * @throws SQLException 
+     */
     public void readCustomer() throws SQLException
     {
         String readCustomer;
@@ -164,6 +169,16 @@ public class CustumorData
         tbaleModel.setDataVector(customerData, columnName);        
     }
     
+    /**
+     * Updates the db
+     * @param title
+     * @param name
+     * @param prename
+     * @param birthdate
+     * @param sex
+     * @param id
+     * @throws SQLException 
+     */
     public void updateCustomer(String title, String name, String prename, String birthdate, String sex, int id) throws SQLException
     {
         String updateCustomer;
@@ -183,6 +198,10 @@ public class CustumorData
         connection.dbClose();
     }
     
+    /**
+     * removes the data from the jtable
+     * @throws SQLException 
+     */
     public void removeCustomer() throws SQLException
     {
         int[] selectedRows = Gui.MainFrame.customerTable.getSelectedRows();
