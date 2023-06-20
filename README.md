@@ -3,16 +3,16 @@
 Throughout my Java course in university, I faced a multitude of challenges that tested my problem-solving abilities and pushed me to expand my knowledge. From complex programming assignments to intricate algorithms, I tackled each challenge with determination and perseverance.
 
 ### Challenge 1
-build a calculator
+Build a calculator.
 
 ### Challenge 2
-build a loop that displays weather changes
+Build a loop that displays weather changes.
 
 ### Challenge 3
-build a Course booking cli tool with ArrayLists
+Build a Course booking cli tool with ArrayLists.
 
 ### Challenge 4
-build a Course booking cli tool with SQL
+Build a Course booking cli tool with SQL.
 
 ### Challenge 5
-build the frontend of Course booking tool
+Build the frontend of Course booking tool.
